@@ -4,7 +4,7 @@ const router = Router();
 
 // Tambahkan endpoint di sini
 router.get("/", (req, res) => {
-  res.json({ message: "Welcome to the API!" });
+  res.json({ message: "API is running!" });
 });
 
 export default router;
