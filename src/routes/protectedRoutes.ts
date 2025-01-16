@@ -9,4 +9,9 @@ router.get("/", authenticateToken, authorizeRoles("admin", "supervisor"), (req: 
   res.status(200).json({ message: "You have access to this route" });
 });
 
+router.get("/user", authenticateToken, authorizeRoles("engineer", "admin", "superadmin"), (req: AuthenticatedRequest, res: Response) => {
+  logger.info(`User ${req.user?.id} accessed their own data`);
+  res.status(200).json({ message: "You have access to your own data" });
+});
+
 export default router;

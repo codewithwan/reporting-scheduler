@@ -24,6 +24,7 @@ export function authenticateToken(req: AuthenticatedRequest, res: Response, next
       return;
     }
     req.user = decoded as User;
+    req.user.id = (decoded as any).userId; 
     logger.info(`Token verified for user ${req.user.id}`);
     next();
   });

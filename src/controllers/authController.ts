@@ -12,7 +12,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     return;
   }
 
-  const { name, email, password } = req.body;
+  const { name, email, password, timezone } = req.body;
   try {
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
@@ -27,6 +27,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
         email,
         password: hashedPassword,
         role: "engineer",
+        timezone, 
       },
     });
     logger.info(`User ${user.id} registered successfully`);
@@ -48,13 +49,13 @@ export const login = async (req: Request, res: Response): Promise<void> => {
   try {
     const user = await prisma.user.findUnique({ where: { email } });
     if (!user) {
-      logger.warn(`Login failed for email: ${email}`);
+      logger.warn(`Login failed for email: ${email} - User not found`);
       res.status(401).json({ error: "Invalid email or password" });
       return;
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      logger.warn(`Login failed for email: ${email}`);
+      logger.warn(`Login failed for email: ${email} - Invalid password`);
       res.status(401).json({ error: "Invalid email or password" });
       return;
     }

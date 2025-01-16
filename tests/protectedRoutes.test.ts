@@ -55,7 +55,7 @@ describe('Protected Routes', () => {
    * Test case to verify access is denied if no token is provided.
    */
   it('should return 401 if no token is provided', async () => {
-    const res = await request(app).get('/api/protected');
+    const res = await request(app).get('/api/v1/protected');
     expect(res.status).toBe(401);
     expect(res.body.message).toBe('No token provided');
   });
@@ -65,7 +65,7 @@ describe('Protected Routes', () => {
    */
   it('should return 403 if token is invalid', async () => {
     const res = await request(app)
-      .get('/api/protected')
+      .get('/api/v1/protected')
       .set('Authorization', 'Bearer invalidtoken');
     expect(res.status).toBe(403);
     expect(res.body.message).toBe('Invalid token');
@@ -76,7 +76,7 @@ describe('Protected Routes', () => {
    */
   it('should return 403 if user does not have the required role', async () => {
     const res = await request(app)
-      .get('/api/protected')
+      .get('/api/v1/protected')
       .set('Authorization', `Bearer ${engineerToken}`);
     expect(res.status).toBe(403);
     expect(res.body.message).toBe('Forbidden: Insufficient role');
@@ -87,7 +87,7 @@ describe('Protected Routes', () => {
    */
   it('should return 200 if user has the required role', async () => {
     const res = await request(app)
-      .get('/api/protected')
+      .get('/api/v1/protected')
       .set('Authorization', `Bearer ${adminToken}`);
     expect(res.status).toBe(200);
     expect(res.body.message).toBe('You have access to this route');
@@ -101,7 +101,7 @@ describe('Protected Routes', () => {
     await new Promise(resolve => setTimeout(resolve, 10)); 
 
     const res = await request(app)
-      .get('/api/protected')
+      .get('/api/v1/protected')
       .set('Authorization', `Bearer ${expiredToken}`);
     expect(res.status).toBe(403);
     expect(res.body.message).toBe('Invalid token');
