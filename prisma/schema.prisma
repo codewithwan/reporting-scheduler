@@ -1,0 +1,65 @@
+generator client {
+    provider = "prisma-client-js"
+  }
+
+  datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+  }
+
+  enum ScheduleStatus {
+    PENDING
+    COMPLETED
+    RESCHEDULED
+  }
+
+  enum ReminderStatus {
+    PENDING
+    SENT
+  }
+
+  model User {
+    id         String          @id @default(uuid()) @db.Uuid
+    name       String          @db.VarChar
+    email      String          @unique @db.VarChar
+    password   String          @db.VarChar
+    role       String          @db.VarChar
+    timezone   String?         @db.VarChar
+    createdAt  DateTime        @default(now()) @map("created_at")
+    updatedAt  DateTime        @default(now()) @updatedAt @map("updated_at")
+    schedulesEngineer Schedule[] @relation("EngineerSchedules")
+    schedulesAdmin   Schedule[] @relation("AdminSchedules")
+    logActivities LogActivity[]
+  }
+
+  model Schedule {
+    id         String          @id @default(uuid()) @db.Uuid
+    taskName   String          @map("task_name") @db.VarChar
+    executeAt  DateTime        @map("execute_at")
+    status     ScheduleStatus  @default(PENDING)
+    engineerId String          @map("engineer_id") @db.Uuid
+    adminId    String          @map("admin_id") @db.Uuid
+    createdAt  DateTime        @default(now()) @map("created_at")
+    updatedAt  DateTime        @default(now()) @updatedAt @map("updated_at")
+    engineer   User            @relation("EngineerSchedules", fields: [engineerId], references: [id])
+    admin      User            @relation("AdminSchedules", fields: [adminId], references: [id])
+    reminders  Reminder[]
+  }
+
+  model LogActivity {
+    id          String          @id @default(uuid()) @db.Uuid
+    userId      String          @map("user_id") @db.Uuid
+    action      String          @db.VarChar
+    description String?         @db.Text
+    createdAt   DateTime        @default(now()) @map("created_at")
+    user        User            @relation(fields: [userId], references: [id])
+  }
+
+  model Reminder {
+    id          String          @id @default(uuid()) @db.Uuid
+    scheduleId  String          @map("schedule_id") @db.Uuid
+    reminderTime DateTime       @map("reminder_time")
+    status      ReminderStatus  @default(PENDING)
+    createdAt   DateTime        @default(now()) @map("created_at")
+    schedule    Schedule        @relation(fields: [scheduleId], references: [id])
+  }
