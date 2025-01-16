@@ -1,9 +1,9 @@
 import express, { Application } from "express";
 import { json, urlencoded } from "express";
-import router from "./routes";
-import healthRouter from "./routes/health";
-import authRouter from "./routes/auth";
-import protectedRouter from "./routes/protected";
+import router from "./routes/indexRoutes";
+import healthRouter from "./routes/healthRoutes";
+import authRouter from "./routes/authRoutes";
+import protectedRouter from "./routes/protectedRoutes";
 import logger from "./utils/logger";
 
 const app: Application = express();

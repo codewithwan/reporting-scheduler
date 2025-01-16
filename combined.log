@@ -23,3 +23,5 @@
 2025-01-16T04:40:55.666Z info: User 619b7a00-7712-442e-b364-ff561db70f15 logged in successfully
 2025-01-16T04:41:14.464Z info: POST /api/auth/login
 2025-01-16T04:41:14.540Z info: User 371d2ed3-a58a-466d-b402-2a9f217bf8fc logged in successfully
+2025-01-16T04:51:17.916Z info: Server running on http://localhost:3000
+2025-01-16T04:52:05.247Z info: Server running on http://localhost:3000
