@@ -1,4 +1,4 @@
-import { prisma, setTimezone } from './prismaClient';
+import { prisma, setTimezone } from '../config/prismaClient';
 import { Prisma } from '@prisma/client';
 
 async function createUser(data: Prisma.UserCreateInput) {
