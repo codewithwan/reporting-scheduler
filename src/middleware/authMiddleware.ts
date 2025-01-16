@@ -7,7 +7,7 @@ export function authenticateToken(req: AuthenticatedRequest, res: Response, next
   const token = req.headers["authorization"]?.split(" ")[1];
   if (!token) {
     logger.warn("No token provided");
-    res.sendStatus(401);
+    res.status(401).json({ message: 'No token provided' });
     return;
   }
 
@@ -20,7 +20,7 @@ export function authenticateToken(req: AuthenticatedRequest, res: Response, next
   jwt.verify(token, secret, (err, decoded) => {
     if (err) {
       logger.warn("Token verification failed");
-      res.sendStatus(403);
+      res.status(403).json({ message: 'Invalid token' });
       return;
     }
     req.user = decoded as User;
@@ -33,7 +33,7 @@ export function authorizeRoles(...roles: string[]) {
   return (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
     if (!req.user || !roles.includes(req.user.role)) {
       logger.warn(`User ${req.user?.id} is not authorized`);
-      res.sendStatus(403);
+      res.status(403).json({ message: 'Forbidden: Insufficient role' });
       return;
     }
     next();
