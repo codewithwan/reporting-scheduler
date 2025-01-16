@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { describe, expect, it, beforeEach, afterEach } from '@jest/globals';
 
 const prisma = new PrismaClient();

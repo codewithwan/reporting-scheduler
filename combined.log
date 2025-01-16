@@ -25,3 +25,11 @@
 2025-01-16T04:41:14.540Z info: User 371d2ed3-a58a-466d-b402-2a9f217bf8fc logged in successfully
 2025-01-16T04:51:17.916Z info: Server running on http://localhost:3000
 2025-01-16T04:52:05.247Z info: Server running on http://localhost:3000
+2025-01-16T11:01:59.900Z info: Server running on http://localhost:3000
+2025-01-16T11:02:01.801Z info: GET /
+2025-01-16T11:02:06.430Z info: GET /api/
+2025-01-16T11:16:27.792Z info: Server running on http://localhost:3000
+2025-01-16T11:16:33.224Z info: POST /api/auth/register
+2025-01-16T11:16:33.351Z info: User 98953e09-cd7e-4ed7-b705-699656dece3d registered successfully
+2025-01-16T11:16:36.252Z info: POST /api/auth/login
+2025-01-16T11:16:36.361Z info: User 98953e09-cd7e-4ed7-b705-699656dece3d logged in successfully
