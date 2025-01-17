@@ -1,5 +1,9 @@
 import { createLogger, format, transports } from "winston";
 
+/**
+ * Logger instance configured with Winston.
+ * Logs messages to console and a file.
+ */
 const logger = createLogger({
   level: "info",
   format: format.combine(

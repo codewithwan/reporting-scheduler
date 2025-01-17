@@ -10,9 +10,11 @@ interface SuperAdminInput {
   name: string;
 }
 
+/**
+ * Prompts the user for super admin details and creates a super admin.
+ */
 async function createSuperAdmin() {
   try {
-
     const answers: SuperAdminInput = await inquirer.prompt([
       {
         type: 'input',

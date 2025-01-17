@@ -3,6 +3,13 @@ import jwt from "jsonwebtoken";
 import logger from "../utils/logger";
 import { AuthenticatedRequest, User } from "../models/authModel";
 
+/**
+ * Middleware to authenticate JWT token.
+ * @param {AuthenticatedRequest} req - The request object
+ * @param {Response} res - The response object
+ * @param {NextFunction} next - The next middleware function
+ * @returns {void}
+ */
 export function authenticateToken(req: AuthenticatedRequest, res: Response, next: NextFunction): void {
   const token = req.headers["authorization"]?.split(" ")[1];
   if (!token) {
@@ -30,6 +37,11 @@ export function authenticateToken(req: AuthenticatedRequest, res: Response, next
   });
 }
 
+/**
+ * Middleware to authorize user roles.
+ * @param {...string[]} roles - The roles to authorize
+ * @returns {Function} Middleware function
+ */
 export function authorizeRoles(...roles: string[]) {
   return (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
     if (!req.user || !roles.includes(req.user.role)) {

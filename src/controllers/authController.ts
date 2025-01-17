@@ -6,6 +6,12 @@ import { validationResult } from "express-validator";
 import { findUserByEmail, createUser } from "../services/userService";
 import { AuthenticatedRequest } from "../models/authModel";
 
+/**
+ * Register a new user.
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ * @returns {Promise<void>}
+ */
 export const register = async (req: Request, res: Response): Promise<void> => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -35,6 +41,12 @@ export const register = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+/**
+ * Login a user.
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ * @returns {Promise<void>}
+ */
 export const login = async (req: Request, res: Response): Promise<void> => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -68,6 +80,12 @@ export const login = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+/**
+ * Create a new user by admin.
+ * @param {AuthenticatedRequest} req - The request object
+ * @param {Response} res - The response object
+ * @returns {Promise<void>}
+ */
 export const createUserByAdmin = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   const { name, email, password, role } = req.body;
   const adminRole = req.user?.role;

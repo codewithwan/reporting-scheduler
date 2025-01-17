@@ -78,7 +78,7 @@ describe('Auth Controller', () => {
    * Test case to verify user login.
    */
   it('should login an existing user', async () => {
-    const user = await prisma.user.create({
+    await prisma.user.create({
       data: {
         name: 'Login User',
         email: 'loginuser@example.com',
