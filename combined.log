@@ -1779,3 +1779,60 @@ Argument `where` of type UserWhereUniqueInput needs at least one of `id` or `ema
 2025-01-17T11:04:30.794Z info: GET /api/v1/users
 2025-01-17T11:04:30.796Z info: Token verified for user da6542de-d13b-4b4e-9c9d-72bab658a79a
 2025-01-17T11:04:30.796Z warn: User da6542de-d13b-4b4e-9c9d-72bab658a79a is not authorized
+2025-01-17T11:15:29.680Z info: GET /
+2025-01-17T11:16:12.026Z info: GET /
+2025-01-17T11:16:13.021Z info: GET /
+2025-01-17T11:16:13.666Z info: GET /
+2025-01-17T11:16:13.870Z info: GET /
+2025-01-17T11:16:14.045Z info: GET /
+2025-01-17T11:16:14.474Z info: GET /
+2025-01-17T11:16:14.656Z info: GET /
+2025-01-17T11:16:14.835Z info: GET /
+2025-01-17T11:16:15.035Z info: GET /
+2025-01-17T11:16:15.215Z info: GET /
+2025-01-17T11:16:20.042Z info: GET /
+2025-01-17T11:16:20.241Z info: GET /
+2025-01-17T11:16:20.386Z info: GET /
+2025-01-17T11:16:20.935Z info: GET /
+2025-01-17T11:16:21.155Z info: GET /
+2025-01-17T11:16:21.350Z info: GET /
+2025-01-17T11:16:21.578Z info: GET /
+2025-01-17T11:16:22.425Z info: GET /
+2025-01-17T11:16:41.857Z info: GET /api/v1/health
+2025-01-17T11:17:51.283Z info: Server running on http://localhost:3000
+2025-01-17T11:17:51.285Z info: API documentation available at http://localhost:3000/api-docs
+2025-01-17T11:20:36.228Z info: Server running on http://localhost:3000
+2025-01-17T11:20:36.230Z info: API documentation available at http://localhost:3000/api-docs
+2025-01-17T11:20:42.959Z info: GET /health
+2025-01-17T11:20:49.815Z info: GET /health
+2025-01-17T11:26:54.535Z info: Server running on http://localhost:3000
+2025-01-17T11:26:54.537Z info: API documentation available at http://localhost:3000/api-docs
+2025-01-17T11:26:56.285Z info: GET /health
+2025-01-17T11:26:58.355Z info: GET /api-docs/
+2025-01-17T11:26:59.973Z info: GET /api-docs/
+2025-01-17T11:27:32.423Z info: Server running on http://localhost:3000
+2025-01-17T11:27:32.425Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-17T11:27:41.614Z info: GET /api/v1/health
+2025-01-17T11:28:01.073Z info: Server running on http://localhost:3000
+2025-01-17T11:28:01.076Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-17T11:28:12.009Z info: Server running on http://localhost:3000
+2025-01-17T11:28:12.011Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-17T11:28:23.308Z info: GET /api/v1/users
+2025-01-17T11:28:23.310Z warn: No token provided
+2025-01-17T11:28:38.016Z info: POST /api/v1/register
+2025-01-17T11:29:14.433Z info: POST /api/v1/register
+2025-01-17T11:29:42.520Z info: Server running on http://localhost:3000
+2025-01-17T11:29:42.522Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-17T11:29:54.325Z info: Server running on http://localhost:3000
+2025-01-17T11:29:54.328Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-17T11:30:12.538Z info: POST /api/v1/auth/register
+2025-01-17T11:30:12.705Z info: User d75dee1b-2d4f-4f04-9919-a59a021dccf3 registered successfully
+2025-01-17T11:30:37.551Z info: POST /api/v1/auth/login
+2025-01-17T11:31:06.624Z info: POST /api/v1/auth/login
+2025-01-17T11:31:06.724Z info: User d75dee1b-2d4f-4f04-9919-a59a021dccf3 logged in successfully
+2025-01-17T11:31:24.470Z info: POST /api/v1/auth/create-user
+2025-01-17T11:31:24.471Z warn: No token provided
+2025-01-17T11:32:43.740Z info: Server running on http://localhost:3000
+2025-01-17T11:32:43.742Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-17T12:28:21.054Z info: Server running on http://localhost:3000
+2025-01-17T12:28:21.057Z info: API documentation available at http://localhost:3000/api/v1/api-docs
