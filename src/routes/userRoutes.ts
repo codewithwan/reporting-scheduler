@@ -5,6 +5,24 @@ import logger from "../utils/logger";
 
 const router = Router();
 
+/**
+ * @swagger
+ * /users/profile:
+ *   get:
+ *     summary: Get user profile
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: User profile retrieved successfully
+ *       400:
+ *         description: User ID is missing
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Failed to fetch user data
+ */
 router.get("/profile", authenticateToken, authorizeRoles("ENGINEER", "ADMIN", "SUPERADMIN"), async (req: AuthenticatedRequest, res) => {
     const userId = req.user?.id;
     if (!userId) {
@@ -24,6 +42,20 @@ router.get("/profile", authenticateToken, authorizeRoles("ENGINEER", "ADMIN", "S
     }
 });
 
+/**
+ * @swagger
+ * /users:
+ *   get:
+ *     summary: Get all users
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Users retrieved successfully
+ *       500:
+ *         description: Failed to fetch users data
+ */
 router.get("/", authenticateToken, authorizeRoles("SUPERADMIN"), async (req: AuthenticatedRequest, res) => {
   try {
     const users = await prisma.user.findMany({

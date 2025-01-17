@@ -4,11 +4,39 @@ import logger from "../utils/logger";
 
 const router = Router();
 
+/**
+ * @swagger
+ * /protected:
+ *   get:
+ *     summary: Access protected route
+ *     tags: [Protected]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Access granted
+ *       403:
+ *         description: Forbidden
+ */
 router.get("/", authenticateToken, authorizeRoles("ADMIN", "SUPERADMIN"), (req: AuthenticatedRequest, res: Response) => {
   logger.info(`User ${req.user?.id} accessed protected route`);
   res.status(200).json({ message: "You have access to this route" });
 });
 
+/**
+ * @swagger
+ * /protected/user:
+ *   get:
+ *     summary: Access own data
+ *     tags: [Protected]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Access granted
+ *       403:
+ *         description: Forbidden
+ */
 router.get("/user", authenticateToken, authorizeRoles("ENGINEER", "ADMIN", "SUPERADMIN"), (req: AuthenticatedRequest, res: Response) => {
   logger.info(`User ${req.user?.id} accessed their own data`);
   res.status(200).json({ message: "You have access to your own data" });
