@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { authenticateToken, authorizeRoles, AuthenticatedRequest } from "../middleware/authMiddleware";
-import { prisma } from "../config/prisma";
+import { prisma } from "../config/prismaClient";
 import logger from "../utils/logger";
 
 const router = Router();
 
-router.get("/profile", authenticateToken, authorizeRoles("engineer", "admin", "superadmin"), async (req: AuthenticatedRequest, res) => {
+router.get("/profile", authenticateToken, authorizeRoles("ENGINEER", "ADMIN", "SUPERADMIN"), async (req: AuthenticatedRequest, res) => {
     const userId = req.user?.id;
     if (!userId) {
       res.status(400).json({ message: "User ID is missing" });
@@ -24,12 +24,12 @@ router.get("/profile", authenticateToken, authorizeRoles("engineer", "admin", "s
     }
 });
 
-router.get("/", authenticateToken, authorizeRoles("admin", "superadmin"), async (req: AuthenticatedRequest, res) => {
+router.get("/", authenticateToken, authorizeRoles("SUPERADMIN"), async (req: AuthenticatedRequest, res) => {
   try {
     const users = await prisma.user.findMany({
-      where: req.user?.role === 'superadmin' ? {} : {
+      where: req.user?.role === 'SUPERADMIN' ? {} : {
         role: {
-          not: "superadmin"
+          not: "SUPERADMIN"
         }
       }
     });

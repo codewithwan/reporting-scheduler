@@ -23,8 +23,7 @@ describe('Protected Routes', () => {
         name: 'Admin User',
         email: 'admin@example.com',
         password: await bcrypt.hash('password123', 10),
-        role: 'admin',
-        timezone: 'UTC'
+        role: 'ADMIN'
       },
     });
     
@@ -32,9 +31,7 @@ describe('Protected Routes', () => {
       data: {
         name: 'Engineer User',
         email: 'engineer@example.com',
-        password: await bcrypt.hash('password123', 10),
-        role: 'engineer',
-        timezone: 'UTC'
+        password: await bcrypt.hash('password123', 10)
       },
     });
 

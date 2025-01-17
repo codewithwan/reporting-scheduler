@@ -41,7 +41,7 @@ async function createSuperAdmin() {
         email: answers.email,
         password: hashedPassword,
         name: answers.name,
-        role: 'superadmin',
+        role: 'SUPERADMIN',
       },
     });
 
