@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { prisma } from "../config/prisma";
 import logger from "../utils/logger";
 import { validationResult } from "express-validator";
+import { findUserByEmail, createUser } from "../services/userService";
+import { AuthenticatedRequest } from "../models/authModel";
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   const errors = validationResult(req);
@@ -12,23 +13,19 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     return;
   }
 
-  const { name, email, password, timezone } = req.body;
+  const { name, email, password } = req.body;
   try {
-    const existingUser = await prisma.user.findUnique({ where: { email } });
+    const existingUser = await findUserByEmail(email);
     if (existingUser) {
       res.status(400).json({ error: "Email already in use" });
       return;
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await prisma.user.create({
-      data: {
-        name,
-        email,
-        password: hashedPassword,
-        role: "engineer",
-        timezone, 
-      },
+    const user = await createUser({
+      name,
+      email,
+      password: hashedPassword,
     });
     logger.info(`User ${user.id} registered successfully`);
     res.status(201).json({ message: "User registered successfully", user });
@@ -47,7 +44,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
   const { email, password } = req.body;
   try {
-    const user = await prisma.user.findUnique({ where: { email } });
+    const user = await findUserByEmail(email);
     if (!user) {
       logger.warn(`Login failed for email: ${email} - User not found`);
       res.status(401).json({ error: "Invalid email or password" });
@@ -68,5 +65,39 @@ export const login = async (req: Request, res: Response): Promise<void> => {
   } catch (error) {
     logger.error("Login failed", error);
     res.status(400).json({ error: "Login failed" });
+  }
+};
+
+export const createUserByAdmin = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  const { name, email, password, role } = req.body;
+  const adminRole = req.user?.role;
+
+  if (adminRole !== "ADMIN" && adminRole !== "SUPERADMIN") {
+    res.status(403).json({ error: "Forbidden: Only admin or superadmin can create users" });
+    return;
+  }
+
+  if (role === "ADMIN" && adminRole !== "SUPERADMIN") {
+    res.status(403).json({ error: "Forbidden: Only superadmin can create admin users" });
+  }
+
+  try {
+    const existingUser = await findUserByEmail(email);
+    if (existingUser) {
+      res.status(400).json({ error: "Email already in use" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await createUser({
+      name,
+      email,
+      password: hashedPassword,
+    });
+
+    logger.info(`User ${user.id} created successfully by ${adminRole}`);
+    res.status(201).json({ message: "User created successfully", user });
+  } catch (error) {
+    logger.error("User creation failed", error);
+    res.status(400).json({ error: "User creation failed" });
   }
 };

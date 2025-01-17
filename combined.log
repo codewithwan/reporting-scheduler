@@ -866,3 +866,591 @@ Argument `where` of type UserWhereUniqueInput needs at least one of `id` or `ema
 2025-01-16T12:58:07.860Z info: User ed01e817-43a1-450b-a643-776c911b2fb3 logged in successfully
 2025-01-16T12:58:18.807Z info: GET /api/v1/users/profile
 2025-01-16T12:58:18.809Z info: Token verified for user ed01e817-43a1-450b-a643-776c911b2fb3
+2025-01-16T13:02:21.809Z info: POST /api/v1/auth/register
+2025-01-16T13:02:21.822Z info: GET /api/v1/protected
+2025-01-16T13:02:21.829Z warn: No token provided
+2025-01-16T13:02:21.844Z info: GET /api/v1/protected
+2025-01-16T13:02:21.845Z warn: Token verification failed
+2025-01-16T13:02:21.855Z info: GET /api/v1/protected
+2025-01-16T13:02:21.858Z info: Token verified for user 47a47122-fa08-44d7-8d0e-5b9477726db4
+2025-01-16T13:02:21.859Z warn: User 47a47122-fa08-44d7-8d0e-5b9477726db4 is not authorized
+2025-01-16T13:02:21.867Z info: GET /api/v1/protected
+2025-01-16T13:02:21.869Z info: Token verified for user e44e7664-32a6-47ff-bce8-5b80beef066c
+2025-01-16T13:02:21.870Z info: User e44e7664-32a6-47ff-bce8-5b80beef066c accessed protected route
+2025-01-16T13:02:21.900Z info: GET /api/v1/protected
+2025-01-16T13:02:21.899Z info: GET /api/v1/users/profile
+2025-01-16T13:02:21.901Z warn: Token verification failed
+2025-01-16T13:02:21.904Z info: Token verified for user b0dbdfaf-e1f4-4b2e-83b6-abbd211e1ade
+2025-01-16T13:02:21.937Z info: User 273ae68f-e8b1-41ba-b56d-5c69334c1f71 registered successfully
+2025-01-16T13:02:22.026Z info: POST /api/v1/auth/register
+2025-01-16T13:02:22.105Z info: POST /api/v1/auth/login
+2025-01-16T13:02:22.179Z info: User f957e632-5e67-4d25-bd09-27cd60c9c1f2 logged in successfully
+2025-01-16T13:02:22.186Z info: GET /api/v1/users
+2025-01-16T13:02:22.186Z info: POST /api/v1/auth/login
+2025-01-16T13:02:22.188Z info: Token verified for user 0da3bcb0-e71a-40cd-9958-41d56fe06e4a
+2025-01-16T13:02:22.189Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T13:02:22.196Z info: POST /api/v1/auth/login
+2025-01-16T13:02:22.198Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-16T13:02:22.212Z info: POST /api/v1/auth/register
+2025-01-16T13:02:22.220Z info: POST /api/v1/auth/register
+2025-01-16T13:02:22.417Z info: GET /api/v1/users
+2025-01-16T13:02:22.418Z info: Token verified for user 1ff71e37-d54f-4605-9be0-344bedc6aa3f
+2025-01-16T13:02:22.647Z info: GET /api/v1/users
+2025-01-16T13:02:22.648Z info: Token verified for user 31893add-1226-43f7-a2eb-084628a212cc
+2025-01-16T13:02:22.649Z warn: User 31893add-1226-43f7-a2eb-084628a212cc is not authorized
+2025-01-16T13:12:30.467Z info: POST /api/v1/auth/register
+2025-01-16T13:12:30.544Z info: GET /api/v1/protected
+2025-01-16T13:12:30.551Z warn: No token provided
+2025-01-16T13:12:30.569Z info: GET /api/v1/protected
+2025-01-16T13:12:30.570Z warn: Token verification failed
+2025-01-16T13:12:30.581Z info: GET /api/v1/protected
+2025-01-16T13:12:30.583Z info: Token verified for user 01983ccc-cfe6-4c0a-a418-351e8a31d023
+2025-01-16T13:12:30.584Z warn: User 01983ccc-cfe6-4c0a-a418-351e8a31d023 is not authorized
+2025-01-16T13:12:30.592Z info: GET /api/v1/protected
+2025-01-16T13:12:30.596Z info: User 81ce3379-62f9-459f-bebb-d5f953fe59c1 registered successfully
+2025-01-16T13:12:30.594Z info: Token verified for user 7e345333-2951-4bf1-a99c-5e6f4ad8cbc8
+2025-01-16T13:12:30.596Z info: User 7e345333-2951-4bf1-a99c-5e6f4ad8cbc8 accessed protected route
+2025-01-16T13:12:30.599Z info: GET /api/v1/users/profile
+2025-01-16T13:12:30.610Z info: Token verified for user 75f9213d-b027-420e-8c52-d8ba52ead043
+2025-01-16T13:12:30.622Z info: GET /api/v1/protected
+2025-01-16T13:12:30.624Z warn: Token verification failed
+2025-01-16T13:12:30.690Z info: POST /api/v1/auth/register
+2025-01-16T13:12:30.780Z info: POST /api/v1/auth/login
+2025-01-16T13:12:30.852Z info: User f80daabe-2a5d-409a-8b2d-34cecb071d71 logged in successfully
+2025-01-16T13:12:30.861Z info: POST /api/v1/auth/login
+2025-01-16T13:12:30.864Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T13:12:30.870Z info: POST /api/v1/auth/login
+2025-01-16T13:12:30.873Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-16T13:12:30.880Z info: POST /api/v1/auth/register
+2025-01-16T13:12:30.887Z info: POST /api/v1/auth/register
+2025-01-16T13:12:30.909Z info: GET /api/v1/users
+2025-01-16T13:12:30.910Z info: Token verified for user 956280c5-8781-4d2c-bcc4-8449eb2a1689
+2025-01-16T13:12:31.154Z info: GET /api/v1/users
+2025-01-16T13:12:31.155Z info: Token verified for user 79b4f01a-7dc9-4e27-86b7-64c3590a4b21
+2025-01-16T13:12:31.382Z info: GET /api/v1/users
+2025-01-16T13:12:31.383Z info: Token verified for user 91c322ff-5abe-450c-b7c0-f680adfceceb
+2025-01-16T13:12:31.384Z warn: User 91c322ff-5abe-450c-b7c0-f680adfceceb is not authorized
+2025-01-16T13:19:24.973Z info: GET /api/v1/protected
+2025-01-16T13:19:24.981Z warn: No token provided
+2025-01-16T13:19:24.997Z info: GET /api/v1/protected
+2025-01-16T13:19:24.989Z info: POST /api/v1/auth/register
+2025-01-16T13:19:24.999Z warn: Token verification failed
+2025-01-16T13:19:25.011Z info: GET /api/v1/protected
+2025-01-16T13:19:25.015Z info: Token verified for user bfe5dc61-caab-46f7-8393-646a3f20361c
+2025-01-16T13:19:25.017Z warn: User bfe5dc61-caab-46f7-8393-646a3f20361c is not authorized
+2025-01-16T13:19:25.027Z info: GET /api/v1/protected
+2025-01-16T13:19:25.029Z info: Token verified for user 40c7442c-52d4-4def-b328-c1257887b465
+2025-01-16T13:19:25.030Z info: User 40c7442c-52d4-4def-b328-c1257887b465 accessed protected route
+2025-01-16T13:19:25.062Z info: GET /api/v1/protected
+2025-01-16T13:19:25.064Z warn: Token verification failed
+2025-01-16T13:19:25.088Z info: GET /api/v1/users/profile
+2025-01-16T13:19:25.097Z info: Token verified for user cec2c808-54b7-4c12-8d58-e6684044e3b8
+2025-01-16T13:19:25.118Z info: User 64b2e18e-7cc5-45e9-ae6b-d3c44068f287 registered successfully
+2025-01-16T13:19:25.204Z info: POST /api/v1/auth/register
+2025-01-16T13:19:25.289Z info: POST /api/v1/auth/login
+2025-01-16T13:19:25.357Z info: User d570d99c-a44a-4d6c-b22e-d8573e6440e5 logged in successfully
+2025-01-16T13:19:25.364Z info: POST /api/v1/auth/login
+2025-01-16T13:19:25.367Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T13:19:25.372Z info: POST /api/v1/auth/login
+2025-01-16T13:19:25.376Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-16T13:19:25.382Z info: POST /api/v1/auth/register
+2025-01-16T13:19:25.387Z info: GET /api/v1/users
+2025-01-16T13:19:25.388Z info: Token verified for user debc4631-6229-44f3-9cc5-caa84392bb46
+2025-01-16T13:19:25.390Z info: POST /api/v1/auth/register
+2025-01-16T13:19:25.634Z info: GET /api/v1/users
+2025-01-16T13:19:25.638Z info: Token verified for user 12177d87-fa96-47fe-a1b8-5724a7d63146
+2025-01-16T13:19:25.870Z info: GET /api/v1/users
+2025-01-16T13:19:25.872Z info: Token verified for user d611a11c-3adb-45a2-9756-aa970920c465
+2025-01-16T13:19:25.872Z warn: User d611a11c-3adb-45a2-9756-aa970920c465 is not authorized
+2025-01-16T13:22:57.195Z info: Server running on http://localhost:3000
+2025-01-16T13:23:06.296Z info: Server running on http://localhost:3000
+2025-01-16T13:23:11.401Z info: POST /api/v1/auth/register
+2025-01-16T13:23:11.453Z info: GET /api/v1/protected
+2025-01-16T13:23:11.461Z warn: No token provided
+2025-01-16T13:23:11.474Z info: GET /api/v1/protected
+2025-01-16T13:23:11.475Z warn: Token verification failed
+2025-01-16T13:23:11.483Z info: GET /api/v1/protected
+2025-01-16T13:23:11.485Z info: Token verified for user dc28f467-5add-4952-97a6-5b42e859b869
+2025-01-16T13:23:11.487Z warn: User dc28f467-5add-4952-97a6-5b42e859b869 is not authorized
+2025-01-16T13:23:11.495Z info: GET /api/v1/protected
+2025-01-16T13:23:11.497Z info: Token verified for user 14e2dd7d-ce33-4088-b5e6-813830e6dc01
+2025-01-16T13:23:11.498Z info: User 14e2dd7d-ce33-4088-b5e6-813830e6dc01 accessed protected route
+2025-01-16T13:23:11.539Z info: GET /api/v1/protected
+2025-01-16T13:23:11.540Z info: User f64cc3af-695a-49d6-b8cd-6da57df75f04 registered successfully
+2025-01-16T13:23:11.542Z warn: Token verification failed
+2025-01-16T13:23:11.649Z info: POST /api/v1/auth/register
+2025-01-16T13:23:11.729Z info: POST /api/v1/auth/login
+2025-01-16T13:23:11.811Z info: User 993d7946-8f7f-46c3-8b1e-47193272763a logged in successfully
+2025-01-16T13:23:11.842Z info: POST /api/v1/auth/login
+2025-01-16T13:23:11.846Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T13:23:11.856Z info: POST /api/v1/auth/login
+2025-01-16T13:23:11.861Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-16T13:23:11.874Z info: POST /api/v1/auth/register
+2025-01-16T13:23:11.887Z info: POST /api/v1/auth/register
+2025-01-16T13:23:12.521Z info: GET /api/v1/users/profile
+2025-01-16T13:23:12.528Z info: Token verified for user db379948-5518-4adb-bb01-8541a75e04e0
+2025-01-16T13:23:12.791Z info: GET /api/v1/users
+2025-01-16T13:23:12.793Z info: Token verified for user dbbbf6c2-1c8b-44e6-9304-b35dc4646683
+2025-01-16T13:23:13.027Z info: GET /api/v1/users
+2025-01-16T13:23:13.030Z info: Token verified for user 7bf9ee6e-2487-40ab-8b60-043f75efb82d
+2025-01-16T13:23:13.260Z info: GET /api/v1/users
+2025-01-16T13:23:13.261Z info: Token verified for user 7fe82706-38a2-4e4e-8b38-2dc89421a65a
+2025-01-16T13:23:13.262Z warn: User 7fe82706-38a2-4e4e-8b38-2dc89421a65a is not authorized
+2025-01-16T13:40:01.460Z info: POST /api/v1/auth/register
+2025-01-16T13:40:01.519Z info: GET /api/v1/protected
+2025-01-16T13:40:01.528Z warn: No token provided
+2025-01-16T13:40:01.540Z info: GET /api/v1/protected
+2025-01-16T13:40:01.541Z warn: Token verification failed
+2025-01-16T13:40:01.552Z info: GET /api/v1/protected
+2025-01-16T13:40:01.556Z info: Token verified for user ac5a6177-7c28-4e7e-8f9c-5dca41d96645
+2025-01-16T13:40:01.557Z warn: User ac5a6177-7c28-4e7e-8f9c-5dca41d96645 is not authorized
+2025-01-16T13:40:01.566Z info: GET /api/v1/protected
+2025-01-16T13:40:01.567Z info: Token verified for user 13aece6a-dee7-43d1-bd89-37fb626ec1bf
+2025-01-16T13:40:01.569Z info: User 13aece6a-dee7-43d1-bd89-37fb626ec1bf accessed protected route
+2025-01-16T13:40:01.579Z info: User df926742-578a-4a3f-891d-7d4284ad490a registered successfully
+2025-01-16T13:40:01.604Z info: GET /api/v1/protected
+2025-01-16T13:40:01.606Z warn: Token verification failed
+2025-01-16T13:40:01.632Z info: GET /api/v1/users/profile
+2025-01-16T13:40:01.639Z info: Token verified for user 0892df41-ff07-416b-b4fe-ec6fac354da8
+2025-01-16T13:40:01.659Z info: POST /api/v1/auth/register
+2025-01-16T13:40:01.741Z info: POST /api/v1/auth/login
+2025-01-16T13:40:01.811Z info: User 9c5b4658-0357-4fc7-ac45-631d9d9c1ec7 logged in successfully
+2025-01-16T13:40:01.826Z info: POST /api/v1/auth/login
+2025-01-16T13:40:01.828Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T13:40:01.835Z info: POST /api/v1/auth/login
+2025-01-16T13:40:01.837Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-16T13:40:01.845Z info: POST /api/v1/auth/register
+2025-01-16T13:40:01.853Z info: POST /api/v1/auth/register
+2025-01-16T13:40:01.920Z info: GET /api/v1/users
+2025-01-16T13:40:01.922Z info: Token verified for user 5895d8b0-bca2-428b-8d83-cb45aec4213c
+2025-01-16T13:40:02.151Z info: GET /api/v1/users
+2025-01-16T13:40:02.152Z info: Token verified for user 4cc474b6-97d8-4395-bced-e81a8da4b8a9
+2025-01-16T13:40:02.395Z info: GET /api/v1/users
+2025-01-16T13:40:02.397Z info: Token verified for user 79b62250-3bf4-439e-a363-ae24c9b5c25c
+2025-01-16T13:40:02.398Z warn: User 79b62250-3bf4-439e-a363-ae24c9b5c25c is not authorized
+2025-01-16T14:20:07.007Z info: GET /api/v1/protected
+2025-01-16T14:20:07.016Z warn: No token provided
+2025-01-16T14:20:07.031Z info: GET /api/v1/protected
+2025-01-16T14:20:07.032Z warn: Token verification failed
+2025-01-16T14:20:07.039Z info: GET /api/v1/protected
+2025-01-16T14:20:07.041Z info: Token verified for user fc8dc941-790c-4a18-9b97-7ef849bcf95b
+2025-01-16T14:20:07.042Z warn: User fc8dc941-790c-4a18-9b97-7ef849bcf95b is not authorized
+2025-01-16T14:20:07.048Z info: GET /api/v1/protected
+2025-01-16T14:20:07.050Z info: Token verified for user 1172063e-7b4b-495c-8e88-b591188c45af
+2025-01-16T14:20:07.051Z info: User 1172063e-7b4b-495c-8e88-b591188c45af accessed protected route
+2025-01-16T14:20:07.079Z info: GET /api/v1/protected
+2025-01-16T14:20:07.080Z warn: Token verification failed
+2025-01-16T14:20:07.087Z info: GET /api/v1/users/profile
+2025-01-16T14:20:07.095Z info: Token verified for user 15f9942a-5c8a-457b-9f71-bb7a62bc4b23
+2025-01-16T14:20:07.191Z info: POST /api/v1/auth/register
+2025-01-16T14:20:07.305Z info: User 036a7639-85ce-4db1-8d86-b9598b12c265 registered successfully
+2025-01-16T14:20:07.369Z info: GET /api/v1/users
+2025-01-16T14:20:07.371Z info: Token verified for user 856def5d-fd9c-4fbb-b833-41207a47f018
+2025-01-16T14:20:07.385Z info: POST /api/v1/auth/register
+2025-01-16T14:20:07.462Z info: User fe4cf4c6-62a8-4fd1-a9d3-4791a7606bc3 registered successfully
+2025-01-16T14:20:07.536Z info: POST /api/v1/auth/login
+2025-01-16T14:20:07.595Z info: GET /api/v1/users
+2025-01-16T14:20:07.597Z info: Token verified for user 87f86420-a8e3-46cc-840d-ada0ebee8c33
+2025-01-16T14:20:07.604Z info: User aaa5658b-e0b7-4fa9-9051-7df03550991d logged in successfully
+2025-01-16T14:20:07.612Z info: POST /api/v1/auth/login
+2025-01-16T14:20:07.620Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T14:20:07.629Z info: POST /api/v1/auth/login
+2025-01-16T14:20:07.631Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-16T14:20:07.636Z info: POST /api/v1/auth/register
+2025-01-16T14:20:07.643Z info: POST /api/v1/auth/register
+2025-01-16T14:20:07.820Z info: GET /api/v1/users
+2025-01-16T14:20:07.821Z info: Token verified for user ae754f9e-46c7-451c-bec4-9c554fd62f5a
+2025-01-16T14:20:07.822Z warn: User ae754f9e-46c7-451c-bec4-9c554fd62f5a is not authorized
+2025-01-16T14:20:32.140Z info: GET /api/v1/protected
+2025-01-16T14:20:32.151Z warn: No token provided
+2025-01-16T14:20:32.171Z info: GET /api/v1/protected
+2025-01-16T14:20:32.173Z warn: Token verification failed
+2025-01-16T14:20:32.180Z info: GET /api/v1/protected
+2025-01-16T14:20:32.182Z info: Token verified for user 25698859-ad1c-4194-89fe-460c61a5a375
+2025-01-16T14:20:32.183Z warn: User 25698859-ad1c-4194-89fe-460c61a5a375 is not authorized
+2025-01-16T14:20:32.192Z info: GET /api/v1/protected
+2025-01-16T14:20:32.194Z info: Token verified for user 1719b43f-8098-4574-a629-ff21cc6f2b70
+2025-01-16T14:20:32.195Z info: User 1719b43f-8098-4574-a629-ff21cc6f2b70 accessed protected route
+2025-01-16T14:20:32.220Z info: GET /api/v1/protected
+2025-01-16T14:20:32.222Z warn: Token verification failed
+2025-01-16T14:20:32.239Z info: POST /api/v1/auth/register
+2025-01-16T14:20:32.372Z info: User b6b0bf14-2a66-420d-be89-4132a3834ace registered successfully
+2025-01-16T14:20:32.355Z info: GET /api/v1/users/profile
+2025-01-16T14:20:32.381Z info: Token verified for user 7d9dce13-0ad0-4cce-a3d5-6b449916d74f
+2025-01-16T14:20:32.453Z info: POST /api/v1/auth/register
+2025-01-16T14:20:32.545Z info: POST /api/v1/auth/login
+2025-01-16T14:20:32.620Z info: User 1af27f8e-d8f9-4c6e-b08b-c4fb4e8880c4 logged in successfully
+2025-01-16T14:20:32.626Z info: POST /api/v1/auth/login
+2025-01-16T14:20:32.630Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T14:20:32.636Z info: POST /api/v1/auth/login
+2025-01-16T14:20:32.638Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-16T14:20:32.648Z info: POST /api/v1/auth/register
+2025-01-16T14:20:32.658Z info: GET /api/v1/users
+2025-01-16T14:20:32.659Z info: POST /api/v1/auth/register
+2025-01-16T14:20:32.660Z info: Token verified for user fca68b2f-1959-4132-a6ca-ceaa297b5ea3
+2025-01-16T14:20:32.905Z info: GET /api/v1/users
+2025-01-16T14:20:32.906Z info: Token verified for user f5205395-d7ca-44c3-b30c-505a7b1632a9
+2025-01-16T14:20:33.167Z info: GET /api/v1/users
+2025-01-16T14:20:33.170Z info: Token verified for user cf9e47a1-352e-4b54-94d5-850a9671cc27
+2025-01-16T14:20:33.171Z warn: User cf9e47a1-352e-4b54-94d5-850a9671cc27 is not authorized
+2025-01-16T14:20:50.268Z info: POST /api/v1/auth/register
+2025-01-16T14:20:50.322Z info: GET /api/v1/protected
+2025-01-16T14:20:50.331Z warn: No token provided
+2025-01-16T14:20:50.344Z info: GET /api/v1/protected
+2025-01-16T14:20:50.345Z warn: Token verification failed
+2025-01-16T14:20:50.353Z info: GET /api/v1/protected
+2025-01-16T14:20:50.356Z info: Token verified for user 45b1ca3a-32d3-4dd8-9766-69b1580e6c20
+2025-01-16T14:20:50.357Z warn: User 45b1ca3a-32d3-4dd8-9766-69b1580e6c20 is not authorized
+2025-01-16T14:20:50.368Z info: GET /api/v1/protected
+2025-01-16T14:20:50.370Z info: Token verified for user 9dfde08f-8ede-499f-b8bd-793319fe31c9
+2025-01-16T14:20:50.371Z info: User 9dfde08f-8ede-499f-b8bd-793319fe31c9 accessed protected route
+2025-01-16T14:20:50.389Z info: User d3faa5b8-2c24-4dcb-a2df-cdb53356fee2 registered successfully
+2025-01-16T14:20:50.405Z info: GET /api/v1/protected
+2025-01-16T14:20:50.407Z warn: Token verification failed
+2025-01-16T14:20:50.418Z info: GET /api/v1/users/profile
+2025-01-16T14:20:50.425Z info: Token verified for user 503597eb-8dd4-417f-adcf-9d146691022a
+2025-01-16T14:20:50.478Z info: POST /api/v1/auth/register
+2025-01-16T14:20:50.568Z info: POST /api/v1/auth/login
+2025-01-16T14:20:50.640Z info: User 66483825-b8c5-4625-9cdc-5f000a360415 logged in successfully
+2025-01-16T14:20:50.649Z info: POST /api/v1/auth/login
+2025-01-16T14:20:50.651Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T14:20:50.659Z info: POST /api/v1/auth/login
+2025-01-16T14:20:50.661Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-16T14:20:50.666Z info: POST /api/v1/auth/register
+2025-01-16T14:20:50.674Z info: POST /api/v1/auth/register
+2025-01-16T14:20:50.704Z info: GET /api/v1/users
+2025-01-16T14:20:50.706Z info: Token verified for user 0cf5b4a5-b16d-4a29-8ddd-e68433a29b95
+2025-01-16T14:20:50.931Z info: GET /api/v1/users
+2025-01-16T14:20:50.933Z info: Token verified for user 7b323650-9552-4f97-af0f-3cfd1329609b
+2025-01-16T14:20:51.172Z info: GET /api/v1/users
+2025-01-16T14:20:51.173Z info: Token verified for user 950ac1ba-3898-4eb6-9257-5b4d2db6df3f
+2025-01-16T14:20:51.174Z warn: User 950ac1ba-3898-4eb6-9257-5b4d2db6df3f is not authorized
+2025-01-16T14:23:56.127Z info: Server running on http://localhost:3000
+2025-01-16T14:24:00.731Z info: POST /api/v1/auth/register
+2025-01-16T14:24:00.865Z info: User cfe4ed46-32de-419d-ba96-745d523b3691 registered successfully
+2025-01-16T14:24:03.834Z info: POST /api/v1/auth/login
+2025-01-16T14:24:03.911Z info: User cfe4ed46-32de-419d-ba96-745d523b3691 logged in successfully
+2025-01-16T14:24:06.630Z info: GET /api/v1/users/profile
+2025-01-16T14:24:06.634Z warn: Token verification failed
+2025-01-16T14:24:15.708Z info: GET /api/v1/users/profile
+2025-01-16T14:24:15.710Z warn: Token verification failed
+2025-01-16T14:24:18.440Z info: POST /api/v1/auth/login
+2025-01-16T14:24:18.514Z info: User cfe4ed46-32de-419d-ba96-745d523b3691 logged in successfully
+2025-01-16T14:24:20.824Z info: POST /api/v1/auth/login
+2025-01-16T14:24:20.918Z info: User cfe4ed46-32de-419d-ba96-745d523b3691 logged in successfully
+2025-01-16T14:24:31.181Z info: GET /api/v1/users/profile
+2025-01-16T14:24:31.182Z info: Token verified for user cfe4ed46-32de-419d-ba96-745d523b3691
+2025-01-16T14:24:41.145Z info: POST /api/v1/auth/register
+2025-01-16T14:24:41.198Z info: GET /api/v1/protected
+2025-01-16T14:24:41.205Z warn: No token provided
+2025-01-16T14:24:41.218Z info: GET /api/v1/protected
+2025-01-16T14:24:41.219Z warn: Token verification failed
+2025-01-16T14:24:41.228Z info: GET /api/v1/protected
+2025-01-16T14:24:41.230Z info: Token verified for user b66accff-c07b-4277-8bbe-a9bc940e0695
+2025-01-16T14:24:41.231Z warn: User b66accff-c07b-4277-8bbe-a9bc940e0695 is not authorized
+2025-01-16T14:24:41.237Z info: GET /api/v1/protected
+2025-01-16T14:24:41.238Z info: Token verified for user c05da5e6-6b94-4137-8fd8-93322fcf397b
+2025-01-16T14:24:41.239Z info: User c05da5e6-6b94-4137-8fd8-93322fcf397b accessed protected route
+2025-01-16T14:24:41.261Z info: GET /api/v1/protected
+2025-01-16T14:24:41.262Z warn: Token verification failed
+2025-01-16T14:24:41.266Z info: User 9ffeb34a-fb86-4e33-abe9-f4fa2b04f503 registered successfully
+2025-01-16T14:24:41.283Z info: GET /api/v1/users/profile
+2025-01-16T14:24:41.289Z info: Token verified for user 1ccc1a76-d94e-4f50-8107-2234e9665246
+2025-01-16T14:24:41.354Z info: POST /api/v1/auth/register
+2025-01-16T14:24:41.431Z info: POST /api/v1/auth/login
+2025-01-16T14:24:41.502Z info: User efe1e918-5e2d-4bdd-9ab5-ae902d8654d5 logged in successfully
+2025-01-16T14:24:41.509Z info: POST /api/v1/auth/login
+2025-01-16T14:24:41.511Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T14:24:41.517Z info: POST /api/v1/auth/login
+2025-01-16T14:24:41.519Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-16T14:24:41.524Z info: POST /api/v1/auth/register
+2025-01-16T14:24:41.533Z info: POST /api/v1/auth/register
+2025-01-16T14:24:41.555Z info: GET /api/v1/users
+2025-01-16T14:24:41.557Z info: Token verified for user 93b289db-e597-4dd1-9bc7-56dfbe6e54c4
+2025-01-16T14:24:41.778Z info: GET /api/v1/users
+2025-01-16T14:24:41.779Z info: Token verified for user 60d6adcd-ce94-4e82-9398-46b1fa61762f
+2025-01-16T14:24:41.997Z info: GET /api/v1/users
+2025-01-16T14:24:41.998Z info: Token verified for user 8674c8c5-bb87-4d35-b980-a34636678dca
+2025-01-16T14:24:41.999Z warn: User 8674c8c5-bb87-4d35-b980-a34636678dca is not authorized
+2025-01-16T14:26:52.740Z info: Server running on http://localhost:3000
+2025-01-16T14:26:58.040Z info: POST /api/v1/auth/register
+2025-01-16T14:26:58.080Z info: GET /api/v1/protected
+2025-01-16T14:26:58.089Z warn: No token provided
+2025-01-16T14:26:58.107Z info: GET /api/v1/protected
+2025-01-16T14:26:58.108Z warn: Token verification failed
+2025-01-16T14:26:58.116Z info: GET /api/v1/protected
+2025-01-16T14:26:58.118Z info: Token verified for user e4feb03b-8791-4f62-8c2a-aab5e2ea5e5e
+2025-01-16T14:26:58.120Z warn: User e4feb03b-8791-4f62-8c2a-aab5e2ea5e5e is not authorized
+2025-01-16T14:26:58.126Z info: GET /api/v1/protected
+2025-01-16T14:26:58.128Z info: Token verified for user 2ab688fd-f320-444d-b38f-63d2061e9163
+2025-01-16T14:26:58.129Z info: User 2ab688fd-f320-444d-b38f-63d2061e9163 accessed protected route
+2025-01-16T14:26:58.155Z info: User 581cbd5d-ffbb-4a33-bfd5-5d1a9094a4b9 registered successfully
+2025-01-16T14:26:58.164Z info: GET /api/v1/protected
+2025-01-16T14:26:58.166Z warn: Token verification failed
+2025-01-16T14:26:58.244Z info: POST /api/v1/auth/register
+2025-01-16T14:26:58.320Z info: POST /api/v1/auth/login
+2025-01-16T14:26:58.389Z info: User d32807be-27ce-43cf-8c80-8e5f7f387f8c logged in successfully
+2025-01-16T14:26:58.397Z info: POST /api/v1/auth/login
+2025-01-16T14:26:58.400Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T14:26:58.406Z info: POST /api/v1/auth/login
+2025-01-16T14:26:58.410Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-16T14:26:58.416Z info: POST /api/v1/auth/register
+2025-01-16T14:26:58.423Z info: POST /api/v1/auth/register
+2025-01-16T14:26:58.999Z info: GET /api/v1/users/profile
+2025-01-16T14:26:59.005Z info: Token verified for user 0dbf0591-bd9a-4632-89ed-94c9b7cd587c
+2025-01-16T14:26:59.265Z info: GET /api/v1/users
+2025-01-16T14:26:59.267Z info: Token verified for user e77e5cc5-a1bd-4797-82f9-5fcb09d5dc05
+2025-01-16T14:26:59.491Z info: GET /api/v1/users
+2025-01-16T14:26:59.492Z info: Token verified for user 2c75fe7b-40df-448f-8a4d-0ad0a0a4be84
+2025-01-16T14:26:59.710Z info: GET /api/v1/users
+2025-01-16T14:26:59.712Z info: Token verified for user c4adc15c-ab48-4da7-a8d7-93388102b9d2
+2025-01-16T14:26:59.712Z warn: User c4adc15c-ab48-4da7-a8d7-93388102b9d2 is not authorized
+2025-01-16T14:27:15.695Z info: Server running on http://localhost:3000
+2025-01-16T14:27:21.306Z info: GET /api/v1/protected
+2025-01-16T14:27:21.320Z warn: No token provided
+2025-01-16T14:27:21.342Z info: GET /api/v1/protected
+2025-01-16T14:27:21.345Z warn: Token verification failed
+2025-01-16T14:27:21.342Z info: POST /api/v1/auth/register
+2025-01-16T14:27:21.355Z info: GET /api/v1/protected
+2025-01-16T14:27:21.358Z info: Token verified for user d6413656-5165-40bd-ac4b-4d00798cf500
+2025-01-16T14:27:21.360Z warn: User d6413656-5165-40bd-ac4b-4d00798cf500 is not authorized
+2025-01-16T14:27:21.372Z info: GET /api/v1/protected
+2025-01-16T14:27:21.376Z info: Token verified for user ce50ec6a-7230-4533-bce4-c9dfef9f06ef
+2025-01-16T14:27:21.377Z info: User ce50ec6a-7230-4533-bce4-c9dfef9f06ef accessed protected route
+2025-01-16T14:27:21.413Z info: GET /api/v1/protected
+2025-01-16T14:27:21.414Z warn: Token verification failed
+2025-01-16T14:27:21.496Z info: User cc01a212-bfdf-4b0c-8d06-ed7a5e0987b7 registered successfully
+2025-01-16T14:27:21.611Z info: POST /api/v1/auth/register
+2025-01-16T14:27:21.692Z info: POST /api/v1/auth/login
+2025-01-16T14:27:21.774Z info: User 94eb0a6c-b246-4aa8-8304-748819311402 logged in successfully
+2025-01-16T14:27:21.782Z info: POST /api/v1/auth/login
+2025-01-16T14:27:21.784Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T14:27:21.790Z info: POST /api/v1/auth/login
+2025-01-16T14:27:21.792Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-16T14:27:21.803Z info: POST /api/v1/auth/register
+2025-01-16T14:27:21.811Z info: POST /api/v1/auth/register
+2025-01-16T14:27:22.478Z info: GET /api/v1/users/profile
+2025-01-16T14:27:22.484Z info: Token verified for user 424396b1-b4a0-4b5f-aa34-e60d710df50e
+2025-01-16T14:27:22.785Z info: GET /api/v1/users
+2025-01-16T14:27:22.787Z info: Token verified for user f14e6c0d-e557-47da-be80-3af3b0a68010
+2025-01-16T14:27:23.021Z info: GET /api/v1/users
+2025-01-16T14:27:23.022Z info: Token verified for user f63cf844-b7bc-4b68-9405-ed05547c73d4
+2025-01-16T14:27:23.255Z info: GET /api/v1/users
+2025-01-16T14:27:23.257Z info: Token verified for user fd0c123d-799b-4619-895e-5cae15c752b4
+2025-01-16T14:27:23.258Z warn: User fd0c123d-799b-4619-895e-5cae15c752b4 is not authorized
+2025-01-16T14:59:50.736Z info: Server running on http://localhost:3000
+2025-01-16T15:33:17.519Z info: POST /api/v1/auth/register
+2025-01-16T15:33:17.561Z info: GET /api/v1/protected
+2025-01-16T15:33:17.569Z warn: No token provided
+2025-01-16T15:33:17.582Z info: GET /api/v1/protected
+2025-01-16T15:33:17.583Z warn: Token verification failed
+2025-01-16T15:33:17.589Z info: GET /api/v1/protected
+2025-01-16T15:33:17.591Z info: Token verified for user d7746889-fa4a-4586-9926-da17315eda39
+2025-01-16T15:33:17.593Z warn: User d7746889-fa4a-4586-9926-da17315eda39 is not authorized
+2025-01-16T15:33:17.602Z info: GET /api/v1/protected
+2025-01-16T15:33:17.603Z info: Token verified for user b5bb5b85-786f-40c5-b201-85c4739dc392
+2025-01-16T15:33:17.604Z info: User b5bb5b85-786f-40c5-b201-85c4739dc392 accessed protected route
+2025-01-16T15:33:17.626Z info: GET /api/v1/protected
+2025-01-16T15:33:17.628Z warn: Token verification failed
+2025-01-16T15:33:17.634Z info: User 40b408e5-441a-4619-85a5-9548f34c369b registered successfully
+2025-01-16T15:33:17.644Z info: GET /api/v1/users/profile
+2025-01-16T15:33:17.650Z info: Token verified for user 23027347-0b3b-4804-b530-c4c066b688ab
+2025-01-16T15:33:17.728Z info: POST /api/v1/auth/register
+2025-01-16T15:33:17.808Z info: POST /api/v1/auth/login
+2025-01-16T15:33:17.879Z info: User 84e67116-355e-464f-bb88-f13b928d55d0 logged in successfully
+2025-01-16T15:33:17.887Z info: POST /api/v1/auth/login
+2025-01-16T15:33:17.891Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T15:33:17.897Z info: POST /api/v1/auth/login
+2025-01-16T15:33:17.899Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-16T15:33:17.905Z info: POST /api/v1/auth/register
+2025-01-16T15:33:17.912Z info: POST /api/v1/auth/register
+2025-01-16T15:33:17.948Z info: GET /api/v1/users
+2025-01-16T15:33:17.950Z info: Token verified for user 28311c25-20fc-40a5-80a3-f54d8ab3cb59
+2025-01-16T15:33:18.173Z info: GET /api/v1/users
+2025-01-16T15:33:18.174Z info: Token verified for user 8eace7f7-020d-4d81-ac29-1faf2fa54a3b
+2025-01-16T15:33:18.400Z info: GET /api/v1/users
+2025-01-16T15:33:18.401Z info: Token verified for user 178af63a-cad7-43bb-87e4-4f193a5efe9c
+2025-01-16T15:33:18.402Z warn: User 178af63a-cad7-43bb-87e4-4f193a5efe9c is not authorized
+2025-01-16T15:33:25.478Z info: Server running on http://localhost:3000
+2025-01-16T15:33:31.810Z info: Server running on http://localhost:3000
+2025-01-16T17:10:55.564Z info: POST /api/v1/auth/register
+2025-01-16T17:10:55.591Z info: GET /api/v1/protected
+2025-01-16T17:10:55.605Z warn: No token provided
+2025-01-16T17:10:55.622Z info: GET /api/v1/protected
+2025-01-16T17:10:55.623Z warn: Token verification failed
+2025-01-16T17:10:55.630Z info: GET /api/v1/protected
+2025-01-16T17:10:55.632Z info: Token verified for user 12b202f9-ca83-42b4-bc80-783d20ca2f90
+2025-01-16T17:10:55.633Z warn: User 12b202f9-ca83-42b4-bc80-783d20ca2f90 is not authorized
+2025-01-16T17:10:55.639Z info: GET /api/v1/protected
+2025-01-16T17:10:55.640Z info: Token verified for user da5c1179-ebb7-4e81-b41e-40190e8c4926
+2025-01-16T17:10:55.641Z warn: User da5c1179-ebb7-4e81-b41e-40190e8c4926 is not authorized
+2025-01-16T17:10:55.670Z info: GET /api/v1/protected
+2025-01-16T17:10:55.671Z warn: Token verification failed
+2025-01-16T17:10:55.693Z info: User 4c674f04-cdb5-4fd7-aa9f-8f61890c32ee registered successfully
+2025-01-16T17:10:55.786Z info: POST /api/v1/auth/register
+2025-01-16T17:10:55.799Z info: POST /api/v1/auth/login
+2025-01-16T17:10:55.802Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T17:10:55.813Z info: POST /api/v1/auth/login
+2025-01-16T17:10:55.815Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T17:10:55.821Z info: POST /api/v1/auth/login
+2025-01-16T17:10:55.823Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-16T17:10:55.829Z info: POST /api/v1/auth/register
+2025-01-16T17:10:55.835Z info: POST /api/v1/auth/register
+2025-01-16T17:10:55.832Z info: GET /api/v1/users/profile
+2025-01-16T17:10:55.841Z info: Token verified for user 78baaf5d-7561-4fe8-8f30-43849603f12a
+2025-01-16T17:10:55.843Z warn: User 78baaf5d-7561-4fe8-8f30-43849603f12a is not authorized
+2025-01-16T17:10:56.091Z info: GET /api/v1/users
+2025-01-16T17:10:56.093Z info: Token verified for user 2b70ce78-9730-431d-9e03-8f2b8c4562cb
+2025-01-16T17:10:56.093Z warn: User 2b70ce78-9730-431d-9e03-8f2b8c4562cb is not authorized
+2025-01-16T17:10:56.321Z info: GET /api/v1/users
+2025-01-16T17:10:56.322Z info: Token verified for user eb5146b3-39f8-45ff-9346-717ddc796a24
+2025-01-16T17:10:56.323Z warn: User eb5146b3-39f8-45ff-9346-717ddc796a24 is not authorized
+2025-01-16T17:10:56.550Z info: GET /api/v1/users
+2025-01-16T17:10:56.552Z info: Token verified for user 5dcc119e-ba2f-4cad-852c-55741cfb4ef8
+2025-01-16T17:10:56.553Z warn: User 5dcc119e-ba2f-4cad-852c-55741cfb4ef8 is not authorized
+2025-01-16T17:16:17.241Z info: Server running on http://localhost:3000
+2025-01-16T17:16:20.702Z info: POST /api/v1/auth/register
+2025-01-16T17:16:20.829Z info: User cb1644d1-4300-416f-bcab-dc584c848b61 registered successfully
+2025-01-16T17:16:30.758Z info: POST /api/v1/auth/login
+2025-01-16T17:16:30.859Z info: User cb1644d1-4300-416f-bcab-dc584c848b61 logged in successfully
+2025-01-16T17:16:42.233Z info: GET /api/v1/users/profile
+2025-01-16T17:16:42.237Z info: Token verified for user cb1644d1-4300-416f-bcab-dc584c848b61
+2025-01-16T17:17:11.145Z info: POST /api/v1/auth/register
+2025-01-16T17:17:11.171Z info: GET /api/v1/protected
+2025-01-16T17:17:11.179Z warn: No token provided
+2025-01-16T17:17:11.207Z info: GET /api/v1/protected
+2025-01-16T17:17:11.210Z warn: Token verification failed
+2025-01-16T17:17:11.218Z info: GET /api/v1/protected
+2025-01-16T17:17:11.220Z info: Token verified for user b5bd8ce9-3bf9-4d9c-a43b-a3ed0663f8d8
+2025-01-16T17:17:11.221Z warn: User b5bd8ce9-3bf9-4d9c-a43b-a3ed0663f8d8 is not authorized
+2025-01-16T17:17:11.228Z info: GET /api/v1/protected
+2025-01-16T17:17:11.230Z info: Token verified for user b8e03bdb-9e88-4255-80e4-ea8985582f6a
+2025-01-16T17:17:11.230Z warn: User b8e03bdb-9e88-4255-80e4-ea8985582f6a is not authorized
+2025-01-16T17:17:11.254Z info: GET /api/v1/protected
+2025-01-16T17:17:11.256Z warn: Token verification failed
+2025-01-16T17:17:11.276Z info: User 87cf60bc-5052-4129-a253-bb46b128e104 registered successfully
+2025-01-16T17:17:11.322Z info: GET /api/v1/users/profile
+2025-01-16T17:17:11.332Z info: Token verified for user 588d6175-a8c6-47e2-932d-189d37e38205
+2025-01-16T17:17:11.371Z info: POST /api/v1/auth/register
+2025-01-16T17:17:11.380Z info: POST /api/v1/auth/login
+2025-01-16T17:17:11.384Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T17:17:11.403Z info: POST /api/v1/auth/login
+2025-01-16T17:17:11.406Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T17:17:11.411Z info: POST /api/v1/auth/login
+2025-01-16T17:17:11.413Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-16T17:17:11.418Z info: POST /api/v1/auth/register
+2025-01-16T17:17:11.424Z info: POST /api/v1/auth/register
+2025-01-16T17:17:11.606Z info: GET /api/v1/users
+2025-01-16T17:17:11.608Z info: Token verified for user 84fa7208-40d6-4b45-8353-f88c0de8b0d0
+2025-01-16T17:17:11.609Z warn: User 84fa7208-40d6-4b45-8353-f88c0de8b0d0 is not authorized
+2025-01-16T17:17:11.844Z info: GET /api/v1/users
+2025-01-16T17:17:11.845Z info: Token verified for user efb7657b-fa6d-451c-86cd-ccf720c25df2
+2025-01-16T17:17:12.072Z info: GET /api/v1/users
+2025-01-16T17:17:12.074Z info: Token verified for user 60aafae4-6537-4386-8feb-5918d1906759
+2025-01-16T17:17:12.075Z warn: User 60aafae4-6537-4386-8feb-5918d1906759 is not authorized
+2025-01-16T17:18:07.771Z info: Server running on http://localhost:3000
+2025-01-16T17:18:41.105Z info: Server running on http://localhost:3000
+2025-01-16T17:19:02.262Z info: Server running on http://localhost:3000
+2025-01-16T17:19:21.182Z info: Server running on http://localhost:3000
+2025-01-16T17:19:36.738Z info: Server running on http://localhost:3000
+2025-01-16T17:19:41.537Z info: Server running on http://localhost:3000
+2025-01-16T17:19:53.190Z info: POST /api/v1/auth/register
+2025-01-16T17:19:53.190Z info: GET /api/v1/protected
+2025-01-16T17:19:53.200Z warn: No token provided
+2025-01-16T17:19:53.215Z info: GET /api/v1/protected
+2025-01-16T17:19:53.216Z warn: Token verification failed
+2025-01-16T17:19:53.224Z info: GET /api/v1/protected
+2025-01-16T17:19:53.226Z info: Token verified for user 16589988-5cff-4010-a3e3-a72e2cc4dad3
+2025-01-16T17:19:53.227Z warn: User 16589988-5cff-4010-a3e3-a72e2cc4dad3 is not authorized
+2025-01-16T17:19:53.233Z info: GET /api/v1/protected
+2025-01-16T17:19:53.234Z info: Token verified for user 702dfb57-2ac4-4039-93e0-868b2d5e6266
+2025-01-16T17:19:53.235Z warn: User 702dfb57-2ac4-4039-93e0-868b2d5e6266 is not authorized
+2025-01-16T17:19:53.257Z info: GET /api/v1/protected
+2025-01-16T17:19:53.259Z warn: Token verification failed
+2025-01-16T17:19:53.418Z info: User ba15eba4-2a17-4c79-a3d4-37ffa59bbef9 registered successfully
+2025-01-16T17:19:53.505Z info: POST /api/v1/auth/register
+2025-01-16T17:19:53.515Z info: POST /api/v1/auth/login
+2025-01-16T17:19:53.517Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T17:19:53.529Z info: POST /api/v1/auth/login
+2025-01-16T17:19:53.532Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T17:19:53.538Z info: POST /api/v1/auth/login
+2025-01-16T17:19:53.540Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-16T17:19:53.545Z info: POST /api/v1/auth/register
+2025-01-16T17:19:53.552Z info: POST /api/v1/auth/register
+2025-01-16T17:19:55.209Z info: GET /api/v1/users/profile
+2025-01-16T17:19:55.218Z info: Token verified for user e2c3b8b6-1c6c-4d1b-8bd4-4ad64861ca6c
+2025-01-16T17:19:55.476Z info: GET /api/v1/users
+2025-01-16T17:19:55.478Z info: Token verified for user 42a0ec35-2ead-4a48-84b0-6878c9fde445
+2025-01-16T17:19:55.698Z info: GET /api/v1/users
+2025-01-16T17:19:55.700Z info: Token verified for user 563dd66f-06e0-48e3-97a2-8eb915cf75c6
+2025-01-16T17:19:55.917Z info: GET /api/v1/users
+2025-01-16T17:19:55.918Z info: Token verified for user 238c180b-9bc0-42c8-bfd0-ba90f70969f7
+2025-01-16T17:19:55.919Z warn: User 238c180b-9bc0-42c8-bfd0-ba90f70969f7 is not authorized
+2025-01-16T17:21:11.196Z info: Server running on http://localhost:3000
+2025-01-16T17:22:27.941Z info: Server running on http://localhost:3000
+2025-01-16T17:23:55.658Z info: Server running on http://localhost:3000
+2025-01-16T17:24:11.001Z info: POST /api/v1/auth/register
+2025-01-16T17:24:11.022Z info: GET /api/v1/protected
+2025-01-16T17:24:11.032Z warn: No token provided
+2025-01-16T17:24:11.047Z info: GET /api/v1/protected
+2025-01-16T17:24:11.048Z warn: Token verification failed
+2025-01-16T17:24:11.058Z info: GET /api/v1/protected
+2025-01-16T17:24:11.060Z info: Token verified for user 31f4f1dc-a994-42de-940b-ca56a913c697
+2025-01-16T17:24:11.061Z warn: User 31f4f1dc-a994-42de-940b-ca56a913c697 is not authorized
+2025-01-16T17:24:11.067Z info: GET /api/v1/protected
+2025-01-16T17:24:11.069Z info: Token verified for user 08548928-d506-4a57-bb24-6add4c4dd39a
+2025-01-16T17:24:11.070Z info: User 08548928-d506-4a57-bb24-6add4c4dd39a accessed protected route
+2025-01-16T17:24:11.100Z info: GET /api/v1/protected
+2025-01-16T17:24:11.102Z warn: Token verification failed
+2025-01-16T17:24:11.113Z info: GET /api/v1/users/profile
+2025-01-16T17:24:11.124Z info: User ca314bc9-da74-495c-98e6-4d48774d90b2 registered successfully
+2025-01-16T17:24:11.124Z info: Token verified for user 39acffb3-8ee4-4604-a8f6-6b3cd525681c
+2025-01-16T17:24:11.210Z info: POST /api/v1/auth/register
+2025-01-16T17:24:11.225Z info: POST /api/v1/auth/login
+2025-01-16T17:24:11.227Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T17:24:11.236Z info: POST /api/v1/auth/login
+2025-01-16T17:24:11.238Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T17:24:11.244Z info: POST /api/v1/auth/login
+2025-01-16T17:24:11.246Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-16T17:24:11.251Z info: POST /api/v1/auth/register
+2025-01-16T17:24:11.258Z info: POST /api/v1/auth/register
+2025-01-16T17:24:11.398Z info: GET /api/v1/users
+2025-01-16T17:24:11.399Z info: Token verified for user 3bd4d358-0427-4a0a-b66c-99e083a6468b
+2025-01-16T17:24:11.615Z info: GET /api/v1/users
+2025-01-16T17:24:11.616Z info: Token verified for user 150715d8-215b-4f4c-994e-c29ea912de19
+2025-01-16T17:24:11.835Z info: GET /api/v1/users
+2025-01-16T17:24:11.836Z info: Token verified for user 5f7d1fa1-c76f-4900-ab72-4d591f870d54
+2025-01-16T17:24:11.837Z warn: User 5f7d1fa1-c76f-4900-ab72-4d591f870d54 is not authorized
+2025-01-16T17:25:46.995Z info: Server running on http://localhost:3000
+2025-01-16T17:26:31.562Z info: GET /api/v1/protected
+2025-01-16T17:26:31.575Z warn: No token provided
+2025-01-16T17:26:31.590Z info: GET /api/v1/protected
+2025-01-16T17:26:31.591Z warn: Token verification failed
+2025-01-16T17:26:31.598Z info: GET /api/v1/protected
+2025-01-16T17:26:31.600Z info: Token verified for user c9cbd955-a529-40e7-8e09-6e6f5faf7226
+2025-01-16T17:26:31.601Z warn: User c9cbd955-a529-40e7-8e09-6e6f5faf7226 is not authorized
+2025-01-16T17:26:31.611Z info: GET /api/v1/protected
+2025-01-16T17:26:31.613Z info: Token verified for user b541e360-1642-4af7-8f05-02208e7ab7e5
+2025-01-16T17:26:31.614Z info: User b541e360-1642-4af7-8f05-02208e7ab7e5 accessed protected route
+2025-01-16T17:26:31.646Z info: GET /api/v1/protected
+2025-01-16T17:26:31.648Z warn: Token verification failed
+2025-01-16T17:26:31.679Z info: GET /api/v1/users/profile
+2025-01-16T17:26:31.693Z info: Token verified for user a7525fe5-90a9-4a22-9c33-55245ecec9f4
+2025-01-16T17:26:31.992Z info: GET /api/v1/users
+2025-01-16T17:26:31.994Z info: Token verified for user 8d80ad89-e0a5-4add-8845-8d0bb02d9838
+2025-01-16T17:26:32.229Z info: GET /api/v1/users
+2025-01-16T17:26:32.230Z info: Token verified for user 3f236b89-dc8d-4d60-bcc5-9a1c126369ee
+2025-01-16T17:26:32.463Z info: GET /api/v1/users
+2025-01-16T17:26:32.465Z info: Token verified for user 0993ec07-3d11-4200-8321-793767e2c8e1
+2025-01-16T17:26:32.467Z warn: User 0993ec07-3d11-4200-8321-793767e2c8e1 is not authorized
+2025-01-16T17:26:33.991Z info: POST /api/v1/auth/register
+2025-01-16T17:26:34.104Z info: User f52886bd-9933-4411-9eff-2e1111aaf294 registered successfully
+2025-01-16T17:26:34.181Z info: POST /api/v1/auth/register
+2025-01-16T17:26:34.252Z info: POST /api/v1/auth/login
+2025-01-16T17:26:34.319Z info: User 25bb0639-541c-4dcb-a6d6-88346477cf38 logged in successfully
+2025-01-16T17:26:34.326Z info: POST /api/v1/auth/login
+2025-01-16T17:26:34.328Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-16T17:26:34.335Z info: POST /api/v1/auth/login
+2025-01-16T17:26:34.337Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-16T17:26:34.343Z info: POST /api/v1/auth/register
+2025-01-16T17:26:34.350Z info: POST /api/v1/auth/register

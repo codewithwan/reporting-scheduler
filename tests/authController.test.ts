@@ -20,7 +20,6 @@ describe('Auth Controller', () => {
         name: 'Login User',
         email: 'loginuser@example.com',
         password: await bcrypt.hash('password123', 10),
-        role: 'engineer',
       },
     });
   });
@@ -60,7 +59,6 @@ describe('Auth Controller', () => {
         name: 'Existing User',
         email: 'existinguser@example.com',
         password: await bcrypt.hash('password123', 10),
-        role: 'engineer',
       },
     });
 
@@ -85,7 +83,6 @@ describe('Auth Controller', () => {
         name: 'Login User',
         email: 'loginuser@example.com',
         password: await bcrypt.hash('password123', 10),
-        role: 'engineer',
       },
     });
 

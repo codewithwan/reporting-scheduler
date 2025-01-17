@@ -1,7 +1,8 @@
 import { Router } from "express";
 import rateLimit from "express-rate-limit";
 import { body } from "express-validator";
-import { register, login } from "../controllers/authController";
+import { register, login, createUserByAdmin } from "../controllers/authController";
+import { authenticateToken, authorizeRoles } from "../middleware/authMiddleware";
 
 const router = Router();
 
@@ -26,6 +27,17 @@ router.post(
   body("email").isEmail(),
   body("password").isLength({ min: 6 }),
   login
+);
+
+router.post(
+  "/create-user",
+  authenticateToken,
+  authorizeRoles("SUPERADMIN"),
+  body("name").isString().isLength({ min: 1 }),
+  body("email").isEmail(),
+  body("password").isLength({ min: 6 }),
+  body("role").isIn(["ENGINEER", "ADMIN"]),
+  createUserByAdmin
 );
 
 export default router;

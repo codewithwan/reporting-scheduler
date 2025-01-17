@@ -19,8 +19,7 @@ describe('CRUD operations', () => {
         name: 'John Doe',
         email: 'john.doe@example.com',
         password: await bcrypt.hash('password123', 10),
-        role: 'admin',
-        timezone: 'UTC'
+        role: 'ADMIN',
       }
     });
 
@@ -46,8 +45,7 @@ describe('CRUD operations', () => {
     expect(user?.id).toBe(userId);
     expect(user?.name).toBe('John Doe');
     expect(user?.email).toBe('john.doe@example.com');
-    expect(user?.role).toBe('admin');
-    expect(user?.timezone).toBe('UTC');
+    expect(user?.role).toBe('ADMIN');
   });
 
   /**
@@ -62,8 +60,7 @@ describe('CRUD operations', () => {
     expect(user?.id).toBe(userId);
     expect(user?.name).toBe('John Doe');
     expect(user?.email).toBe('john.doe@example.com');
-    expect(user?.role).toBe('admin');
-    expect(user?.timezone).toBe('UTC');
+    expect(user?.role).toBe('ADMIN');
   });
 
   /**
@@ -78,8 +75,7 @@ describe('CRUD operations', () => {
     expect(updatedUser).toHaveProperty('id');
     expect(updatedUser.name).toBe('Jane Doe');
     expect(updatedUser.email).toBe('john.doe@example.com');
-    expect(updatedUser.role).toBe('admin');
-    expect(updatedUser.timezone).toBe('UTC');
+    expect(updatedUser.role).toBe('ADMIN');
   });
 
   /**

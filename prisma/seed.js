@@ -20,7 +20,7 @@ async function main() {
       name: 'Super Admin',
       email: 'superadmin@example.com',
       password: await bcrypt.hash('superadmin123', 10),
-      role: 'superadmin',
+      role: 'SUPERADMIN',
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -32,7 +32,7 @@ async function main() {
       name: 'Admin User',
       email: 'admin2@example.com', // Ensure unique email
       password: await bcrypt.hash('admin123', 10),
-      role: 'admin',
+      role: 'ADMIN',
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -46,7 +46,7 @@ async function main() {
           name: faker.person.fullName(),
           email: `engineer${i}@example.com`, // Ensure unique email
           password: await bcrypt.hash('password123', 10),
-          role: 'engineer',
+          role: 'ENGINEER',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
