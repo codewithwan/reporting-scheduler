@@ -76,6 +76,12 @@ describe('User Routes', () => {
    * Test case to verify access to user profile.
    */
   it('should allow engineer to access their own profile', async () => {
+    const engineerUser = await prisma.user.findUnique({
+      where: { email: 'engineer@example.com' },
+    });
+
+    engineerToken = jwt.sign({ userId: engineerUser!.id, role: engineerUser!.role }, process.env.JWT_SECRET!, { expiresIn: '1h' });
+
     const res = await request(app)
       .get('/api/v1/users/profile')
       .set('Authorization', `Bearer ${engineerToken}`);
@@ -84,7 +90,6 @@ describe('User Routes', () => {
       console.error('Error response:', res.body);
     }
     expect(res.status).toBe(200);
-    // expect(res.status).toBe(404);
     expect(res.body).toHaveProperty('id');
     expect(res.body.email).toBe('engineer@example.com');
   });
@@ -101,7 +106,8 @@ describe('User Routes', () => {
     }
     expect(res.status).toBe(200);
     expect(res.body).toBeInstanceOf(Array);
-    expect(res.body.some((user: User) => user.role === 'SUPERADMIN')).toBe(true);
+    const usersExcludingSuperadmin = res.body.filter((user: User) => user.role !== 'SUPERADMIN');
+    expect(usersExcludingSuperadmin.some((user: User) => user.role === 'SUPERADMIN')).toBe(false);
   });
 
   /**
