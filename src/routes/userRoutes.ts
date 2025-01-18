@@ -56,12 +56,12 @@ router.get("/profile", authenticateToken, authorizeRoles("ENGINEER", "ADMIN", "S
  *       500:
  *         description: Failed to fetch users data
  */
-router.get("/", authenticateToken, authorizeRoles("SUPERADMIN"), async (req: AuthenticatedRequest, res) => {
+router.get("/", authenticateToken, authorizeRoles("ADMIN", "SUPERADMIN"), async (req: AuthenticatedRequest, res) => {
   try {
     const users = await prisma.user.findMany({
       where: req.user?.role === 'SUPERADMIN' ? {} : {
         role: {
-          not: "SUPERADMIN"
+          notIn: ["SUPERADMIN", "ADMIN"]
         }
       }
     });
@@ -69,6 +69,47 @@ router.get("/", authenticateToken, authorizeRoles("SUPERADMIN"), async (req: Aut
   } catch (error) {
     logger.error("Failed to fetch users data", { error });
     res.status(500).json({ message: "Failed to fetch users data", error: (error as Error).message });
+  }
+});
+
+/**
+ * @swagger
+ * /users/{id}:
+ *   get:
+ *     summary: Get user by ID
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User ID
+ *     responses:
+ *       200:
+ *         description: User retrieved successfully
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Failed to fetch user data
+ */
+router.get("/:id", authenticateToken, authorizeRoles("ADMIN", "SUPERADMIN"), async (req: AuthenticatedRequest, res) => {
+  const { id } = req.params;
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id },
+      select: { id: true, name: true, email: true, role: true, timezone: true }
+    });
+    if (!user || (req.user?.role === 'ADMIN' && user.role === 'ADMIN')) {
+      res.status(404).json({ message: "User not found" });
+      return;
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    logger.error("Failed to fetch user data", { error, id });
+    res.status(500).json({ message: "Failed to fetch user data", error: (error as Error).message });
   }
 });
 
