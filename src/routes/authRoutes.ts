@@ -3,13 +3,14 @@ import rateLimit from "express-rate-limit";
 import { body } from "express-validator";
 import { register, login, createUserByAdmin } from "../controllers/authController";
 import { authenticateToken, authorizeRoles } from "../middleware/authMiddleware";
+import { handleValidation } from "../middleware/validationMiddleware";
 
 const router = Router();
 
 const authLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, 
-    max: 100, // For testing
-    message: "Too many attempts from this IP, please try again after 15 minutes",
+  windowMs: 15 * 60 * 1000, 
+  max: 100, // For testing
+  message: "Too many attempts from this IP, please try again after 15 minutes",
 });
 
 /**
@@ -46,7 +47,8 @@ router.post(
   authLimiter,
   body("name").isString().isLength({ min: 1 }),
   body("email").isEmail(),
-  body("password").isLength({ min: 6 }),
+  body("password").isLength({ min: 8 }),
+  handleValidation,
   register
 );
 
@@ -80,7 +82,8 @@ router.post(
   "/login",
   authLimiter,
   body("email").isEmail(),
-  body("password").isLength({ min: 6 }),
+  body("password").isLength({ min: 8 }),
+  handleValidation,
   login
 );
 
@@ -125,8 +128,9 @@ router.post(
   authorizeRoles("SUPERADMIN"),
   body("name").isString().isLength({ min: 1 }),
   body("email").isEmail(),
-  body("password").isLength({ min: 6 }),
+  body("password").isLength({ min: 8 }),
   body("role").isIn(["ENGINEER", "ADMIN"]),
+  handleValidation,
   createUserByAdmin
 );
 

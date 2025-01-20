@@ -1,4 +1,4 @@
-import express, { Application } from "express";
+import express, { Application, Request, Response, NextFunction } from "express";
 import { json, urlencoded } from "express";
 import router from "./routes/indexRoutes";
 import healthRouter from "./routes/healthRoutes";
@@ -35,5 +35,10 @@ app.use("/api/v1/health", healthRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/protected", protectedRouter);
 app.use("/api/v1/users", userRouter);
+
+// Handle 404 - Route not found
+app.use((req: Request, res: Response, next: NextFunction) => {
+  res.status(404).json({ message: "Route not found" });
+});
 
 export default app;

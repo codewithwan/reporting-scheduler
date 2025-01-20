@@ -23,7 +23,7 @@ const router = Router();
  *       500:
  *         description: Failed to fetch user data
  */
-router.get("/profile", authenticateToken, authorizeRoles("ENGINEER", "ADMIN", "SUPERADMIN"), async (req: AuthenticatedRequest, res) => {
+router.get("/me", authenticateToken, authorizeRoles("ENGINEER", "ADMIN", "SUPERADMIN"), async (req: AuthenticatedRequest, res) => {
     const userId = req.user?.id;
     if (!userId) {
       res.status(400).json({ message: "User ID is missing" });

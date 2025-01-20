@@ -53,9 +53,13 @@ export const getAllUsers = async (): Promise<User[]> => {
  */
 export const getUsersByRole = async (role: string): Promise<User[]> => {
   return await prisma.user.findMany({
-    where: role === 'SUPERADMIN' ? {} : {
+    where: role === 'SUPERADMIN' ? {} : role === 'ADMIN' ? {
       role: {
         notIn: ["SUPERADMIN", "ADMIN"]
+      }
+    } : {
+      role: {
+        notIn: ["SUPERADMIN"]
       }
     }
   });
@@ -77,6 +81,16 @@ export const findUserById = async (id: string): Promise<User | null> => {
  * @returns {Promise<User>} The updated user object.
  */
 export const updateUserById = async (id: string, data: Partial<User>): Promise<User> => {
+  return await prisma.user.update({ where: { id }, data });
+};
+
+/**
+ * Updates the profile of a user.
+ * @param {string} id - The ID of the user.
+ * @param {Partial<User>} data - The user data to update.
+ * @returns {Promise<User>} The updated user object.
+ */
+export const updateUserProfile = async (id: string, data: Partial<User>): Promise<User> => {
   return await prisma.user.update({ where: { id }, data });
 };
 

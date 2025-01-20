@@ -1836,3 +1836,1005 @@ Argument `where` of type UserWhereUniqueInput needs at least one of `id` or `ema
 2025-01-17T11:32:43.742Z info: API documentation available at http://localhost:3000/api/v1/api-docs
 2025-01-17T12:28:21.054Z info: Server running on http://localhost:3000
 2025-01-17T12:28:21.057Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-17T12:32:39.341Z info: Server running on http://localhost:3000
+2025-01-17T12:32:39.344Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-17T12:32:48.940Z info: Server running on http://localhost:3000
+2025-01-17T12:32:48.942Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-17T12:39:01.479Z info: Server running on http://localhost:3000
+2025-01-17T12:39:01.481Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-17T12:39:17.680Z info: POST /api/v1/auth/register
+2025-01-17T12:39:17.735Z info: GET /api/v1/protected
+2025-01-17T12:39:17.743Z warn: No token provided
+2025-01-17T12:39:17.755Z info: GET /api/v1/protected
+2025-01-17T12:39:17.756Z warn: Token verification failed
+2025-01-17T12:39:17.763Z info: GET /api/v1/protected
+2025-01-17T12:39:17.765Z info: Token verified for user 76fd6c24-6481-4048-98eb-315091e91054
+2025-01-17T12:39:17.766Z warn: User 76fd6c24-6481-4048-98eb-315091e91054 is not authorized
+2025-01-17T12:39:17.773Z info: GET /api/v1/protected
+2025-01-17T12:39:17.775Z info: Token verified for user a8f77b7e-035e-4dbd-a8ca-dc428cfddc92
+2025-01-17T12:39:17.775Z info: User a8f77b7e-035e-4dbd-a8ca-dc428cfddc92 accessed protected route
+2025-01-17T12:39:17.802Z info: User 41ee7b5c-c098-4a06-a6d1-5e9ffd547895 registered successfully
+2025-01-17T12:39:17.810Z info: GET /api/v1/protected
+2025-01-17T12:39:17.815Z warn: Token verification failed
+2025-01-17T12:39:17.842Z info: GET /api/v1/users/profile
+2025-01-17T12:39:17.852Z info: Token verified for user c6d598bc-93a8-45fb-bbd5-d2da185083a1
+2025-01-17T12:39:17.887Z info: POST /api/v1/auth/register
+2025-01-17T12:39:17.969Z info: POST /api/v1/auth/login
+2025-01-17T12:39:18.041Z info: User 870f7032-092c-4613-bdf3-bbc60001ec92 logged in successfully
+2025-01-17T12:39:18.055Z info: POST /api/v1/auth/login
+2025-01-17T12:39:18.061Z warn: Login failed for email: loginuser@example.com - User not found
+2025-01-17T12:39:18.068Z info: POST /api/v1/auth/login
+2025-01-17T12:39:18.071Z warn: Login failed for email: nonexistent@example.com - User not found
+2025-01-17T12:39:18.076Z info: POST /api/v1/auth/register
+2025-01-17T12:39:18.083Z info: POST /api/v1/auth/register
+2025-01-17T12:39:18.130Z info: GET /api/v1/users
+2025-01-17T12:39:18.132Z info: Token verified for user 069452ea-416e-4e41-90fa-2294b4bef2f7
+2025-01-17T12:39:18.362Z info: GET /api/v1/users
+2025-01-17T12:39:18.363Z info: Token verified for user d358721b-3c07-4d15-af74-8418efde3aa2
+2025-01-17T12:39:18.578Z info: GET /api/v1/users
+2025-01-17T12:39:18.580Z info: Token verified for user 4b792f9c-b6b7-4d49-84ef-fa4ffec5b716
+2025-01-17T12:39:18.581Z warn: User 4b792f9c-b6b7-4d49-84ef-fa4ffec5b716 is not authorized
+2025-01-17T13:04:46.308Z info: POST /api/v1/auth/register
+2025-01-17T13:04:46.459Z info: User 05be355d-2990-4e4f-86df-0fae76b58cb2 registered successfully
+2025-01-17T14:30:06.302Z info: GET /api/v1/health
+2025-01-17T14:30:06.675Z info: GET /favicon.ico
+2025-01-17T14:49:56.062Z info: OPTIONS /api/v1/auth/register
+2025-01-17T14:50:34.873Z info: POST /api/v1/auth/login
+2025-01-17T14:50:34.938Z warn: Login failed for email: codewithwan@gmail.com - User not found
+2025-01-17T15:55:42.322Z info: POST /api/v1/auth/login
+2025-01-17T15:55:42.619Z info: User 05be355d-2990-4e4f-86df-0fae76b58cb2 logged in successfully
+2025-01-17T15:58:07.981Z info: OPTIONS /api/v1/auth/register
+2025-01-17T16:01:31.369Z info: Server running on http://localhost:3000
+2025-01-17T16:01:31.373Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-17T16:01:36.933Z info: Server running on http://localhost:3000
+2025-01-17T16:01:36.939Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-17T16:01:40.895Z info: POST /api/v1/auth/register
+2025-01-17T16:01:41.217Z info: User 07239184-8499-4cb7-9924-2f956f82225f registered successfully
+2025-01-17T16:02:06.731Z info: POST /api/v1/auth/login
+2025-01-17T16:02:06.821Z info: User 07239184-8499-4cb7-9924-2f956f82225f logged in successfully
+2025-01-17T16:07:51.109Z info: GET /api/v1/auth/me
+2025-01-17T16:07:51.112Z info: GET /api/v1/auth/me
+2025-01-17T16:08:14.762Z info: GET /api/v1/users/profile
+2025-01-17T16:08:14.764Z warn: Token verification failed
+2025-01-17T16:08:18.606Z info: POST /api/v1/auth/login
+2025-01-17T16:08:18.739Z info: User 05be355d-2990-4e4f-86df-0fae76b58cb2 logged in successfully
+2025-01-17T16:08:27.492Z info: GET /api/v1/users/profile
+2025-01-17T16:08:27.493Z info: Token verified for user 05be355d-2990-4e4f-86df-0fae76b58cb2
+2025-01-17T16:10:12.850Z info: POST /api/v1/auth/login
+2025-01-17T16:10:12.940Z info: User 07239184-8499-4cb7-9924-2f956f82225f logged in successfully
+2025-01-17T16:10:13.021Z info: GET /api/v1/users/profile
+2025-01-17T16:10:13.022Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T16:10:13.027Z info: GET /api/v1/users/profile
+2025-01-17T16:10:13.029Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T16:10:19.807Z info: GET /api/v1/users/profile
+2025-01-17T16:10:19.810Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T16:10:19.816Z info: GET /api/v1/users/profile
+2025-01-17T16:10:19.818Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T16:13:30.119Z info: GET /api/v1/users/profile
+2025-01-17T16:13:30.122Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T16:14:18.321Z info: POST /api/v1/auth/register
+2025-01-17T16:14:18.401Z info: User 2e754f52-eb5b-469f-be03-9b5527747054 registered successfully
+2025-01-17T16:14:40.759Z info: POST /api/v1/auth/login
+2025-01-17T16:14:40.848Z warn: Login failed for email: haerin@gmail.com - Invalid password
+2025-01-17T16:16:24.743Z info: POST /api/v1/auth/login
+2025-01-17T16:16:24.822Z info: User 2e754f52-eb5b-469f-be03-9b5527747054 logged in successfully
+2025-01-17T16:16:24.860Z info: GET /api/v1/users/profile
+2025-01-17T16:16:24.862Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:16:24.866Z info: GET /api/v1/users/profile
+2025-01-17T16:16:24.868Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:16:47.796Z info: POST /api/v1/auth/login
+2025-01-17T16:16:47.798Z warn: Login failed for email: haeirn@gmail.com - User not found
+2025-01-17T16:17:17.080Z info: POST /api/v1/auth/login
+2025-01-17T16:17:17.198Z warn: Login failed for email: haerin@gmail.com - Invalid password
+2025-01-17T16:17:22.703Z info: POST /api/v1/auth/login
+2025-01-17T16:17:22.856Z info: User 2e754f52-eb5b-469f-be03-9b5527747054 logged in successfully
+2025-01-17T16:17:22.890Z info: GET /api/v1/users/profile
+2025-01-17T16:17:22.893Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:17:22.899Z info: GET /api/v1/users/profile
+2025-01-17T16:17:22.901Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:20:22.032Z info: GET /
+2025-01-17T16:27:27.345Z info: POST /api/v1/auth/login
+2025-01-17T16:27:27.460Z warn: Login failed for email: haerin@gmail.com - Invalid password
+2025-01-17T16:27:29.552Z info: POST /api/v1/auth/login
+2025-01-17T16:27:29.637Z info: User 2e754f52-eb5b-469f-be03-9b5527747054 logged in successfully
+2025-01-17T16:27:29.670Z info: GET /api/v1/users/profile
+2025-01-17T16:27:29.671Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:27:29.682Z info: GET /api/v1/users/profile
+2025-01-17T16:27:29.684Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:28:50.096Z info: GET /api/v1/users/profile
+2025-01-17T16:28:50.097Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:30:18.616Z info: GET /api/v1/users/profile
+2025-01-17T16:30:18.619Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:30:43.113Z info: GET /api/v1/users/profile
+2025-01-17T16:30:43.116Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:31:53.114Z info: GET /api/v1/users/profile
+2025-01-17T16:31:53.117Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:33:01.208Z info: GET /api/v1/users/profile
+2025-01-17T16:33:01.211Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:34:13.090Z info: GET /api/v1/users/profile
+2025-01-17T16:34:13.093Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:36:08.122Z info: GET /api/v1/users/profile
+2025-01-17T16:36:08.124Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:36:38.127Z info: GET /api/v1/users/profile
+2025-01-17T16:36:38.129Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:36:43.055Z info: GET /api/v1/users/profile
+2025-01-17T16:36:43.058Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:36:54.102Z info: GET /api/v1/users/profile
+2025-01-17T16:36:54.103Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:37:23.793Z info: GET /api/v1/users/profile
+2025-01-17T16:37:23.797Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:37:31.112Z info: GET /api/v1/users/profile
+2025-01-17T16:37:31.115Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:37:43.068Z info: GET /api/v1/users/profile
+2025-01-17T16:37:43.071Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:37:47.943Z info: GET /api/v1/users/profile
+2025-01-17T16:37:47.946Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:37:54.104Z info: GET /api/v1/users/profile
+2025-01-17T16:37:54.106Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:38:10.097Z info: GET /api/v1/users/profile
+2025-01-17T16:38:10.100Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:39:22.109Z info: GET /api/v1/users/profile
+2025-01-17T16:39:22.112Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:39:27.095Z info: GET /api/v1/users/profile
+2025-01-17T16:39:27.098Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:40:31.141Z info: GET /api/v1/users/profile
+2025-01-17T16:40:31.143Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:40:33.100Z info: GET /api/v1/users/profile
+2025-01-17T16:40:33.102Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:40:41.357Z info: GET /api/v1/users/profile
+2025-01-17T16:40:41.360Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:40:41.364Z info: GET /api/v1/users/profile
+2025-01-17T16:40:41.366Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:40:45.350Z info: GET /api/v1/users/profile
+2025-01-17T16:40:45.353Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:40:45.357Z info: GET /api/v1/users/profile
+2025-01-17T16:40:45.362Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:40:52.119Z info: GET /api/v1/users/profile
+2025-01-17T16:40:52.122Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:42:21.796Z info: GET /api/v1/users/profile
+2025-01-17T16:42:21.798Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:42:21.807Z info: GET /api/v1/users/profile
+2025-01-17T16:42:21.810Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:42:26.130Z info: GET /api/v1/users/profile
+2025-01-17T16:42:26.131Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:42:26.134Z info: GET /api/v1/users/profile
+2025-01-17T16:42:26.136Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:42:32.100Z info: GET /api/v1/users/profile
+2025-01-17T16:42:32.102Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:42:57.593Z info: GET /api/v1/users/profile
+2025-01-17T16:42:57.596Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:42:57.602Z info: GET /api/v1/users/profile
+2025-01-17T16:42:57.605Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:43:21.895Z info: GET /api/v1/users/profile
+2025-01-17T16:43:21.896Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:44:13.094Z info: GET /api/v1/users/profile
+2025-01-17T16:44:13.097Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:45:36.215Z info: GET /api/v1/users/profile
+2025-01-17T16:45:36.219Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:45:36.226Z info: GET /api/v1/users/profile
+2025-01-17T16:45:36.230Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:46:36.101Z info: GET /api/v1/users/profile
+2025-01-17T16:46:36.104Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:47:41.775Z info: GET /api/v1/users/profile
+2025-01-17T16:47:41.778Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:48:10.096Z info: GET /api/v1/users/profile
+2025-01-17T16:48:10.098Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:48:17.064Z info: GET /api/v1/users/profile
+2025-01-17T16:48:17.066Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:48:20.945Z info: GET /api/v1/users/profile
+2025-01-17T16:48:20.946Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:48:24.994Z info: GET /api/v1/users/profile
+2025-01-17T16:48:24.996Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:48:27.811Z info: GET /api/v1/users/profile
+2025-01-17T16:48:27.813Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:48:30.878Z info: GET /api/v1/users/profile
+2025-01-17T16:48:30.879Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:48:35.969Z info: GET /api/v1/users/profile
+2025-01-17T16:48:35.971Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:48:39.069Z info: GET /api/v1/users/profile
+2025-01-17T16:48:39.070Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:48:43.141Z info: GET /api/v1/users/profile
+2025-01-17T16:48:43.143Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:49:12.863Z info: GET /api/v1/users/profile
+2025-01-17T16:49:12.865Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:49:22.961Z info: GET /api/v1/users/profile
+2025-01-17T16:49:22.963Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:49:22.965Z info: GET /api/v1/users/profile
+2025-01-17T16:49:22.966Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:49:26.603Z info: GET /api/v1/users/profile
+2025-01-17T16:49:26.605Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:49:26.609Z info: GET /api/v1/users/profile
+2025-01-17T16:49:26.611Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:49:46.995Z info: GET /api/v1/users/profile
+2025-01-17T16:49:46.997Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:51:52.099Z info: GET /api/v1/users/profile
+2025-01-17T16:51:52.101Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:53:19.106Z info: GET /api/v1/users/profile
+2025-01-17T16:53:19.109Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:55:25.105Z info: GET /api/v1/users/profile
+2025-01-17T16:55:25.107Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:56:41.113Z info: GET /api/v1/users/profile
+2025-01-17T16:56:41.116Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:57:16.096Z info: GET /api/v1/users/profile
+2025-01-17T16:57:16.098Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:57:20.113Z info: GET /api/v1/users/profile
+2025-01-17T16:57:20.115Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:57:23.448Z info: GET /api/v1/users/profile
+2025-01-17T16:57:23.451Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:57:28.524Z info: GET /api/v1/users/profile
+2025-01-17T16:57:28.528Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:57:31.101Z info: GET /api/v1/users/profile
+2025-01-17T16:57:31.104Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:57:34.524Z info: GET /api/v1/users/profile
+2025-01-17T16:57:34.526Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:57:38.601Z info: GET /api/v1/users/profile
+2025-01-17T16:57:38.604Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:57:41.482Z info: GET /api/v1/users/profile
+2025-01-17T16:57:41.485Z info: Token verified for user 2e754f52-eb5b-469f-be03-9b5527747054
+2025-01-17T16:58:14.701Z info: POST /api/v1/auth/login
+2025-01-17T16:58:14.784Z info: User 07239184-8499-4cb7-9924-2f956f82225f logged in successfully
+2025-01-17T16:58:14.816Z info: GET /api/v1/users/profile
+2025-01-17T16:58:14.818Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T16:58:14.821Z info: GET /api/v1/users/profile
+2025-01-17T16:58:14.822Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T16:59:32.104Z info: GET /api/v1/users/profile
+2025-01-17T16:59:32.105Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:01:01.672Z info: GET /api/v1/users/profile
+2025-01-17T17:01:01.674Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:01:03.521Z info: GET /api/v1/users/profile
+2025-01-17T17:01:03.524Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:01:03.528Z info: GET /api/v1/users/profile
+2025-01-17T17:01:03.531Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:02:56.116Z info: GET /api/v1/users/profile
+2025-01-17T17:02:56.120Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:02:56.125Z info: GET /api/v1/users/profile
+2025-01-17T17:02:56.128Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:08:23.136Z info: GET /api/v1/users/profile
+2025-01-17T17:08:23.140Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:08:45.109Z info: GET /api/v1/users/profile
+2025-01-17T17:08:45.112Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:08:49.058Z info: GET /api/v1/users/profile
+2025-01-17T17:08:49.062Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:08:52.097Z info: GET /api/v1/users/profile
+2025-01-17T17:08:52.101Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:08:58.557Z info: GET /api/v1/users/profile
+2025-01-17T17:08:58.560Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:09:05.100Z info: GET /api/v1/users/profile
+2025-01-17T17:09:05.102Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:09:08.096Z info: GET /api/v1/users/profile
+2025-01-17T17:09:08.098Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:09:32.146Z info: GET /api/v1/users/profile
+2025-01-17T17:09:32.150Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:09:35.602Z info: GET /api/v1/users/profile
+2025-01-17T17:09:35.605Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:09:47.721Z info: GET /api/v1/users/profile
+2025-01-17T17:09:47.723Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:09:52.806Z info: GET /api/v1/users/profile
+2025-01-17T17:09:52.809Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:10:07.109Z info: GET /api/v1/users/profile
+2025-01-17T17:10:07.111Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:10:49.543Z info: GET /api/v1/users/profile
+2025-01-17T17:10:49.546Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:10:54.095Z info: GET /api/v1/users/profile
+2025-01-17T17:10:54.096Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:10:55.010Z info: GET /api/v1/users/profile
+2025-01-17T17:10:55.012Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:10:56.565Z info: GET /api/v1/users/profile
+2025-01-17T17:10:56.568Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:10:56.573Z info: GET /api/v1/users/profile
+2025-01-17T17:10:56.575Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:11:10.148Z info: GET /api/v1/users/profile
+2025-01-17T17:11:10.150Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:11:12.907Z info: GET /api/v1/users/profile
+2025-01-17T17:11:12.909Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:11:24.100Z info: GET /api/v1/users/profile
+2025-01-17T17:11:24.102Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:11:28.519Z info: GET /api/v1/users/profile
+2025-01-17T17:11:28.521Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:11:55.105Z info: GET /api/v1/users/profile
+2025-01-17T17:11:55.107Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:11:59.087Z info: GET /api/v1/users/profile
+2025-01-17T17:11:59.089Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:12:12.121Z info: GET /api/v1/users/profile
+2025-01-17T17:12:12.123Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:12:14.820Z info: GET /api/v1/users/profile
+2025-01-17T17:12:14.823Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:12:17.096Z info: GET /api/v1/users/profile
+2025-01-17T17:12:17.099Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:12:17.104Z info: GET /api/v1/users/profile
+2025-01-17T17:12:17.106Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:12:20.100Z info: GET /api/v1/users/profile
+2025-01-17T17:12:20.103Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:12:20.109Z info: GET /api/v1/users/profile
+2025-01-17T17:12:20.113Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:12:25.009Z info: GET /api/v1/users/profile
+2025-01-17T17:12:25.011Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:12:27.104Z info: GET /api/v1/users/profile
+2025-01-17T17:12:27.106Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:12:37.575Z info: GET /api/v1/users/profile
+2025-01-17T17:12:37.577Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:12:46.035Z info: GET /api/v1/users/profile
+2025-01-17T17:12:46.039Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:12:51.041Z info: GET /api/v1/users/profile
+2025-01-17T17:12:51.045Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:12:59.620Z info: GET /api/v1/users/profile
+2025-01-17T17:12:59.623Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:13:09.104Z info: GET /api/v1/users/profile
+2025-01-17T17:13:09.106Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:13:21.145Z info: GET /api/v1/users/profile
+2025-01-17T17:13:21.147Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:17:30.100Z info: GET /api/v1/users/profile
+2025-01-17T17:17:30.102Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:17:30.144Z info: GET /api/v1/users/profile
+2025-01-17T17:17:30.145Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:17:34.370Z info: GET /api/v1/users/profile
+2025-01-17T17:17:34.372Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:17:34.373Z info: GET /api/v1/users/profile
+2025-01-17T17:17:34.374Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:17:39.296Z info: GET /api/v1/users/profile
+2025-01-17T17:17:39.298Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:17:39.301Z info: GET /api/v1/users/profile
+2025-01-17T17:17:39.303Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:20:41.102Z info: GET /api/v1/users/profile
+2025-01-17T17:20:41.103Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:20:45.527Z info: GET /api/v1/users/profile
+2025-01-17T17:20:45.530Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:20:45.535Z info: GET /api/v1/users/profile
+2025-01-17T17:20:45.537Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:20:47.577Z info: GET /api/v1/users/profile
+2025-01-17T17:20:47.580Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:20:47.585Z info: GET /api/v1/users/profile
+2025-01-17T17:20:47.587Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:22:37.105Z info: GET /api/v1/users/profile
+2025-01-17T17:22:37.107Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:22:39.924Z info: GET /api/v1/users/profile
+2025-01-17T17:22:39.926Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:22:39.928Z info: GET /api/v1/users/profile
+2025-01-17T17:22:39.930Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:22:42.450Z info: GET /api/v1/users/profile
+2025-01-17T17:22:42.454Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:22:42.464Z info: GET /api/v1/users/profile
+2025-01-17T17:22:42.467Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:25:12.113Z info: GET /api/v1/users/profile
+2025-01-17T17:25:12.115Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:31:35.048Z info: GET /api/v1/users/profile
+2025-01-17T17:31:35.049Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:31:38.820Z info: GET /api/v1/users/profile
+2025-01-17T17:31:38.823Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:32:28.096Z info: GET /api/v1/users/profile
+2025-01-17T17:32:28.098Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:32:31.747Z info: GET /api/v1/users/profile
+2025-01-17T17:32:31.748Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:32:40.902Z info: GET /api/v1/users/profile
+2025-01-17T17:32:40.905Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:32:40.906Z info: GET /api/v1/users/profile
+2025-01-17T17:32:40.908Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:33:46.098Z info: GET /api/v1/users/profile
+2025-01-17T17:33:46.100Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:33:46.103Z info: GET /api/v1/users/profile
+2025-01-17T17:33:46.105Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:36:21.115Z info: GET /api/v1/users/profile
+2025-01-17T17:36:21.118Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:36:21.120Z info: GET /api/v1/users/profile
+2025-01-17T17:36:21.124Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:43:43.121Z info: GET /api/v1/users/profile
+2025-01-17T17:43:43.123Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:43:43.125Z info: GET /api/v1/users/profile
+2025-01-17T17:43:43.127Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:43:46.111Z info: GET /api/v1/users/profile
+2025-01-17T17:43:46.114Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:43:46.116Z info: GET /api/v1/users/profile
+2025-01-17T17:43:46.119Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:43:46.809Z info: GET /api/v1/users/profile
+2025-01-17T17:43:46.813Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:43:46.814Z info: GET /api/v1/users/profile
+2025-01-17T17:43:46.817Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:43:50.554Z info: GET /api/v1/users/profile
+2025-01-17T17:43:50.556Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:43:50.557Z info: GET /api/v1/users/profile
+2025-01-17T17:43:50.559Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:43:51.157Z info: GET /api/v1/users/profile
+2025-01-17T17:43:51.160Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:43:51.161Z info: GET /api/v1/users/profile
+2025-01-17T17:43:51.164Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:43:56.808Z info: GET /api/v1/users/profile
+2025-01-17T17:43:56.810Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:43:56.813Z info: GET /api/v1/users/profile
+2025-01-17T17:43:56.815Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:43:57.535Z info: GET /api/v1/users/profile
+2025-01-17T17:43:57.537Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-17T17:43:57.539Z info: GET /api/v1/users/profile
+2025-01-17T17:43:57.541Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-18T01:51:19.761Z info: Server running on http://localhost:3000
+2025-01-18T01:51:19.763Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-18T01:51:34.901Z info: GET /
+2025-01-18T01:52:17.328Z info: GET /api/v1/users/profile
+2025-01-18T01:52:17.334Z warn: Token verification failed
+2025-01-18T01:52:17.338Z info: GET /api/v1/users/profile
+2025-01-18T01:52:17.340Z warn: Token verification failed
+2025-01-18T01:52:32.344Z info: GET /api/v1/users/profile
+2025-01-18T01:52:32.345Z warn: Token verification failed
+2025-01-18T01:52:32.347Z info: GET /api/v1/users/profile
+2025-01-18T01:52:32.349Z warn: Token verification failed
+2025-01-18T02:00:42.684Z info: GET /api/v1/users/profile
+2025-01-18T02:00:42.685Z warn: Token verification failed
+2025-01-18T02:01:00.583Z info: POST /api/v1/auth/login
+2025-01-18T02:01:00.785Z info: User 07239184-8499-4cb7-9924-2f956f82225f logged in successfully
+2025-01-18T02:01:00.809Z info: GET /api/v1/users/profile
+2025-01-18T02:01:00.811Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-18T02:01:00.816Z info: GET /api/v1/users/profile
+2025-01-18T02:01:00.818Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-18T02:01:15.342Z info: GET /api/v1/users/profile
+2025-01-18T02:01:15.344Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-18T02:01:15.346Z info: GET /api/v1/users/profile
+2025-01-18T02:01:15.348Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-18T02:03:12.607Z info: GET /api/v1/users/profile
+2025-01-18T02:03:12.608Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-18T02:03:12.609Z info: GET /api/v1/users/profile
+2025-01-18T02:03:12.610Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-18T02:04:00.491Z info: GET /api/v1/users/profile
+2025-01-18T02:04:00.493Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-18T02:04:00.494Z info: GET /api/v1/users/profile
+2025-01-18T02:04:00.495Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-18T02:04:00.497Z info: GET /api/v1/users/profile
+2025-01-18T02:04:00.498Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-18T02:04:00.499Z info: GET /api/v1/users/profile
+2025-01-18T02:04:00.500Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-18T02:17:28.403Z info: POST /api/v1/auth/login
+2025-01-18T02:17:28.530Z info: User 24ae1e67-d99a-46e5-af21-13e4319a5e62 logged in successfully
+2025-01-18T02:17:28.553Z info: GET /api/v1/users/profile
+2025-01-18T02:17:28.554Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:17:28.555Z info: GET /api/v1/users/profile
+2025-01-18T02:17:28.559Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:29:26.590Z info: POST /api/v1/auth/login
+2025-01-18T02:29:26.708Z info: User 24ae1e67-d99a-46e5-af21-13e4319a5e62 logged in successfully
+2025-01-18T02:29:26.746Z info: GET /api/v1/users/profile
+2025-01-18T02:29:26.748Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:29:26.750Z info: GET /api/v1/users/profile
+2025-01-18T02:29:26.751Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:31:35.688Z info: GET /api/v1/users/profile
+2025-01-18T02:31:35.690Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:33:33.674Z info: GET /api/v1/users/profile
+2025-01-18T02:33:33.675Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:34:17.680Z info: GET /api/v1/users/profile
+2025-01-18T02:34:17.681Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:34:20.179Z info: GET /api/v1/users/profile
+2025-01-18T02:34:20.181Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:34:20.183Z info: GET /api/v1/users/profile
+2025-01-18T02:34:20.185Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:34:24.354Z info: GET /api/v1/users/profile
+2025-01-18T02:34:24.356Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:34:24.359Z info: GET /api/v1/users/profile
+2025-01-18T02:34:24.360Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:36:53.677Z info: GET /api/v1/users/profile
+2025-01-18T02:36:53.678Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:02.126Z info: GET /api/v1/users/profile
+2025-01-18T02:37:02.127Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:02.130Z info: GET /api/v1/users/profile
+2025-01-18T02:37:02.132Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:02.597Z info: GET /api/v1/users/profile
+2025-01-18T02:37:02.599Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:02.602Z info: GET /api/v1/users/profile
+2025-01-18T02:37:02.604Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:02.865Z info: GET /api/v1/users/profile
+2025-01-18T02:37:02.867Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:02.870Z info: GET /api/v1/users/profile
+2025-01-18T02:37:02.871Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:03.075Z info: GET /api/v1/users/profile
+2025-01-18T02:37:03.077Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:03.079Z info: GET /api/v1/users/profile
+2025-01-18T02:37:03.080Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:03.405Z info: GET /api/v1/users/profile
+2025-01-18T02:37:03.406Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:03.409Z info: GET /api/v1/users/profile
+2025-01-18T02:37:03.410Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:03.611Z info: GET /api/v1/users/profile
+2025-01-18T02:37:03.613Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:03.616Z info: GET /api/v1/users/profile
+2025-01-18T02:37:03.618Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:03.996Z info: GET /api/v1/users/profile
+2025-01-18T02:37:03.998Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:04.001Z info: GET /api/v1/users/profile
+2025-01-18T02:37:04.002Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:04.190Z info: GET /api/v1/users/profile
+2025-01-18T02:37:04.193Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:04.196Z info: GET /api/v1/users/profile
+2025-01-18T02:37:04.197Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:04.749Z info: GET /api/v1/users/profile
+2025-01-18T02:37:04.752Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:04.755Z info: GET /api/v1/users/profile
+2025-01-18T02:37:04.757Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:05.272Z info: GET /api/v1/users/profile
+2025-01-18T02:37:05.273Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:05.277Z info: GET /api/v1/users/profile
+2025-01-18T02:37:05.278Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:05.665Z info: GET /api/v1/users/profile
+2025-01-18T02:37:05.666Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:05.669Z info: GET /api/v1/users/profile
+2025-01-18T02:37:05.671Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:06.288Z info: GET /api/v1/users/profile
+2025-01-18T02:37:06.290Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:06.293Z info: GET /api/v1/users/profile
+2025-01-18T02:37:06.294Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:06.827Z info: GET /api/v1/users/profile
+2025-01-18T02:37:06.829Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:06.832Z info: GET /api/v1/users/profile
+2025-01-18T02:37:06.834Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:07.125Z info: GET /api/v1/users/profile
+2025-01-18T02:37:07.126Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:07.130Z info: GET /api/v1/users/profile
+2025-01-18T02:37:07.131Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:07.402Z info: GET /api/v1/users/profile
+2025-01-18T02:37:07.403Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:07.406Z info: GET /api/v1/users/profile
+2025-01-18T02:37:07.407Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:07.844Z info: GET /api/v1/users/profile
+2025-01-18T02:37:07.846Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:07.849Z info: GET /api/v1/users/profile
+2025-01-18T02:37:07.851Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:08.301Z info: GET /api/v1/users/profile
+2025-01-18T02:37:08.302Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:08.305Z info: GET /api/v1/users/profile
+2025-01-18T02:37:08.307Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:08.693Z info: GET /api/v1/users/profile
+2025-01-18T02:37:08.695Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:08.698Z info: GET /api/v1/users/profile
+2025-01-18T02:37:08.700Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:08.963Z info: GET /api/v1/users/profile
+2025-01-18T02:37:08.964Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:08.968Z info: GET /api/v1/users/profile
+2025-01-18T02:37:08.970Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:09.379Z info: GET /api/v1/users/profile
+2025-01-18T02:37:09.380Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:09.383Z info: GET /api/v1/users/profile
+2025-01-18T02:37:09.385Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:09.945Z info: GET /api/v1/users/profile
+2025-01-18T02:37:09.946Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:09.949Z info: GET /api/v1/users/profile
+2025-01-18T02:37:09.950Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:10.327Z info: GET /api/v1/users/profile
+2025-01-18T02:37:10.328Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:10.331Z info: GET /api/v1/users/profile
+2025-01-18T02:37:10.332Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:10.654Z info: GET /api/v1/users/profile
+2025-01-18T02:37:10.656Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:10.658Z info: GET /api/v1/users/profile
+2025-01-18T02:37:10.660Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:11.259Z info: GET /api/v1/users/profile
+2025-01-18T02:37:11.261Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:11.263Z info: GET /api/v1/users/profile
+2025-01-18T02:37:11.265Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:11.747Z info: GET /api/v1/users/profile
+2025-01-18T02:37:11.748Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:11.751Z info: GET /api/v1/users/profile
+2025-01-18T02:37:11.752Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:12.186Z info: GET /api/v1/users/profile
+2025-01-18T02:37:12.187Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:12.190Z info: GET /api/v1/users/profile
+2025-01-18T02:37:12.192Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:13.448Z info: GET /api/v1/users/profile
+2025-01-18T02:37:13.450Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:13.452Z info: GET /api/v1/users/profile
+2025-01-18T02:37:13.453Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:13.838Z info: GET /api/v1/users/profile
+2025-01-18T02:37:13.839Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:13.842Z info: GET /api/v1/users/profile
+2025-01-18T02:37:13.844Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:14.415Z info: GET /api/v1/users/profile
+2025-01-18T02:37:14.416Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:14.419Z info: GET /api/v1/users/profile
+2025-01-18T02:37:14.421Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:40.040Z info: GET /api/v1/users/profile
+2025-01-18T02:37:40.041Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:40.044Z info: GET /api/v1/users/profile
+2025-01-18T02:37:40.046Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:40.461Z info: GET /api/v1/users/profile
+2025-01-18T02:37:40.462Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:40.465Z info: GET /api/v1/users/profile
+2025-01-18T02:37:40.467Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:40.863Z info: GET /api/v1/users/profile
+2025-01-18T02:37:40.864Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:40.868Z info: GET /api/v1/users/profile
+2025-01-18T02:37:40.869Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:41.309Z info: GET /api/v1/users/profile
+2025-01-18T02:37:41.310Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:41.313Z info: GET /api/v1/users/profile
+2025-01-18T02:37:41.315Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:41.525Z info: GET /api/v1/users/profile
+2025-01-18T02:37:41.526Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:41.530Z info: GET /api/v1/users/profile
+2025-01-18T02:37:41.531Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:41.993Z info: GET /api/v1/users/profile
+2025-01-18T02:37:41.995Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:41.998Z info: GET /api/v1/users/profile
+2025-01-18T02:37:41.999Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:42.476Z info: GET /api/v1/users/profile
+2025-01-18T02:37:42.478Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:42.481Z info: GET /api/v1/users/profile
+2025-01-18T02:37:42.482Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:42.792Z info: GET /api/v1/users/profile
+2025-01-18T02:37:42.795Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:42.798Z info: GET /api/v1/users/profile
+2025-01-18T02:37:42.799Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:43.377Z info: GET /api/v1/users/profile
+2025-01-18T02:37:43.379Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:43.381Z info: GET /api/v1/users/profile
+2025-01-18T02:37:43.383Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:44.029Z info: GET /api/v1/users/profile
+2025-01-18T02:37:44.031Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:44.033Z info: GET /api/v1/users/profile
+2025-01-18T02:37:44.035Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:44.673Z info: GET /api/v1/users/profile
+2025-01-18T02:37:44.674Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:44.677Z info: GET /api/v1/users/profile
+2025-01-18T02:37:44.678Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:45.606Z info: GET /api/v1/users/profile
+2025-01-18T02:37:45.607Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:45.611Z info: GET /api/v1/users/profile
+2025-01-18T02:37:45.612Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:46.055Z info: GET /api/v1/users/profile
+2025-01-18T02:37:46.056Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:46.059Z info: GET /api/v1/users/profile
+2025-01-18T02:37:46.061Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:46.445Z info: GET /api/v1/users/profile
+2025-01-18T02:37:46.446Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:46.449Z info: GET /api/v1/users/profile
+2025-01-18T02:37:46.451Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:46.730Z info: GET /api/v1/users/profile
+2025-01-18T02:37:46.731Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:46.734Z info: GET /api/v1/users/profile
+2025-01-18T02:37:46.736Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:47.733Z info: GET /api/v1/users/profile
+2025-01-18T02:37:47.735Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:47.738Z info: GET /api/v1/users/profile
+2025-01-18T02:37:47.739Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:48.037Z info: GET /api/v1/users/profile
+2025-01-18T02:37:48.039Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:48.043Z info: GET /api/v1/users/profile
+2025-01-18T02:37:48.044Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:48.273Z info: GET /api/v1/users/profile
+2025-01-18T02:37:48.275Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:48.278Z info: GET /api/v1/users/profile
+2025-01-18T02:37:48.280Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:48.561Z info: GET /api/v1/users/profile
+2025-01-18T02:37:48.563Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:48.566Z info: GET /api/v1/users/profile
+2025-01-18T02:37:48.567Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:49.382Z info: GET /api/v1/users/profile
+2025-01-18T02:37:49.384Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:49.387Z info: GET /api/v1/users/profile
+2025-01-18T02:37:49.389Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:49.691Z info: GET /api/v1/users/profile
+2025-01-18T02:37:49.692Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:49.695Z info: GET /api/v1/users/profile
+2025-01-18T02:37:49.697Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:49.923Z info: GET /api/v1/users/profile
+2025-01-18T02:37:49.925Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:49.928Z info: GET /api/v1/users/profile
+2025-01-18T02:37:49.929Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:50.108Z info: GET /api/v1/users/profile
+2025-01-18T02:37:50.110Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:37:50.112Z info: GET /api/v1/users/profile
+2025-01-18T02:37:50.114Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:48.682Z info: GET /api/v1/users/profile
+2025-01-18T02:40:48.684Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:49.216Z info: GET /api/v1/users/profile
+2025-01-18T02:40:49.218Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:49.220Z info: GET /api/v1/users/profile
+2025-01-18T02:40:49.221Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:49.224Z info: GET /api/v1/users/profile
+2025-01-18T02:40:49.225Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:49.228Z info: GET /api/v1/users/profile
+2025-01-18T02:40:49.229Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:52.112Z info: GET /api/v1/users/profile
+2025-01-18T02:40:52.113Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:52.115Z info: GET /api/v1/users/profile
+2025-01-18T02:40:52.117Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:52.668Z info: GET /api/v1/users/profile
+2025-01-18T02:40:52.670Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:52.673Z info: GET /api/v1/users/profile
+2025-01-18T02:40:52.674Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:53.100Z info: GET /api/v1/users/profile
+2025-01-18T02:40:53.101Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:53.104Z info: GET /api/v1/users/profile
+2025-01-18T02:40:53.106Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:53.358Z info: GET /api/v1/users/profile
+2025-01-18T02:40:53.359Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:53.362Z info: GET /api/v1/users/profile
+2025-01-18T02:40:53.364Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:53.861Z info: GET /api/v1/users/profile
+2025-01-18T02:40:53.862Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:53.865Z info: GET /api/v1/users/profile
+2025-01-18T02:40:53.867Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:54.320Z info: GET /api/v1/users/profile
+2025-01-18T02:40:54.322Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:54.325Z info: GET /api/v1/users/profile
+2025-01-18T02:40:54.327Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:54.517Z info: GET /api/v1/users/profile
+2025-01-18T02:40:54.518Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:54.521Z info: GET /api/v1/users/profile
+2025-01-18T02:40:54.522Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:54.708Z info: GET /api/v1/users/profile
+2025-01-18T02:40:54.709Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:54.712Z info: GET /api/v1/users/profile
+2025-01-18T02:40:54.714Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:55.042Z info: GET /api/v1/users/profile
+2025-01-18T02:40:55.044Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:55.047Z info: GET /api/v1/users/profile
+2025-01-18T02:40:55.049Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:55.416Z info: GET /api/v1/users/profile
+2025-01-18T02:40:55.418Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:55.420Z info: GET /api/v1/users/profile
+2025-01-18T02:40:55.422Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:55.932Z info: GET /api/v1/users/profile
+2025-01-18T02:40:55.934Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:55.937Z info: GET /api/v1/users/profile
+2025-01-18T02:40:55.938Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:56.164Z info: GET /api/v1/users/profile
+2025-01-18T02:40:56.165Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:56.168Z info: GET /api/v1/users/profile
+2025-01-18T02:40:56.170Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:58.884Z info: GET /api/v1/users/profile
+2025-01-18T02:40:58.885Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:58.889Z info: GET /api/v1/users/profile
+2025-01-18T02:40:58.891Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:59.113Z info: GET /api/v1/users/profile
+2025-01-18T02:40:59.114Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:59.117Z info: GET /api/v1/users/profile
+2025-01-18T02:40:59.119Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:59.410Z info: GET /api/v1/users/profile
+2025-01-18T02:40:59.412Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:59.414Z info: GET /api/v1/users/profile
+2025-01-18T02:40:59.416Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:59.581Z info: GET /api/v1/users/profile
+2025-01-18T02:40:59.583Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:40:59.586Z info: GET /api/v1/users/profile
+2025-01-18T02:40:59.587Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:41:07.670Z info: GET /api/v1/users/profile
+2025-01-18T02:41:07.671Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:44:29.857Z info: Server running on http://localhost:3000
+2025-01-18T02:44:29.859Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-18T02:45:29.948Z info: POST /api/v1/auth/login
+2025-01-18T02:45:30.090Z info: User 07239184-8499-4cb7-9924-2f956f82225f logged in successfully
+2025-01-18T02:45:40.929Z info: GET /api/v1/users
+2025-01-18T02:45:40.932Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-18T02:45:40.933Z warn: User 07239184-8499-4cb7-9924-2f956f82225f is not authorized
+2025-01-18T02:45:59.187Z info: POST /api/v1/auth/login
+2025-01-18T02:45:59.279Z info: User 24ae1e67-d99a-46e5-af21-13e4319a5e62 logged in successfully
+2025-01-18T02:46:06.168Z info: GET /api/v1/users
+2025-01-18T02:46:06.170Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:48:27.676Z info: GET /api/v1/users/profile
+2025-01-18T02:48:27.677Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:48:27.681Z info: GET /api/v1/users/profile
+2025-01-18T02:48:27.682Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:48:34.136Z info: GET /api/v1/users
+2025-01-18T02:48:34.137Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:48:34.140Z info: GET /api/v1/users
+2025-01-18T02:48:34.141Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:49:17.680Z info: GET /api/v1/users
+2025-01-18T02:49:17.682Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:49:17.685Z info: GET /api/v1/users
+2025-01-18T02:49:17.686Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:51:00.279Z info: GET /api/v1/users
+2025-01-18T02:51:00.281Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:51:00.282Z info: GET /api/v1/users/profile
+2025-01-18T02:51:00.284Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:51:00.339Z info: GET /api/v1/users
+2025-01-18T02:51:00.340Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:51:00.346Z info: GET /api/v1/users/profile
+2025-01-18T02:51:00.349Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:51:00.678Z info: GET /api/v1/users
+2025-01-18T02:51:00.680Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:53:10.675Z info: GET /api/v1/users
+2025-01-18T02:53:10.676Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:54:01.681Z info: GET /api/v1/users
+2025-01-18T02:54:01.682Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:54:04.507Z info: GET /api/v1/users
+2025-01-18T02:54:04.509Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:54:48.681Z info: GET /api/v1/users
+2025-01-18T02:54:48.682Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:55:44.671Z info: GET /api/v1/users
+2025-01-18T02:55:44.672Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:57:11.671Z info: GET /api/v1/users
+2025-01-18T02:57:11.672Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T02:58:56.670Z info: GET /api/v1/users
+2025-01-18T02:58:56.671Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:00:05.677Z info: GET /api/v1/users
+2025-01-18T03:00:05.679Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:00:06.273Z info: GET /api/v1/users
+2025-01-18T03:00:06.274Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:00:34.673Z info: GET /api/v1/users
+2025-01-18T03:00:34.674Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:00:40.679Z info: GET /api/v1/users
+2025-01-18T03:00:40.680Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:01:37.681Z info: GET /api/v1/users
+2025-01-18T03:01:37.682Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:01:38.669Z info: GET /api/v1/users
+2025-01-18T03:01:38.671Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:02:58.676Z info: GET /api/v1/users
+2025-01-18T03:02:58.677Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:03:08.515Z info: GET /api/v1/users/profile
+2025-01-18T03:03:08.516Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:03:08.519Z info: GET /api/v1/users/profile
+2025-01-18T03:03:08.520Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:03:08.892Z info: GET /api/v1/users
+2025-01-18T03:03:08.893Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:03:08.896Z info: GET /api/v1/users
+2025-01-18T03:03:08.897Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:03:09.456Z info: GET /api/v1/users/profile
+2025-01-18T03:03:09.457Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:03:09.460Z info: GET /api/v1/users/profile
+2025-01-18T03:03:09.462Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:03:09.916Z info: GET /api/v1/users/profile
+2025-01-18T03:03:09.918Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:03:09.921Z info: GET /api/v1/users/profile
+2025-01-18T03:03:09.922Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:03:10.561Z info: GET /api/v1/users
+2025-01-18T03:03:10.562Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:03:10.565Z info: GET /api/v1/users
+2025-01-18T03:03:10.566Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:06:31.499Z info: GET /api/v1/users
+2025-01-18T03:06:31.501Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:06:31.506Z info: GET /api/v1/users
+2025-01-18T03:06:31.507Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:07:25.676Z info: GET /api/v1/users
+2025-01-18T03:07:25.677Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:07:58.697Z info: GET /api/v1/users
+2025-01-18T03:07:58.699Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:08:04.682Z info: GET /api/v1/users
+2025-01-18T03:08:04.683Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:08:07.670Z info: GET /api/v1/users
+2025-01-18T03:08:07.671Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:08:09.528Z info: GET /api/v1/users
+2025-01-18T03:08:09.529Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:08:16.675Z info: GET /api/v1/users
+2025-01-18T03:08:16.677Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:08:20.174Z info: GET /api/v1/users
+2025-01-18T03:08:20.175Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:08:23.673Z info: GET /api/v1/users
+2025-01-18T03:08:23.674Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:08:32.447Z info: GET /api/v1/users/profile
+2025-01-18T03:08:32.449Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:08:32.452Z info: GET /api/v1/users/profile
+2025-01-18T03:08:32.453Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:08:32.843Z info: GET /api/v1/users/profile
+2025-01-18T03:08:32.846Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:08:32.848Z info: GET /api/v1/users/profile
+2025-01-18T03:08:32.850Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:08:34.588Z info: GET /api/v1/users
+2025-01-18T03:08:34.589Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:08:34.592Z info: GET /api/v1/users
+2025-01-18T03:08:34.593Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T03:08:56.731Z info: GET /api/v1/users
+2025-01-18T03:08:56.733Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-18T06:15:08.779Z info: POST /api/v1/auth/register
+2025-01-18T06:15:08.957Z info: User b9c7d0ae-0304-456a-a9a0-4625c4b60726 registered successfully
+2025-01-20T11:57:39.863Z info: Server running on http://localhost:3000
+2025-01-20T11:57:39.866Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T11:59:42.164Z info: Server running on http://localhost:3000
+2025-01-20T11:59:42.166Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:04:37.027Z info: Server running on http://localhost:3000
+2025-01-20T12:04:37.031Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:06:36.419Z info: Server running on http://localhost:3000
+2025-01-20T12:06:36.421Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:13:10.988Z info: Server running on http://localhost:3000
+2025-01-20T12:13:10.990Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:14:03.871Z info: Server running on http://localhost:3000
+2025-01-20T12:14:03.874Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:18:13.462Z info: Server running on http://localhost:3000
+2025-01-20T12:18:13.464Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:18:18.180Z info: Server running on http://localhost:3000
+2025-01-20T12:18:18.182Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:18:30.635Z info: Server running on http://localhost:3000
+2025-01-20T12:18:30.637Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:18:43.907Z info: Server running on http://localhost:3000
+2025-01-20T12:18:43.909Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:19:05.399Z info: Server running on http://localhost:3000
+2025-01-20T12:19:05.402Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:20:38.181Z info: Server running on http://localhost:3000
+2025-01-20T12:20:38.183Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:21:32.977Z info: Server running on http://localhost:3000
+2025-01-20T12:21:32.980Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:22:09.356Z info: Server running on http://localhost:3000
+2025-01-20T12:22:09.358Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:22:31.510Z info: Server running on http://localhost:3000
+2025-01-20T12:22:31.512Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:28:58.594Z info: Server running on http://localhost:3000
+2025-01-20T12:28:58.597Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:30:45.321Z info: Server running on http://localhost:3000
+2025-01-20T12:30:45.324Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:35:44.212Z info: POST /api/v1/auth/register
+2025-01-20T12:35:44.374Z info: User 96f172af-d060-456a-b884-46e7c8735f00 registered successfully
+2025-01-20T12:36:06.263Z info: POST /api/v1/auth/login
+2025-01-20T12:36:06.352Z info: User 96f172af-d060-456a-b884-46e7c8735f00 logged in successfully
+2025-01-20T12:36:18.475Z info: GET /api/v1/users/profile
+2025-01-20T12:36:18.478Z info: Token verified for user 96f172af-d060-456a-b884-46e7c8735f00
+2025-01-20T12:36:32.970Z info: Server running on http://localhost:3000
+2025-01-20T12:36:32.973Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:36:34.260Z info: GET /api/v1/users/profile
+2025-01-20T12:36:34.264Z info: Token verified for user 96f172af-d060-456a-b884-46e7c8735f00
+2025-01-20T12:36:34.264Z warn: User 96f172af-d060-456a-b884-46e7c8735f00 is not authorized
+2025-01-20T12:36:44.103Z info: GET /api/v1/users/me
+2025-01-20T12:36:44.106Z info: Token verified for user 96f172af-d060-456a-b884-46e7c8735f00
+2025-01-20T12:38:07.496Z info: POST /api/v1/login
+2025-01-20T12:38:18.072Z info: POST /api/v1/auth/login
+2025-01-20T12:38:18.157Z warn: Login failed for email: codewithwan@gmail.com - Invalid password
+2025-01-20T12:38:24.715Z info: POST /api/v1/auth/login
+2025-01-20T12:38:24.791Z info: User 07239184-8499-4cb7-9924-2f956f82225f logged in successfully
+2025-01-20T12:39:32.928Z info: POST /api/v1/auth/create-admin
+2025-01-20T12:39:32.931Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-20T12:39:32.931Z warn: User 07239184-8499-4cb7-9924-2f956f82225f is not authorized
+2025-01-20T12:40:12.560Z info: GET /api/v1/users/me
+2025-01-20T12:40:12.561Z info: Token verified for user 07239184-8499-4cb7-9924-2f956f82225f
+2025-01-20T12:40:36.252Z info: POST /api/v1/auth/login
+2025-01-20T12:40:36.327Z info: User 24ae1e67-d99a-46e5-af21-13e4319a5e62 logged in successfully
+2025-01-20T12:40:41.969Z info: GET /api/v1/users/me
+2025-01-20T12:40:41.971Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-20T12:40:47.233Z info: POST /api/v1/auth/create-admin
+2025-01-20T12:40:47.234Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-20T12:40:47.309Z info: User ef5efa9a-8141-4fba-b533-c7ca4485520e created successfully by SUPERADMIN
+2025-01-20T12:41:36.025Z info: POST /api/v1/auth/create-admin
+2025-01-20T12:41:36.026Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-20T12:41:36.136Z info: User 1d3efe0e-4c3d-4ce3-a864-cc54edcb6491 created successfully by SUPERADMIN
+2025-01-20T12:49:02.289Z info: Server running on http://localhost:3000
+2025-01-20T12:49:02.291Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:55:38.665Z info: Server running on http://localhost:3000
+2025-01-20T12:55:38.668Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:55:42.872Z info: Server running on http://localhost:3000
+2025-01-20T12:55:42.876Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:57:02.203Z info: Server running on http://localhost:3000
+2025-01-20T12:57:02.205Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T12:58:27.698Z info: POST /api/v1/protected/users
+2025-01-20T12:58:27.702Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-20T12:58:43.365Z info: POST /api/v1/auth/login
+2025-01-20T12:58:43.495Z info: User 24ae1e67-d99a-46e5-af21-13e4319a5e62 logged in successfully
+2025-01-20T12:58:49.770Z info: POST /api/v1/protected/users
+2025-01-20T12:58:49.773Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-20T13:00:29.632Z info: Server running on http://localhost:3000
+2025-01-20T13:00:29.634Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T13:00:32.730Z info: POST /api/v1/protected/users
+2025-01-20T13:00:32.734Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-20T13:02:05.633Z info: POST /api/v1/auth/login
+2025-01-20T13:02:05.652Z warn: Login failed for email: adminTEST123@example.com - Invalid password
+2025-01-20T13:05:26.105Z info: Server running on http://localhost:3000
+2025-01-20T13:05:26.108Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T13:05:28.013Z info: POST /api/v1/protected/users
+2025-01-20T13:05:28.016Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-20T13:05:31.294Z info: POST /api/v1/auth/login
+2025-01-20T13:05:31.370Z info: User 1df11313-b16d-4e97-982c-77f364ad940e logged in successfully
+2025-01-20T13:05:42.316Z info: GET /api/v1/users/me
+2025-01-20T13:05:42.320Z info: Token verified for user 1df11313-b16d-4e97-982c-77f364ad940e
+2025-01-20T13:06:33.080Z info: POST /api/v1/protected/users
+2025-01-20T13:06:33.081Z warn: No token provided
+2025-01-20T13:06:40.911Z info: POST /api/v1/protected/users
+2025-01-20T13:06:40.913Z info: Token verified for user 1df11313-b16d-4e97-982c-77f364ad940e
+2025-01-20T13:06:53.752Z info: POST /api/v1/protected/users
+2025-01-20T13:06:53.754Z info: Token verified for user 1df11313-b16d-4e97-982c-77f364ad940e
+2025-01-20T13:06:58.281Z info: POST /api/v1/protected/users
+2025-01-20T13:06:58.283Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-20T13:06:58.391Z error: Failed to create user
+2025-01-20T13:07:20.969Z info: POST /api/v1/protected/users
+2025-01-20T13:07:20.970Z info: Token verified for user 1df11313-b16d-4e97-982c-77f364ad940e
+2025-01-20T13:07:42.532Z info: POST /api/v1/protected/users
+2025-01-20T13:07:42.533Z info: Token verified for user 1df11313-b16d-4e97-982c-77f364ad940e
+2025-01-20T13:08:32.405Z info: Server running on http://localhost:3000
+2025-01-20T13:08:32.407Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T13:11:00.365Z info: Server running on http://localhost:3000
+2025-01-20T13:11:00.368Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T13:11:03.098Z info: Server running on http://localhost:3000
+2025-01-20T13:11:03.101Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T13:11:55.158Z info: Server running on http://localhost:3000
+2025-01-20T13:11:55.160Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T13:15:57.896Z info: Server running on http://localhost:3000
+2025-01-20T13:15:57.899Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T13:16:46.014Z info: POST /api/v1/protected/users
+2025-01-20T13:16:46.017Z info: Token verified for user 24ae1e67-d99a-46e5-af21-13e4319a5e62
+2025-01-20T13:16:55.174Z info: POST /api/v1/auth/register
+2025-01-20T13:17:35.959Z info: Server running on http://localhost:3000
+2025-01-20T13:17:35.961Z info: API documentation available at http://localhost:3000/api/v1/api-docs
+2025-01-20T13:17:42.042Z info: POST /api/v1/auth/registerd
+2025-01-20T13:17:44.854Z info: POST /api/v1/auth/register
+2025-01-20T13:17:50.134Z info: GET /api/v1/users/me
+2025-01-20T13:17:50.138Z info: Token verified for user 1df11313-b16d-4e97-982c-77f364ad940e
+2025-01-20T13:17:53.640Z info: POST /api/v1/protected/users
+2025-01-20T13:17:53.643Z info: Token verified for user 1df11313-b16d-4e97-982c-77f364ad940e

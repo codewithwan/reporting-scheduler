@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import logger from "../utils/logger";
 import { validationResult } from "express-validator";
-import { findUserByEmail, createUser } from "../services/userService";
+import { findUserByEmail, createUser, createUserWithRole } from "../services/userService";
 import { AuthenticatedRequest } from "../models/userModel";
 
 /**
@@ -90,27 +90,20 @@ export const createUserByAdmin = async (req: AuthenticatedRequest, res: Response
   const { name, email, password, role } = req.body;
   const adminRole = req.user?.role;
 
-  if (adminRole !== "ADMIN" && adminRole !== "SUPERADMIN") {
-    res.status(403).json({ error: "Forbidden: Only admin or superadmin can create users" });
+  if (adminRole !== "SUPERADMIN") {
+    res.status(403).json({ error: "Forbidden: Only superadmin can create users" });
     return;
-  }
-
-  if (role === "ADMIN" && adminRole !== "SUPERADMIN") {
-    res.status(403).json({ error: "Forbidden: Only superadmin can create admin users" });
   }
 
   try {
     const existingUser = await findUserByEmail(email);
     if (existingUser) {
       res.status(400).json({ error: "Email already in use" });
+      return;
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await createUser({
-      name,
-      email,
-      password: hashedPassword,
-    });
+    const user = await createUserWithRole({ name, email, password: hashedPassword, role });
 
     logger.info(`User ${user.id} created successfully by ${adminRole}`);
     res.status(201).json({ message: "User created successfully", user });

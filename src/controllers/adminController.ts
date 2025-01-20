@@ -1,0 +1,105 @@
+import { Request, Response } from "express";
+import bcrypt from "bcryptjs";
+import logger from "../utils/logger";
+import { createUserWithRole, updateUserById, deleteUserById, updateUserProfile, getUsersByRole, findUserByEmail } from "../services/userService";
+import { AuthenticatedRequest } from "../models/userModel";
+
+/**
+ * Create a new user.
+ * @param {AuthenticatedRequest} req - The request object
+ * @param {Response} res - The response object
+ * @returns {Promise<void>}
+ */
+export const createUser = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  const { name, email, password, role } = req.body;
+  if (req.user!.role === "ADMIN" && (role === "ADMIN" || role === "SUPERADMIN")) {
+    res.status(403).json({ message: "Admins cannot create other admins or superadmins" });
+    return;
+  }
+  try {
+    const existingUser = await findUserByEmail(email);
+    if (existingUser) {
+      res.status(400).json({ message: "Email already in use" });
+      return;
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await createUserWithRole({ name, email, password: hashedPassword, role });
+    res.status(201).json(user);
+  } catch (error) {
+    logger.error("Failed to create user", { error });
+    res.status(500).json({ message: "Failed to create user", error: (error as Error).message });
+  }
+};
+
+/**
+ * Update a user.
+ * @param {AuthenticatedRequest} req - The request object
+ * @param {Response} res - The response object
+ * @returns {Promise<void>}
+ */
+export const updateUser = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  const { id } = req.params;
+  const { name, email, role } = req.body;
+  if (req.user!.role === "ADMIN" && (role === "ADMIN" || role === "SUPERADMIN")) {
+    res.status(403).json({ message: "Admins cannot update other admins or superadmins" });
+    return;
+  }
+  try {
+    const user = await updateUserById(id, { name, email, role });
+    res.status(200).json(user);
+  } catch (error) {
+    logger.error("Failed to update user", { error, id });
+    res.status(500).json({ message: "Failed to update user", error: (error as Error).message });
+  }
+};
+
+/**
+ * Delete a user.
+ * @param {AuthenticatedRequest} req - The request object
+ * @param {Response} res - The response object
+ * @returns {Promise<void>}
+ */
+export const deleteUser = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  const { id } = req.params;
+  try {
+    await deleteUserById(id);
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    logger.error("Failed to delete user", { error, id });
+    res.status(500).json({ message: "Failed to delete user", error: (error as Error).message });
+  }
+};
+
+/**
+ * Update profile.
+ * @param {AuthenticatedRequest} req - The request object
+ * @param {Response} res - The response object
+ * @returns {Promise<void>}
+ */
+export const updateProfile = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  const { id } = req.user!;
+  const { name, email } = req.body;
+  try {
+    const user = await updateUserProfile(id, { name, email });
+    res.status(200).json(user);
+  } catch (error) {
+    logger.error("Failed to update profile", { error, id });
+    res.status(500).json({ message: "Failed to update profile", error: (error as Error).message });
+  }
+};
+
+/**
+ * Get all users.
+ * @param {AuthenticatedRequest} req - The request object
+ * @param {Response} res - The response object
+ * @returns {Promise<void>}
+ */
+export const getUsers = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const users = await getUsersByRole(req.user!.role);
+    res.status(200).json(users);
+  } catch (error) {
+    logger.error("Failed to retrieve users", { error });
+    res.status(500).json({ message: "Failed to retrieve users", error: (error as Error).message });
+  }
+};
