@@ -1,5 +1,6 @@
 import { prisma } from "../config/prismaClient";
 import { User } from "../models/userModel";
+import { validate as isUuid } from "uuid";
 
 interface CreateUserInput {
   name: string;
@@ -25,7 +26,7 @@ export const findUserByEmail = async (email: string): Promise<User | null> => {
  * @param {CreateUserInput} data - The user data.
  * @returns {Promise<User>} The created user object.
  */
-export const createUser = async (data: CreateUserInput): Promise<User> => {
+export const createUser: (data: CreateUserInput) => Promise<User> = async (data: CreateUserInput): Promise<User> => {
   return await prisma.user.create({ data });
 };
 
@@ -71,6 +72,9 @@ export const getUsersByRole = async (role: string): Promise<User[]> => {
  * @returns {Promise<User | null>} The user object if found, otherwise null.
  */
 export const findUserById = async (id: string): Promise<User | null> => {
+  if (!isUuid(id)) {
+    throw new Error("Invalid UUID format");
+  }
   return await prisma.user.findUnique({ where: { id } });
 };
 

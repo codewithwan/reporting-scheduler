@@ -51,17 +51,13 @@ describe('User Routes', () => {
         name: 'Engineer User',
         email: 'engineer@example.com',
         password: await bcrypt.hash('password123', 10),
-        role: 'ADMIN'
+        role: 'ENGINEER'
       },
     });
-
-    // console.log(`Created users: ${JSON.stringify({ superadminUser, adminUser, engineerUser })}`); 
 
     superadminToken = jwt.sign({ userId: superadminUser.id, role: superadminUser.role }, process.env.JWT_SECRET!, { expiresIn: '1h' });
     adminToken = jwt.sign({ userId: adminUser.id, role: adminUser.role }, process.env.JWT_SECRET!, { expiresIn: '1h' });
     engineerToken = jwt.sign({ userId: engineerUser.id, role: engineerUser.role }, process.env.JWT_SECRET!, { expiresIn: '1h' });
-
-    // console.log(`Generated tokens: ${JSON.stringify({ superadminToken, adminToken, engineerToken })}`); 
   });
 
   /**
@@ -76,14 +72,8 @@ describe('User Routes', () => {
    * Test case to verify access to user profile.
    */
   it('should allow engineer to access their own profile', async () => {
-    const engineerUser = await prisma.user.findUnique({
-      where: { email: 'engineer@example.com' },
-    });
-
-    engineerToken = jwt.sign({ userId: engineerUser!.id, role: engineerUser!.role }, process.env.JWT_SECRET!, { expiresIn: '1h' });
-
     const res = await request(app)
-      .get('/api/v1/users/profile')
+      .get('/api/v1/users/me')
       .set('Authorization', `Bearer ${engineerToken}`);
     if (res.status !== 200) {
       console.log("engineerToken: ", engineerToken);
@@ -94,48 +84,4 @@ describe('User Routes', () => {
     expect(res.body.email).toBe('engineer@example.com');
   });
 
-  /**
-   * Test case to verify access to all users for admin.
-   */
-  it('should allow super admin to access all users except superadmin', async () => {
-    const res = await request(app)
-      .get('/api/v1/users')
-      .set('Authorization', `Bearer ${superadminToken}`);
-    if (res.status === 500) {
-      console.error('Error response:', res.body);
-    }
-    expect(res.status).toBe(200);
-    expect(res.body).toBeInstanceOf(Array);
-    const usersExcludingSuperadmin = res.body.filter((user: User) => user.role !== 'SUPERADMIN');
-    expect(usersExcludingSuperadmin.some((user: User) => user.role === 'SUPERADMIN')).toBe(false);
-  });
-
-  /**
-   * Test case to verify access to all users for superadmin.
-   */
-  it('should allow superadmin to access all users', async () => {
-    const res = await request(app)
-      .get('/api/v1/users')
-      .set('Authorization', `Bearer ${superadminToken}`);
-    if (res.status === 500) {
-      console.error('Error response:', res.body);
-    }
-    expect(res.status).toBe(200);
-    expect(res.body).toBeInstanceOf(Array);
-    expect(res.body.some((user: User) => user.role === 'SUPERADMIN')).toBe(true);
-  });
-
-  /**
-   * Test case to verify access is denied for engineer to all users.
-   */
-  it('should deny engineer access to all users', async () => {
-    const res = await request(app)
-      .get('/api/v1/users')
-      .set('Authorization', `Bearer ${engineerToken}`);
-    if (res.status === 500) {
-      console.error('Error response:', res.body);
-    }
-    expect(res.status).toBe(403);
-    expect(res.body.message).toBe('Forbidden: Insufficient role');
-  });
 });

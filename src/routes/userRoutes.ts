@@ -7,7 +7,7 @@ const router = Router();
 
 /**
  * @swagger
- * /users/profile:
+ * /users/me:
  *   get:
  *     summary: Get user profile
  *     tags: [Users]
@@ -44,30 +44,6 @@ router.get("/me", authenticateToken, authorizeRoles("ENGINEER", "ADMIN", "SUPERA
 
 /**
  * @swagger
- * /users:
- *   get:
- *     summary: Get all users
- *     tags: [Users]
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       200:
- *         description: Users retrieved successfully
- *       500:
- *         description: Failed to fetch users data
- */
-router.get("/", authenticateToken, authorizeRoles("ADMIN", "SUPERADMIN"), async (req: AuthenticatedRequest, res) => {
-  try {
-    const users = await getUsersByRole(req.user?.role || '');
-    res.status(200).json(users);
-  } catch (error) {
-    logger.error("Failed to fetch users data", { error });
-    res.status(500).json({ message: "Failed to fetch users data", error: (error as Error).message });
-  }
-});
-
-/**
- * @swagger
  * /users/{id}:
  *   get:
  *     summary: Get user by ID
@@ -93,8 +69,12 @@ router.get("/:id", authenticateToken, authorizeRoles("ADMIN", "SUPERADMIN"), asy
   const { id } = req.params;
   try {
     const user = await findUserById(id);
-    if (!user || (req.user?.role === 'ADMIN' && user.role === 'ADMIN')) {
+    if (!user) {
       res.status(404).json({ message: "User not found" });
+      return;
+    }
+    if (req.user?.role === 'ADMIN' && user.role === 'ADMIN') {
+      res.status(403).json({ message: "Forbidden" });
       return;
     }
     res.status(200).json(user);

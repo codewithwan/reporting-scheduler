@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import bcrypt from "bcryptjs";
 import logger from "../utils/logger";
-import { createUserWithRole, updateUserById, deleteUserById, updateUserProfile, getUsersByRole, findUserByEmail } from "../services/userService";
+import { createUserWithRole, updateUserById, deleteUserById, updateUserProfile, getUsersByRole, findUserByEmail, findUserById } from "../services/userService";
 import { AuthenticatedRequest } from "../models/userModel";
 
 /**
@@ -45,8 +45,13 @@ export const updateUser = async (req: AuthenticatedRequest, res: Response): Prom
     return;
   }
   try {
-    const user = await updateUserById(id, { name, email, role });
-    res.status(200).json(user);
+    const user = await findUserById(id);
+    if (!user) {
+      res.status(404).json({ message: "User not found" });
+      return;
+    }
+    const updatedUser = await updateUserById(id, { name, email, role });
+    res.status(200).json(updatedUser);
   } catch (error) {
     logger.error("Failed to update user", { error, id });
     res.status(500).json({ message: "Failed to update user", error: (error as Error).message });
