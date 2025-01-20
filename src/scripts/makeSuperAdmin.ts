@@ -50,7 +50,11 @@ async function createSuperAdmin() {
     console.log('Super Admin created successfully!');
     console.log(superAdmin);
   } catch (error) {
-    console.error('Error creating super admin:', error);
+    if (error instanceof Error) {
+      console.error('Error creating super admin:', error.message);
+    } else {
+      console.error('Unexpected error:', error);
+    }
   } finally {
     await prisma.$disconnect();
   }
