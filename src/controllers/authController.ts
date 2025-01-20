@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import logger from "../utils/logger";
 import { validationResult } from "express-validator";
 import { findUserByEmail, createUser } from "../services/userService";
-import { AuthenticatedRequest } from "../models/authModel";
+import { AuthenticatedRequest } from "../models/userModel";
 
 /**
  * Register a new user.

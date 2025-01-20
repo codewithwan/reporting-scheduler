@@ -1,7 +1,7 @@
 import { Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import logger from "../utils/logger";
-import { AuthenticatedRequest, User } from "../models/authModel";
+import { AuthenticatedRequest, User } from "../models/userModel";
 
 /**
  * Middleware to authenticate JWT token.
@@ -52,5 +52,6 @@ export function authorizeRoles(...roles: string[]) {
     next();
   };
 }
+
 export { AuthenticatedRequest };
 

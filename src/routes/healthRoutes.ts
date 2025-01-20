@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {prisma} from "../config/prismaClient";
+import { checkDatabaseHealth } from "../services/healthService";
 
 const router = Router();
 
@@ -16,10 +16,10 @@ const router = Router();
  *         description: API is unhealthy
  */
 router.get("/", async (req, res) => {
-  try {
-    await prisma.$queryRaw`SELECT 1`;
+  const isDatabaseHealthy = await checkDatabaseHealth();
+  if (isDatabaseHealthy) {
     res.status(200).json({ status: "healthy", message: "Database connection is healthy" });
-  } catch (error) {
+  } else {
     res.status(500).json({ status: "unhealthy", message: "Database connection is not healthy" });
   }
 });

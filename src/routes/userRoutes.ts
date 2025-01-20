@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { authenticateToken, authorizeRoles, AuthenticatedRequest } from "../middleware/authMiddleware";
-import { prisma } from "../config/prismaClient";
+import { findUserById, getUsersByRole } from "../services/userService";
 import logger from "../utils/logger";
 
 const router = Router();
@@ -30,7 +30,7 @@ router.get("/profile", authenticateToken, authorizeRoles("ENGINEER", "ADMIN", "S
       return;
     }
     try {
-      const user = await prisma.user.findUnique({ where: { id: userId }, select: { id: true, name: true, email: true, role: true, timezone: true } });
+      const user = await findUserById(userId);
       if (!user) {
         res.status(404).json({ message: "User not found" });
         return;
@@ -58,13 +58,7 @@ router.get("/profile", authenticateToken, authorizeRoles("ENGINEER", "ADMIN", "S
  */
 router.get("/", authenticateToken, authorizeRoles("ADMIN", "SUPERADMIN"), async (req: AuthenticatedRequest, res) => {
   try {
-    const users = await prisma.user.findMany({
-      where: req.user?.role === 'SUPERADMIN' ? {} : {
-        role: {
-          notIn: ["SUPERADMIN", "ADMIN"]
-        }
-      }
-    });
+    const users = await getUsersByRole(req.user?.role || '');
     res.status(200).json(users);
   } catch (error) {
     logger.error("Failed to fetch users data", { error });
@@ -98,10 +92,7 @@ router.get("/", authenticateToken, authorizeRoles("ADMIN", "SUPERADMIN"), async 
 router.get("/:id", authenticateToken, authorizeRoles("ADMIN", "SUPERADMIN"), async (req: AuthenticatedRequest, res) => {
   const { id } = req.params;
   try {
-    const user = await prisma.user.findUnique({
-      where: { id },
-      select: { id: true, name: true, email: true, role: true, timezone: true }
-    });
+    const user = await findUserById(id);
     if (!user || (req.user?.role === 'ADMIN' && user.role === 'ADMIN')) {
       res.status(404).json({ message: "User not found" });
       return;

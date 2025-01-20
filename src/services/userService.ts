@@ -1,30 +1,90 @@
 import { prisma } from "../config/prismaClient";
+import { User } from "../models/userModel";
+
+interface CreateUserInput {
+  name: string;
+  email: string;
+  password: string;
+}
+
+interface CreateUserWithRoleInput extends CreateUserInput {
+  role: string;
+}
 
 /**
  * Finds a user by their email address.
  * @param {string} email - The email address of the user.
- * @returns {Promise<Object|null>} The user object if found, otherwise null.
+ * @returns {Promise<User | null>} The user object if found, otherwise null.
  */
-export const findUserByEmail = async (email: string) => {
+export const findUserByEmail = async (email: string): Promise<User | null> => {
   return await prisma.user.findUnique({ where: { email } });
 };
 
 /**
  * Creates a new user.
- * @param {Object} data - The user data.
- * @param {string} data.name - The name of the user.
- * @param {string} data.email - The email address of the user.
- * @param {string} data.password - The password of the user.
- * @returns {Promise<Object>} The created user object.
+ * @param {CreateUserInput} data - The user data.
+ * @returns {Promise<User>} The created user object.
  */
-export const createUser = async (data: { name: string; email: string; password: string; }) => {
+export const createUser = async (data: CreateUserInput): Promise<User> => {
+  return await prisma.user.create({ data });
+};
+
+/**
+ * Creates a new user with a role.
+ * @param {CreateUserWithRoleInput} data - The user data.
+ * @returns {Promise<User>} The created user object.
+ */
+export const createUserWithRole = async (data: CreateUserWithRoleInput): Promise<User> => {
   return await prisma.user.create({ data });
 };
 
 /**
  * Retrieves all users.
- * @returns {Promise<Array>} An array of user objects.
+ * @returns {Promise<User[]>} An array of user objects.
  */
-export const getAllUsers = async () => {
+export const getAllUsers = async (): Promise<User[]> => {
   return await prisma.user.findMany();
+};
+
+/**
+ * Retrieves users based on the role of the requesting user.
+ * @param {string} role - The role of the requesting user.
+ * @returns {Promise<User[]>} An array of user objects.
+ */
+export const getUsersByRole = async (role: string): Promise<User[]> => {
+  return await prisma.user.findMany({
+    where: role === 'SUPERADMIN' ? {} : {
+      role: {
+        notIn: ["SUPERADMIN", "ADMIN"]
+      }
+    }
+  });
+};
+
+/**
+ * Finds a user by their ID.
+ * @param {string} id - The ID of the user.
+ * @returns {Promise<User | null>} The user object if found, otherwise null.
+ */
+export const findUserById = async (id: string): Promise<User | null> => {
+  return await prisma.user.findUnique({ where: { id } });
+};
+
+/**
+ * Updates a user by their ID.
+ * @param {string} id - The ID of the user.
+ * @param {Partial<User>} data - The user data to update.
+ * @returns {Promise<User>} The updated user object.
+ */
+export const updateUserById = async (id: string, data: Partial<User>): Promise<User> => {
+  return await prisma.user.update({ where: { id }, data });
+};
+
+/**
+ * Deletes a user by their ID.
+ * @param {string} id - The ID of the user.
+ * @returns {Promise<void>}
+ */
+export const deleteUserById = async (id: string): Promise<void> => {
+  await prisma.user.delete({ where: { id } });
 };
