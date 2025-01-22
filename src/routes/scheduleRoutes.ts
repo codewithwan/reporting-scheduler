@@ -58,7 +58,7 @@ router.post(
   "/",
   authenticateToken,
   authorizeRoles("ADMIN"),
-  body("taskName").isString().isLength({ min: 1 }),
+  body("taskName").isString().isLength({ min: 6 }),
   body("executeAt").isISO8601(),
   body("engineerId").isUUID(),
   handleValidation,
