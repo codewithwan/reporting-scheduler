@@ -6,6 +6,7 @@ import authRouter from "./routes/authRoutes";
 import protectedRouter from "./routes/protectedRoutes";
 import userRouter from "./routes/userRoutes";
 import logger from "./utils/logger";
+import scheduleRouter from "./routes/scheduleRoutes";
 import { setupSwagger } from "./utils/swagger";
 import cors from 'cors';
 
@@ -35,6 +36,7 @@ app.use("/api/v1/health", healthRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/protected", protectedRouter);
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/schedule", scheduleRouter);
 
 // Handle 404 - Route not found
 app.use((req: Request, res: Response, next: NextFunction) => {

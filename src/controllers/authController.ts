@@ -23,7 +23,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
   try {
     const existingUser = await findUserByEmail(email);
     if (existingUser) {
-      res.status(400).json({ error: "Email already in use" });
+      res.status(400).json({ error: "This email is already registered. Please use a different email." });
       return;
     }
 
@@ -37,7 +37,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     res.status(201).json({ message: "User registered successfully", user });
   } catch (error) {
     logger.error("User registration failed", error);
-    res.status(400).json({ error: "User registration failed" });
+    res.status(500).json({ error: "An unexpected error occurred during registration. Please try again later." });
   }
 };
 
@@ -59,13 +59,13 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     const user = await findUserByEmail(email);
     if (!user) {
       logger.warn(`Login failed for email: ${email} - User not found`);
-      res.status(401).json({ error: "Invalid email or password" });
+      res.status(401).json({ error: "Invalid email or password. Please try again." });
       return;
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       logger.warn(`Login failed for email: ${email} - Invalid password`);
-      res.status(401).json({ error: "Invalid email or password" });
+      res.status(401).json({ error: "Invalid email or password. Please try again." });
       return;
     }
     if (!process.env.JWT_SECRET) {
@@ -76,7 +76,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     res.status(200).json({ message: "Login successful", token });
   } catch (error) {
     logger.error("Login failed", error);
-    res.status(400).json({ error: "Login failed" });
+    res.status(500).json({ error: "An unexpected error occurred during login. Please try again later." });
   }
 };
 
@@ -91,14 +91,14 @@ export const createUserByAdmin = async (req: AuthenticatedRequest, res: Response
   const adminRole = req.user?.role;
 
   if (adminRole !== "SUPERADMIN") {
-    res.status(403).json({ error: "Forbidden: Only superadmin can create users" });
+    res.status(403).json({ error: "Access denied. Only superadmins can create users." });
     return;
   }
 
   try {
     const existingUser = await findUserByEmail(email);
     if (existingUser) {
-      res.status(400).json({ error: "Email already in use" });
+      res.status(400).json({ error: "This email is already registered. Please use a different email." });
       return;
     }
 
@@ -109,6 +109,6 @@ export const createUserByAdmin = async (req: AuthenticatedRequest, res: Response
     res.status(201).json({ message: "User created successfully", user });
   } catch (error) {
     logger.error("User creation failed", error);
-    res.status(400).json({ error: "User creation failed" });
+    res.status(500).json({ error: "An unexpected error occurred during user creation. Please try again later." });
   }
 };

@@ -23,8 +23,6 @@ export interface User {
  * @extends {Request}
  * @property {User} [user] - The authenticated user
  */
-
-
 export interface AuthenticatedRequest extends Request {
   user?: User;
 }
