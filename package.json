@@ -6,7 +6,7 @@
     "test": "jest",
     "dev": "nodemon src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start:prod": "node dist/server.js",
     "prisma": "prisma",
     "seed": "node prisma/seed.js",
     "add:superadmin": "ts-node src/scripts/makeSuperAdmin.ts"

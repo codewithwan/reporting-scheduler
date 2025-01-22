@@ -35,6 +35,8 @@ export const createScheduleByAdmin = async (req: AuthenticatedRequest, res: Resp
   } catch (error) {
     if ((error as Error).message.includes("Foreign key constraint violated")) {
       res.status(400).json({ message: "Invalid engineer ID. Please check the engineer ID and try again." });
+    } else if ((error as Error).message.includes("Reminder time cannot be in the past")) {
+      res.status(400).json({ message: "Reminder time cannot be in the past. Please set a valid reminder time." });
     } else {
       logger.error("Failed to create schedule", { error });
       res.status(500).json({ message: "An unexpected error occurred while creating the schedule. Please try again later.", error: (error as Error).message });
