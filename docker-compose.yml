@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U myuser -d mydatabase"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+  app:
+    build: .
+    container_name: express_app
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgresql://myuser:mypassword@db:5432/mydatabase?schema=public
+      - NODE_ENV=production
+      - JWT_SECRET=50a9efd03290b63188550a3e4e1a70f2dc8a1133474e749d1fce8142de21527d
+      - JWT_EXPIRES_IN=24h
+      - JWT_REFRESH_SECRET=your_refresh_token_secret_here
+      - JWT_REFRESH_EXPIRES_IN=7d
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./prisma:/app/prisma
+      - ./src:/app/src
+      - /app/node_modules
+    command: sh -c "
+      npx prisma generate &&
+      npx prisma migrate deploy &&
+      npm run start:prod"
+
+volumes:
+  postgres_data:
