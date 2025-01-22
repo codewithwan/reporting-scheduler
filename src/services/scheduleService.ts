@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Schedule, CreateScheduleInput } from "../models/scheduleModel";
+import { createReminder } from "./reminderService";
 
 const prisma = new PrismaClient();
 
@@ -9,9 +10,22 @@ const prisma = new PrismaClient();
  * @returns {Promise<Schedule>} - The created schedule
  */
 export const createSchedule = async (data: CreateScheduleInput): Promise<Schedule> => {
-  return prisma.schedule.create({
+  const schedule = await prisma.schedule.create({
     data,
   });
+
+  const reminderTime = new Date(data.executeAt);
+  reminderTime.setDate(reminderTime.getDate() - 1);
+
+  const now = new Date();
+  if (reminderTime > now) {
+    await createReminder({
+      scheduleId: schedule.id,
+      reminderTime,
+    });
+  }
+
+  return schedule;
 };
 
 /**
