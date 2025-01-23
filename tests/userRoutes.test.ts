@@ -36,6 +36,7 @@ describe('User Routes', () => {
         role: 'SUPERADMIN'
       },
     });
+    console.log("Superadmin User ID:", superadminUser.id);
 
     const adminUser = await prisma.user.create({
       data: {
@@ -45,6 +46,7 @@ describe('User Routes', () => {
         role: 'ADMIN'
       },
     });
+    console.log("Admin User ID:", adminUser.id);
 
     const engineerUser = await prisma.user.create({
       data: {
@@ -54,10 +56,12 @@ describe('User Routes', () => {
         role: 'ENGINEER'
       },
     });
+    console.log("Engineer User ID:", engineerUser.id);
 
     superadminToken = jwt.sign({ userId: superadminUser.id, role: superadminUser.role }, process.env.JWT_SECRET!, { expiresIn: '1h' });
     adminToken = jwt.sign({ userId: adminUser.id, role: adminUser.role }, process.env.JWT_SECRET!, { expiresIn: '1h' });
     engineerToken = jwt.sign({ userId: engineerUser.id, role: engineerUser.role }, process.env.JWT_SECRET!, { expiresIn: '1h' });
+    console.log("Engineer Token:", engineerToken);
   });
 
   /**

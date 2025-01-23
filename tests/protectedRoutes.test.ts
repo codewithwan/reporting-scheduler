@@ -26,12 +26,12 @@ describe('Protected Routes', () => {
    * Hook to run before each test. Creates users and generates tokens.
    */
   beforeEach(async () => {
-    await prisma.$executeRaw`TRUNCATE TABLE "User" RESTART IDENTITY CASCADE`; // Ensure the database is properly cleared
-
+    await prisma.$executeRaw`TRUNCATE TABLE "User" RESTART IDENTITY CASCADE`; 
+    
     const superadminUser = await prisma.user.create({
       data: {
         name: 'Super Admin',
-        email: 'superadmin@example.com',
+        email: `superadmin${Date.now()}@example.com`,
         password: await bcrypt.hash('password123', 10),
         role: 'SUPERADMIN'
       },
@@ -40,7 +40,7 @@ describe('Protected Routes', () => {
     const adminUser = await prisma.user.create({
       data: {
         name: 'Admin User',
-        email: 'admin@example.com',
+        email: `admin${Date.now()}@example.com`,
         password: await bcrypt.hash('password123', 10),
         role: 'ADMIN'
       },
@@ -49,7 +49,7 @@ describe('Protected Routes', () => {
     const engineerUser = await prisma.user.create({
       data: {
         name: 'Engineer User',
-        email: 'engineer@example.com',
+        email: `engineer${Date.now()}@example.com`,
         password: await bcrypt.hash('password123', 10),
         role: 'ENGINEER'
       },

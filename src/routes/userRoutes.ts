@@ -1,7 +1,6 @@
 import { Router } from "express";
-import { authenticateToken, authorizeRoles, AuthenticatedRequest } from "../middleware/authMiddleware";
-import { findUserById } from "../services/userService";
-import logger from "../utils/logger";
+import { authenticateToken, authorizeRoles } from "../middleware/authMiddleware";
+import { getUserProfile, getUserById } from "../controllers/userController";
 
 const router = Router();
 
@@ -23,24 +22,7 @@ const router = Router();
  *       500:
  *         description: Failed to fetch user data
  */
-router.get("/me", authenticateToken, authorizeRoles("ENGINEER", "ADMIN", "SUPERADMIN"), async (req: AuthenticatedRequest, res) => {
-    const userId = req.user?.id;
-    if (!userId) {
-      res.status(400).json({ message: "User ID is missing" });
-      return;
-    }
-    try {
-      const user = await findUserById(userId);
-      if (!user) {
-        res.status(404).json({ message: "User not found" });
-        return;
-      }
-      res.status(200).json(user);
-    } catch (error) {
-      logger.error("Failed to fetch user data", { error, userId });
-      res.status(500).json({ message: "Failed to fetch user data", error: (error as Error).message });
-    }
-});
+router.get("/me", authenticateToken, authorizeRoles("ENGINEER", "ADMIN", "SUPERADMIN"), getUserProfile);
 
 /**
  * @swagger
@@ -65,23 +47,6 @@ router.get("/me", authenticateToken, authorizeRoles("ENGINEER", "ADMIN", "SUPERA
  *       500:
  *         description: Failed to fetch user data
  */
-router.get("/:id", authenticateToken, authorizeRoles("ADMIN", "SUPERADMIN"), async (req: AuthenticatedRequest, res) => {
-  const { id } = req.params;
-  try {
-    const user = await findUserById(id);
-    if (!user) {
-      res.status(404).json({ message: "User not found" });
-      return;
-    }
-    if (req.user?.role === 'ADMIN' && user.role === 'ADMIN') {
-      res.status(403).json({ message: "Forbidden" });
-      return;
-    }
-    res.status(200).json(user);
-  } catch (error) {
-    logger.error("Failed to fetch user data", { error, id });
-    res.status(500).json({ message: "Failed to fetch user data", error: (error as Error).message });
-  }
-});
+router.get("/:id", authenticateToken, authorizeRoles("ADMIN", "SUPERADMIN"), getUserById);
 
 export default router;

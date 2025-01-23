@@ -13,7 +13,7 @@ export function setupSwagger(app: Application) {
       },
       servers: [
         {
-          url: "http://localhost:3000/api/v1",
+          url: process.env.NODE_ENV === 'production' ? 'https://report.codewithwan.my.id/api/v1' : 'http://localhost:3000/api/v1',
         },
       ],
     },
