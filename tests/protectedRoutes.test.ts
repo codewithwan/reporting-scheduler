@@ -14,6 +14,7 @@ describe('Protected Routes', () => {
   let superadminToken: string;
   let adminToken: string;
   let engineerToken: string;
+  let engineerEmail: string;
 
   /**
    * Hook to run before all tests. Deletes all users.
@@ -46,10 +47,11 @@ describe('Protected Routes', () => {
       },
     });
 
+    engineerEmail = `engineer${Date.now()}@example.com`;
     const engineerUser = await prisma.user.create({
       data: {
         name: 'Engineer User',
-        email: `engineer${Date.now()}@example.com`,
+        email: engineerEmail,
         password: await bcrypt.hash('password123', 10),
         role: 'ENGINEER'
       },
@@ -73,10 +75,14 @@ describe('Protected Routes', () => {
    */
   it('should deny engineer to update their own profile', async () => {
     const engineerUser = await prisma.user.findUnique({
-      where: { email: 'engineer@example.com' },
+      where: { email: engineerEmail },
     });
 
-    engineerToken = jwt.sign({ userId: engineerUser!.id, role: engineerUser!.role }, process.env.JWT_SECRET!, { expiresIn: '1h' });
+    if (!engineerUser) {
+      throw new Error('Engineer user not found');
+    }
+
+    engineerToken = jwt.sign({ userId: engineerUser.id, role: engineerUser.role }, process.env.JWT_SECRET!, { expiresIn: '1h' });
 
     const res = await request(app)
       .put('/api/v1/protected/profile')
@@ -154,8 +160,8 @@ describe('Protected Routes', () => {
     const res = await request(app)
       .get('/api/v1/protected')
       .set('Authorization', 'Bearer invalidtoken');
-    expect(res.status).toBe(403);
-    expect(res.body.message).toBe('Invalid token');
+    expect(res.status).toBe(401);
+    expect(res.body.message).toBe('Invalid or expired token');
   });
 
   /**
@@ -190,7 +196,7 @@ describe('Protected Routes', () => {
     const res = await request(app)
       .get('/api/v1/protected')
       .set('Authorization', `Bearer ${expiredToken}`);
-    expect(res.status).toBe(403);
-    expect(res.body.message).toBe('Invalid token');
+    expect(res.status).toBe(401);
+    expect(res.body.message).toBe('Invalid or expired token');
   });
 });

@@ -65,7 +65,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       logger.warn(`Login failed for email: ${email} - Invalid password`);
-      res.status(401).json({ error: "Invalid email or password. Please try again." });
+      res.status(403).json({ error: "Invalid email or password. Please try again." });
       return;
     }
     if (!process.env.JWT_SECRET) {

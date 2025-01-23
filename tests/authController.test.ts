@@ -97,7 +97,7 @@ describe('Auth Controller', () => {
     }
     expect(res.status).toBe(200);
     expect(res.body.message).toBe('Login successful');
-    expect(res.body).toHaveProperty('token');
+    expect(res.body).toHaveProperty('accessToken');
   });
 
   /**
