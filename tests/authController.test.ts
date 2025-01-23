@@ -71,7 +71,7 @@ describe('Auth Controller', () => {
       });
 
     expect(res.status).toBe(400);
-    expect(res.body.error).toBe('Email already in use');
+    expect(res.body.error).toBe('This email is already registered. Please use a different email.');
   });
 
   /**
@@ -112,7 +112,7 @@ describe('Auth Controller', () => {
       });
 
     expect(res.status).toBe(401);
-    expect(res.body.error).toBe('Invalid email or password');
+    expect(res.body.error).toBe('Invalid email or password. Please try again.');
   });
 
   /**
@@ -127,7 +127,7 @@ describe('Auth Controller', () => {
       });
 
     expect(res.status).toBe(401);
-    expect(res.body.error).toBe('Invalid email or password');
+    expect(res.body.error).toBe('Invalid email or password. Please try again.');
   });
 
   /**

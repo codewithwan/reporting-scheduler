@@ -1,7 +1,7 @@
 import { Router } from "express";
 import rateLimit from "express-rate-limit";
 import { body } from "express-validator";
-import { register, login, createUserByAdmin } from "../controllers/authController";
+import { register, login, createUserByAdmin, refreshToken } from "../controllers/authController";
 import { authenticateToken, authorizeRoles } from "../middleware/authMiddleware";
 import { handleValidation } from "../middleware/validationMiddleware";
 
@@ -9,7 +9,7 @@ const router = Router();
 
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, 
-  max: 100, // For testing
+  max: process.env.NODE_ENV === "production" ? 5 : 100,
   message: "Too many attempts from this IP, please try again after 15 minutes",
 });
 
@@ -133,5 +133,30 @@ router.post(
   handleValidation,
   createUserByAdmin
 );
+
+/**
+ * @swagger
+ * /auth/refresh-token:
+ *   post:
+ *     summary: Refresh access token
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - refreshToken
+ *             properties:
+ *               refreshToken:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Tokens refreshed successfully
+ *       401:
+ *         description: Invalid or expired refresh token
+ */
+router.post("/refresh-token", body("refreshToken").isString(), handleValidation, refreshToken);
 
 export default router;
