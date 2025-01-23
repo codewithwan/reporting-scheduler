@@ -149,7 +149,7 @@ export const refreshToken = async (req: Request, res: Response): Promise<void> =
     const newAccessToken = jwt.sign({ userId: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRY });
     const newRefreshToken = jwt.sign({ userId: user.id, role: user.role }, refreshSecret, { expiresIn: process.env.JWT_REFRESH_EXPIRY });
 
-    res.status(200).json({ accessToken: newAccessToken, refreshToken: newRefreshToken });
+    res.status(200).json({ message: "Token refreshed successfully", accessToken: newAccessToken, refreshToken: newRefreshToken });
   } catch (error) {
     logger.error("Failed to refresh token", error);
     res.status(401).json({ error: "Invalid or expired refresh token" });
