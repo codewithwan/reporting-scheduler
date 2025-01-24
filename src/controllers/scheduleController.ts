@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import logger from "../utils/logger";
-import { createSchedule, getSchedulesByUser, updateScheduleById, deleteScheduleById } from "../services/scheduleService";
+import { createSchedule, getSchedulesByUser, updateScheduleById, deleteScheduleById, updateScheduleStatusById } from "../services/scheduleService";
 import { AuthenticatedRequest } from "../models/userModel";
 import { CreateScheduleInput } from "../models/scheduleModel";
 
@@ -11,7 +11,7 @@ import { CreateScheduleInput } from "../models/scheduleModel";
  * @returns {Promise<void>}
  */
 export const createScheduleByAdmin = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
-  const { taskName, executeAt, engineerId } = req.body;
+  const { taskName, executeAt, engineerId, location, activity, phoneNumber } = req.body;
   const adminId = req.user!.id;
 
   if (req.user!.role !== "ADMIN") {
@@ -19,13 +19,13 @@ export const createScheduleByAdmin = async (req: AuthenticatedRequest, res: Resp
     return;
   }
 
-  if (!taskName || !executeAt || !engineerId) {
-    res.status(400).json({ message: "Invalid input. Please provide task name, execution time, and engineer ID." });
+  if (!taskName || !executeAt || !engineerId || !location || !activity || !phoneNumber) {
+    res.status(400).json({ message: "Invalid input. Please provide all required fields." });
     return;
   }
 
   try {
-    const schedule = await createSchedule({ taskName, executeAt, engineerId, adminId });
+    const schedule = await createSchedule({ taskName, executeAt, engineerId, adminId, location, activity, phoneNumber });
     if (!schedule) {
       res.status(404).json({ message: "Creation failed. Engineer ID not found." });
       return;
@@ -72,7 +72,7 @@ export const getSchedules = async (req: AuthenticatedRequest, res: Response): Pr
  */
 export const updateSchedule = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   const { id } = req.params;
-  const { taskName, executeAt, status } = req.body;
+  const { taskName, executeAt, status, location, activity, adminName, engineerName, phoneNumber } = req.body;
 
   if (req.user!.role !== "SUPERADMIN") {
     res.status(403).json({ message: "Access denied. Only superadmins can update schedules." });
@@ -80,7 +80,7 @@ export const updateSchedule = async (req: AuthenticatedRequest, res: Response): 
   }
 
   try {
-    const updatedSchedule = await updateScheduleById(id, { taskName, executeAt, status });
+    const updatedSchedule = await updateScheduleById(id, { taskName, executeAt, status, location, activity, adminName, engineerName, phoneNumber });
     if (!updatedSchedule) {
       res.status(404).json({ message: "Update failed. Schedule not found." });
       return;
@@ -89,6 +89,29 @@ export const updateSchedule = async (req: AuthenticatedRequest, res: Response): 
   } catch (error) {
     logger.error("Failed to update schedule", { error, id });
     res.status(500).json({ message: "An unexpected error occurred while updating the schedule. Please try again later.", error: (error as Error).message });
+  }
+};
+
+/**
+ * Update the status of a schedule.
+ * @param {AuthenticatedRequest} req - The request object
+ * @param {Response} res - The response object
+ * @returns {Promise<void>}
+ */
+export const updateScheduleStatus = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  try {
+    const updatedSchedule = await updateScheduleStatusById(id, status);
+    if (!updatedSchedule) {
+      res.status(404).json({ message: "Update failed. Schedule not found." });
+      return;
+    }
+    res.status(200).json(updatedSchedule);
+  } catch (error) {
+    logger.error("Failed to update schedule status", { error, id });
+    res.status(500).json({ message: "An unexpected error occurred while updating the schedule status. Please try again later.", error: (error as Error).message });
   }
 };
 

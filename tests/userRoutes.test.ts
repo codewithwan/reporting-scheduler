@@ -20,7 +20,7 @@ describe('User Routes', () => {
    */
   beforeAll(async () => {
     await prisma.user.deleteMany();
-  });
+  }); 
 
   /**
    * Hook to run before each test. Creates users and generates tokens.

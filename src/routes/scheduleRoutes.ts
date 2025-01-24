@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { body } from "express-validator";
-import { createScheduleByAdmin, getSchedules, updateSchedule, deleteSchedule } from "../controllers/scheduleController";
+import { createScheduleByAdmin, getSchedules, updateSchedule, deleteSchedule, updateScheduleStatus } from "../controllers/scheduleController";
 import { authenticateToken, authorizeRoles } from "../middleware/authMiddleware";
 import { handleValidation } from "../middleware/validationMiddleware";
 
@@ -40,6 +40,11 @@ router.get("/", authenticateToken, getSchedules);
  *               - taskName
  *               - executeAt
  *               - engineerId
+ *               - location
+ *               - activity
+ *               - adminName
+ *               - engineerName
+ *               - phoneNumber
  *             properties:
  *               taskName:
  *                 type: string
@@ -47,6 +52,16 @@ router.get("/", authenticateToken, getSchedules);
  *                 type: string
  *                 format: date-time
  *               engineerId:
+ *                 type: string
+ *               location:
+ *                 type: string
+ *               activity:
+ *                 type: string
+ *               adminName:
+ *                 type: string
+ *               engineerName:
+ *                 type: string
+ *               phoneNumber:
  *                 type: string
  *     responses:
  *       201:
@@ -61,6 +76,9 @@ router.post(
   body("taskName").isString().isLength({ min: 6 }),
   body("executeAt").isISO8601(),
   body("engineerId").isUUID(),
+  body("location").isString(),
+  body("activity").isString(),
+  body("phoneNumber").isString(),
   handleValidation,
   createScheduleByAdmin
 );
@@ -94,7 +112,17 @@ router.post(
  *                 format: date-time
  *               status:
  *                 type: string
- *                 enum: [PENDING, COMPLETED, RESCHEDULED]
+ *                 enum: [ACCEPTED, REJECTED, RESCHEDULED, PENDING, CANCELED]
+ *               location:
+ *                 type: string
+ *               activity:
+ *                 type: string
+ *               adminName:
+ *                 type: string
+ *               engineerName:
+ *                 type: string
+ *               phoneNumber:
+ *                 type: string
  *     responses:
  *       200:
  *         description: Schedule updated successfully
@@ -107,9 +135,53 @@ router.put(
   authorizeRoles("SUPERADMIN"),
   body("taskName").optional().isString().isLength({ min: 1 }),
   body("executeAt").optional().isISO8601(),
-  body("status").optional().isIn(["PENDING", "COMPLETED", "RESCHEDULED"]),
+  body("status").optional().isIn(["ACCEPTED", "REJECTED", "RESCHEDULED", "PENDING", "CANCELED"]),
+  body("location").optional().isString(),
+  body("activity").optional().isString(),
+  body("adminName").optional().isString(),
+  body("engineerName").optional().isString(),
+  body("phoneNumber").optional().isString(),
   handleValidation,
   updateSchedule
+);
+
+/**
+ * @swagger
+ * /schedules/{id}/status:
+ *   patch:
+ *     summary: Update the status of a schedule
+ *     tags: [Schedules]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The schedule ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               status:
+ *                 type: string
+ *                 enum: [ACCEPTED, REJECTED, RESCHEDULED, PENDING, CANCELED]
+ *     responses:
+ *       200:
+ *         description: Schedule status updated successfully
+ *       403:
+ *         description: Forbidden
+ */
+router.patch(
+  "/:id/status",
+  authenticateToken,
+  body("status").isIn(["ACCEPTED", "REJECTED", "RESCHEDULED", "PENDING", "CANCELED"]),
+  handleValidation,
+  updateScheduleStatus
 );
 
 /**
