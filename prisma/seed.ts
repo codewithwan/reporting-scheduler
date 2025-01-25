@@ -1,12 +1,11 @@
 /**
  * Seed script to populate the database with initial data.
- * This script creates superadmin, admin, and engineer users,
- * schedules, and reminders for the schedules.
+ * This script creates superadmin, admin, and engineer users.
  */
 
 import { PrismaClient } from '@prisma/client';
 import { faker } from '@faker-js/faker';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
@@ -55,51 +54,7 @@ async function main() {
       })
     );
 
-    // Create schedules and associated reminders by admin
-    const schedules = await Promise.all(
-      Array.from({ length: 3 }).map(async (_, i) => {
-        const engineer = engineers[i % engineers.length]; 
-
-        const schedule = await prisma.schedule.create({
-          data: {
-            taskName: faker.lorem.words(3),
-            executeAt: faker.date.soon({ days: 15 }), // Schedule within the next 15 days
-            status: 'PENDING',
-            engineerId: engineer.id,
-            adminId: admin.id,
-            createdAt: new Date(),
-            updatedAt: new Date(),
-          },
-        });
-
-        const reminders = [];
-        reminders.push(
-          await prisma.reminder.create({
-            data: {
-              scheduleId: schedule.id,
-              reminderTime: new Date(schedule.executeAt.getTime() - 7 * 24 * 60 * 60 * 1000), // 7 days before
-              status: 'PENDING',
-              createdAt: new Date(),
-            },
-          })
-        );
-
-        reminders.push(
-          await prisma.reminder.create({
-            data: {
-              scheduleId: schedule.id,
-              reminderTime: new Date(schedule.executeAt.getTime() - 1 * 24 * 60 * 60 * 1000), // 1 day before
-              status: 'PENDING',
-              createdAt: new Date(),
-            },
-          })
-        );
-
-        return { schedule, reminders };
-      })
-    );
-
-    console.log('Seeding complete:', { superadmin, admin, engineers, schedules });
+    console.log('Seeding complete:', { superadmin, admin, engineers });
   } catch (error) {
     if (error instanceof Error) {
       console.error('Error during seeding:', error.message);

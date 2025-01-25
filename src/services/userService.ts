@@ -1,6 +1,7 @@
 import { prisma } from "../config/prismaClient";
 import { User } from "../models/userModel";
 import { validate as isUuid } from "uuid";
+import logger from "../utils/logger";
 
 interface CreateUserInput {
   name: string;
@@ -76,6 +77,26 @@ export const findUserById = async (id: string): Promise<User | null> => {
     throw new Error("Invalid UUID format");
   }
   return await prisma.user.findUnique({ where: { id } });
+};
+
+/**
+ * Finds engineers by their name.
+ * @param {string} name - The name of the engineer.
+ * @returns {Promise<User[]>} An array of user objects.
+ */
+export const findEngineersByName = async (name: string): Promise<User[]> => {
+  logger.debug(`Searching for engineers with name containing: ${name}`);
+  const engineers = await prisma.user.findMany({
+    where: {
+      role: 'ENGINEER',
+      name: {
+        contains: name,
+        mode: 'insensitive'
+      }
+    },
+  });
+  logger.debug(`Engineers found:` + engineers);
+  return engineers;
 };
 
 /**

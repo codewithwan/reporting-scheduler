@@ -202,6 +202,11 @@ router.put(
  *       500:
  *         description: Failed to retrieve users
  */
-router.get("/users", authenticateToken, authorizeRoles("ADMIN", "SUPERADMIN"), getUsers);
+router.get(
+  "/users", 
+  authenticateToken, 
+  authorizeRoles("ADMIN", "SUPERADMIN"), 
+  getUsers
+);
 
 export default router;

@@ -65,19 +65,19 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       logger.warn(`Login failed for email: ${email} - Invalid password`);
-      res.status(401).json({ error: "Invalid email or password. Please try again." });
+      res.status(403).json({ error: "Invalid email or password. Please try again." });
       return;
     }
     if (!process.env.JWT_SECRET) {
       throw new Error("JWT_SECRET is not defined");
     }
-    const accessToken = jwt.sign({ userId: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRY });
+    const token = jwt.sign({ userId: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRY });
     if (!process.env.JWT_REFRESH) {
       throw new Error("JWT_REFRESH is not defined");
     }
     const refreshToken = jwt.sign({ userId: user.id, role: user.role }, process.env.JWT_REFRESH, { expiresIn: process.env.JWT_REFRESH_EXPIRY });
     logger.info(`User ${user.id} logged in successfully`);
-    res.status(200).json({ message: "Login successful", accessToken, refreshToken });
+    res.status(200).json({ message: "Login successful", token, refreshToken });
   } catch (error) {
     logger.error("Login failed", error);
     res.status(500).json({ error: "An unexpected error occurred during login. Please try again later." });
@@ -149,7 +149,7 @@ export const refreshToken = async (req: Request, res: Response): Promise<void> =
     const newAccessToken = jwt.sign({ userId: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRY });
     const newRefreshToken = jwt.sign({ userId: user.id, role: user.role }, refreshSecret, { expiresIn: process.env.JWT_REFRESH_EXPIRY });
 
-    res.status(200).json({ accessToken: newAccessToken, refreshToken: newRefreshToken });
+    res.status(200).json({ message: "Token refreshed successfully", token: newAccessToken, refreshToken: newRefreshToken });
   } catch (error) {
     logger.error("Failed to refresh token", error);
     res.status(401).json({ error: "Invalid or expired refresh token" });

@@ -8,7 +8,7 @@
     "build": "tsc",
     "start:prod": "node dist/server.js",
     "prisma": "prisma",
-    "seed": "node prisma/seed.js",
+    "seed": "ts-node prisma/seed.ts",
     "add:superadmin": "ts-node src/scripts/makeSuperAdmin.ts"
   },
   "keywords": [],
