@@ -14,10 +14,10 @@ export const createScheduleByAdmin = async (req: AuthenticatedRequest, res: Resp
   const { taskName, executeAt, engineerId, location, activity, phoneNumber } = req.body;
   const adminId = req.user!.id;
 
-  if (req.user!.role !== "ADMIN") {
-    res.status(403).json({ message: "Access denied. Only admins can create schedules." });
-    return;
-  }
+  // if (req.user!.role !== "ADMIN") {
+  //   res.status(403).json({ message: "Access denied. Only admins can create schedules." });
+  //   return;
+  // }
 
   if (!taskName || !executeAt || !engineerId || !location || !activity || !phoneNumber) {
     res.status(400).json({ message: "Invalid input. Please provide all required fields." });

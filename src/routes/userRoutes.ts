@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { authenticateToken, authorizeRoles } from "../middleware/authMiddleware";
-import { getUserProfile, getUserById } from "../controllers/userController";
+import { getUserProfile, getUserById, findUsersByName } from "../controllers/userController";
 
 const router = Router();
 
@@ -47,6 +47,41 @@ router.get("/me", authenticateToken, authorizeRoles("ENGINEER", "ADMIN", "SUPERA
  *       500:
  *         description: Failed to fetch user data
  */
-router.get("/:id", authenticateToken, authorizeRoles("ADMIN", "SUPERADMIN"), getUserById);
+router.get(
+    "/:id", 
+    authenticateToken, 
+    authorizeRoles("ADMIN", "SUPERADMIN"), 
+    getUserById
+);
+
+/**
+ * @swagger
+ * /users/engineers:
+ *   get:
+ *     summary: Search engineers by name
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Engineer name
+ *     responses:
+ *       200:
+ *         description: Engineers retrieved successfully
+ *       400:
+ *         description: Name query parameter is missing
+ *       500:
+ *         description: Failed to fetch engineers
+ */
+router.get(
+    "/engineers", 
+    authenticateToken, 
+    authorizeRoles("ADMIN", "SUPERADMIN"), 
+    findUsersByName
+);
 
 export default router;

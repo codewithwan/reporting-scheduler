@@ -49,6 +49,9 @@ export const getSchedulesByUser = async (userId: string): Promise<Schedule[]> =>
         { engineerId: userId },
         { adminId: userId },
       ],
+      NOT: {
+        status: "CANCELED",
+      },
     },
     select: {
       id: true,

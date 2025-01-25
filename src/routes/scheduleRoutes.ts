@@ -72,7 +72,7 @@ router.get("/", authenticateToken, getSchedules);
 router.post(
   "/",
   authenticateToken,
-  authorizeRoles("ADMIN"),
+  authorizeRoles("ADMIN", "ENGINEER"),
   body("taskName").isString().isLength({ min: 6 }),
   body("executeAt").isISO8601(),
   body("engineerId").isUUID(),
