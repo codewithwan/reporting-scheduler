@@ -289,7 +289,7 @@ export const generatePasswordResetToken = async (email: string): Promise<{ token
   }
 
   const token = crypto.randomBytes(32).toString("hex");
-  const expiry = new Date(Date.now() + 3600000); // 1 hour from now
+  const expiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours 
 
   await updateUserById(user.id, {
     resetPasswordToken: token,
