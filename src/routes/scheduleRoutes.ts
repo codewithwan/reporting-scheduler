@@ -20,7 +20,11 @@ const router = Router();
  *       500:
  *         description: Failed to retrieve schedules
  */
-router.get("/", authenticateToken, getSchedules);
+router.get(
+  "/", 
+  authenticateToken, 
+  getSchedules
+);
 
 /**
  * @swagger
@@ -208,6 +212,11 @@ router.patch(
  *       403:
  *         description: Forbidden
  */
-router.delete("/:id", authenticateToken, authorizeRoles("SUPERADMIN"), deleteSchedule);
+router.delete(
+  "/:id", 
+  authenticateToken, 
+  authorizeRoles("SUPERADMIN"), 
+  deleteSchedule
+);
 
 export default router;

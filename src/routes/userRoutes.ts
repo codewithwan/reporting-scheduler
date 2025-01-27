@@ -22,7 +22,12 @@ const router = Router();
  *       500:
  *         description: Failed to fetch user data
  */
-router.get("/me", authenticateToken, authorizeRoles("ENGINEER", "ADMIN", "SUPERADMIN"), getUserProfile);
+router.get(
+    "/me", 
+    authenticateToken, 
+    authorizeRoles("ENGINEER", "ADMIN", "SUPERADMIN"), 
+    getUserProfile
+);
 
 /**
  * @swagger

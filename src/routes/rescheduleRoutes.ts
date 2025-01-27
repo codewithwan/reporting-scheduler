@@ -62,7 +62,12 @@ router.post(
  *       500:
  *         description: Failed to retrieve reschedule requests
  */
-router.get("/",authorizeRoles("ADMIN", "SUPERADMIN"), authenticateToken, getAllReschedules);
+router.get(
+    "/",
+    authorizeRoles("ADMIN", "SUPERADMIN"), 
+    authenticateToken, 
+    getAllReschedules
+);
 
 /**
  * @swagger
@@ -85,7 +90,11 @@ router.get("/",authorizeRoles("ADMIN", "SUPERADMIN"), authenticateToken, getAllR
  *       500:
  *         description: Failed to retrieve reschedule requests
  */
-router.get("/:scheduleId", authenticateToken, getRescheduleRequests);
+router.get(
+    "/:scheduleId", 
+    authenticateToken, 
+    getRescheduleRequests
+);
 
 /**
  * @swagger

@@ -1,5 +1,4 @@
-import express, { Application, Request, Response, NextFunction } from "express";
-import { json, urlencoded } from "express";
+import express, { Application, Request, Response, NextFunction, json, urlencoded } from "express";
 import router from "./routes/indexRoutes";
 import healthRouter from "./routes/healthRoutes";
 import authRouter from "./routes/authRoutes";
@@ -11,6 +10,8 @@ import scheduleRouter from "./routes/scheduleRoutes";
 import rescheduleRouter from "./routes/rescheduleRoutes";
 import { setupSwagger } from "./utils/swagger";
 import cors from 'cors';
+import reminderRouter from "./routes/reminderRoutes"; 
+import "./jobs/reminderJob"; 
 
 const app: Application = express();
 
@@ -41,6 +42,7 @@ app.use("/api/v1/users", userRouter);
 app.use("/api/v1/schedule", scheduleRouter);
 app.use("/api/v1/customer", customerRouter);
 app.use("/api/v1/reschedules", rescheduleRouter);
+app.use("/api/v1/reminders", reminderRouter); 
 
 // Handle 404 - Route not found
 app.use((req: Request, res: Response, next: NextFunction) => {
