@@ -85,11 +85,14 @@ export const updateScheduleStatusById = async (id: string, status: ScheduleStatu
   });
 
   if (status === ScheduleStatus.ACCEPTED) {
+    const engineer = await prisma.user.findUnique({ where: { id: schedule.engineerId } });
     const reminderTime = new Date(schedule.executeAt);
     reminderTime.setDate(reminderTime.getDate() - 1); // 1 day before the scheduled time
     await createReminder({
       scheduleId: schedule.id,
       reminderTime,
+      phoneNumber: null,
+      email: engineer?.email || null,
     });
   }
 

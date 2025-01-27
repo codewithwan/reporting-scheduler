@@ -10,32 +10,27 @@ const prisma = new PrismaClient();
  */
 export const createReminder = async (data: CreateReminderInput): Promise<Reminder> => {
   return prisma.reminder.create({
-    data,
+    data: {
+      ...data,
+      email: data.email ?? "",
+    },
   });
 };
 
 /**
- * Update the phone number for a reminder by ID.
+ * Update the phone number and/or reminder time for a reminder by ID.
  * @param {string} id - The ID of the reminder
  * @param {string} phoneNumber - The new phone number
+ * @param {Date} [reminderTime] - The new reminder time
  * @returns {Promise<Reminder>} - The updated reminder
  */
-export const updateReminderPhoneNumberById = async (id: string, phoneNumber: string): Promise<Reminder> => {
+export const updateReminderById = async (id: string, phoneNumber: string, reminderTime?: Date): Promise<Reminder> => {
+  const data: any = { phoneNumber };
+  if (reminderTime) {
+    data.reminderTime = reminderTime;
+  }
   return prisma.reminder.update({
     where: { id },
-    data: { phoneNumber },
-  });
-};
-
-/**
- * Update the reminder time by ID.
- * @param {string} id - The ID of the reminder
- * @param {Date} reminderTime - The new reminder time
- * @returns {Promise<Reminder>} - The updated reminder
- */
-export const updateReminderTimeById = async (id: string, reminderTime: Date): Promise<Reminder> => {
-  return prisma.reminder.update({
-    where: { id },
-    data: { reminderTime },
+    data,
   });
 };
