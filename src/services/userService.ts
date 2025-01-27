@@ -1,14 +1,15 @@
-import { prisma } from "../config/prismaClient";
 import { User } from "../models/userModel";
-import { UserRole } from "@prisma/client"; // Import UserRole enum
+import { UserRole, PrismaClient } from "@prisma/client"; 
 import { validate as isUuid } from "uuid";
 import logger from "../utils/logger";
+
+const prisma = new PrismaClient();
 
 interface CreateUserInput {
   name: string;
   email: string;
   password: string;
-  role: UserRole; // Update the role property type
+  role: UserRole; 
 }
 
 interface CreateUserWithRoleInput extends CreateUserInput {}

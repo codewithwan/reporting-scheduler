@@ -21,7 +21,10 @@ const router = Router();
  *       403:
  *         description: Forbidden
  */
-router.get("/", authenticateToken, authorizeRoles("ADMIN", "SUPERADMIN"), (req: AuthenticatedRequest, res: Response) => {
+router.get(
+  "/", authenticateToken, 
+  authorizeRoles("ADMIN", "SUPERADMIN"), 
+  (req: AuthenticatedRequest, res: Response) => {
   logger.info(`User ${req.user?.id} accessed protected route`);
   res.status(200).json({ message: "You have access to this route" });
 });
