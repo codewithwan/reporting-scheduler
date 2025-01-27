@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+      background-color: #007BFF;
+      color: #fff;
+      padding: 10px;
+      border-radius: 8px 8px 0 0;
+      text-align: center;
+    }
+    .content {
+      padding: 20px;
+    }
+    .content p {
+      margin: 0 0 10px;
+    }
+    .content strong {
+      color: #007BFF;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Reminder</h1>
+    </div>
+    <div class="content">
+      <p>This is a reminder for your scheduled task.</p>
+      <p><strong>Task Name:</strong> {{taskName}}</p>
+      <p><strong>Customer:</strong> {{customerName}}</p>
+      <p><strong>Location:</strong> {{location}}</p>
+      <p><strong>Activity:</strong> {{activity}}</p>
+      <p><strong>Scheduled Time:</strong> {{scheduledTime}}</p>
+    </div>
+  </div>
+</body>
+</html>

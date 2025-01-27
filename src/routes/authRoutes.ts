@@ -1,7 +1,7 @@
 import { Router } from "express";
 import rateLimit from "express-rate-limit";
 import { body } from "express-validator";
-import { register, login, createUserByAdmin, refreshToken } from "../controllers/authController";
+import { register, login, createUserByAdmin, refreshToken, requestPasswordReset, resetPassword } from "../controllers/authController";
 import { authenticateToken, authorizeRoles } from "../middleware/authMiddleware";
 import { handleValidation } from "../middleware/validationMiddleware";
 
@@ -157,6 +157,75 @@ router.post(
  *       401:
  *         description: Invalid or expired refresh token
  */
-router.post("/refresh-token", body("refreshToken").isString(), handleValidation, refreshToken);
+router.post(
+  "/refresh-token", 
+  body("refreshToken").isString(), 
+  handleValidation, 
+  refreshToken
+);
+
+/**
+ * @swagger
+ * /auth/request-password-reset:
+ *   post:
+ *     summary: Request a password reset
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *             properties:
+ *               email:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Password reset email sent
+ *       400:
+ *         description: Bad request
+ */
+router.post(
+  "/request-password-reset", 
+  body("email").isEmail(), 
+  handleValidation, 
+  requestPasswordReset
+);
+
+/**
+ * @swagger
+ * /auth/reset-password:
+ *   post:
+ *     summary: Reset password
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - token
+ *               - newPassword
+ *             properties:
+ *               token:
+ *                 type: string
+ *               newPassword:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Password reset successfully
+ *       400:
+ *         description: Invalid or expired token
+ */
+router.post(
+  "/reset-password", 
+  body("token").isString(), 
+  body("newPassword").isLength({ min: 8 }), 
+  handleValidation, 
+  resetPassword
+);
 
 export default router;

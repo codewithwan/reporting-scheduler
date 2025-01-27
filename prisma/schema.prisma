@@ -46,6 +46,8 @@ model User {
   schedulesEngineer Schedule[] @relation("EngineerSchedules")
   schedulesAdmin   Schedule[] @relation("AdminSchedules")
   logActivities LogActivity[]
+  resetPasswordToken       String?   @db.VarChar
+  resetPasswordTokenExpiry DateTime?
 
   Report Report[]
 }
@@ -67,6 +69,7 @@ model Customer {
 model Schedule {
   id           String          @id @default(uuid()) @db.Uuid
   customerId   String          @map("customer_id") @db.Uuid
+  productId    String?         @map("product_id") @db.Uuid
   taskName     String          @map("task_name") @db.VarChar
   executeAt    DateTime        @map("execute_at")
   status       ScheduleStatus  @default(PENDING)
@@ -81,6 +84,7 @@ model Schedule {
   engineer     User            @relation("EngineerSchedules", fields: [engineerId], references: [id])
   admin        User            @relation("AdminSchedules", fields: [adminId], references: [id])
   customer     Customer        @relation(fields: [customerId], references: [id])
+  product      Product?        @relation(fields: [productId], references: [id])
   reminders    Reminder[]
 
   Report Report[]
@@ -116,12 +120,15 @@ model Report {
 model Product {
   id           String   @id @default(uuid()) @db.Uuid
   customerId   String   @map("customer_id") @db.Uuid
-  name         String   @db.VarChar
+  brand        String   @db.VarChar
+  model        String   @db.VarChar
   serialNumber String   @db.VarChar
-  purchaseDate DateTime @map("purchase_date")
-  warrantyExpiry DateTime @map("warranty_expiry")
   description  String?  @db.Text
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @default(now()) @updatedAt @map("updated_at")
   customer     Customer @relation(fields: [customerId], references: [id])
+
+  Schedule Schedule[]
 }
 
 model LogActivity {

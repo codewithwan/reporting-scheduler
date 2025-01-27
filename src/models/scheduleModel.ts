@@ -6,6 +6,7 @@
  * @property {string} engineerId - The ID of the engineer assigned to the task
  * @property {string} adminId - The ID of the admin who created the task
  * @property {string} customerId - The ID of the customer associated with the task
+ * @property {string} productId - The ID of the product associated with the task
  * @property {string | null} location - The location of the task
  * @property {string | null} activity - The activity of the task
  * @property {string} adminName - The name of the admin who created the task
@@ -21,6 +22,7 @@ export interface Schedule {
   engineerId: string;
   adminId: string;
   customerId: string;
+  productId?: string | null; 
   location: string | null;
   activity: string | null;
   adminName: string;
@@ -38,6 +40,7 @@ export interface Schedule {
  * @property {string} engineerId - The ID of the engineer assigned to the task
  * @property {string} adminId - The ID of the admin who created the task
  * @property {string} customerId - The ID of the customer associated with the task
+ * @property {string} productId - The ID of the product associated with the task
  * @property {string | null} location - The location of the task
  * @property {string | null} activity - The activity of the task
  */
@@ -47,6 +50,7 @@ export interface CreateScheduleInput {
   engineerId: string;
   adminId: string;
   customerId: string;
+  productId?: string | null; 
   location: string | null;
   activity: string | null;
 }

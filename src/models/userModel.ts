@@ -9,15 +9,23 @@ import { Request } from "express";
  * @property {string} role - The role of the user
  * @property {string} [timezone] - The timezone of the user
  * @property {Report[]} [Report] - The reports associated with the user
+ * @property {Date} createdAt - The date the user was created
+ * @property {Date} updatedAt - The date the user was last updated
+ * @property {string} [resetPasswordToken] - The token used for password reset
+ * @property {Date} [resetPasswordTokenExpiry] - The expiry date of the reset password token
  */
 export interface User {
   id: string;
   name: string;
   email: string;
-  password: string;
+  password?: string; 
   role: string;
   timezone?: string;
+  createdAt: Date;
+  updatedAt: Date;
   Report?: Report[];
+  resetPasswordToken?: string;
+  resetPasswordTokenExpiry?: Date;
 }
 
 /**

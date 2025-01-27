@@ -1,6 +1,6 @@
 import { Response } from "express";
 import logger from "../utils/logger";
-import { createSchedule, getSchedulesByUser, updateScheduleById, deleteScheduleById, updateScheduleStatusById } from "../services/scheduleService";
+import { createSchedule, getSchedulesByUser, updateScheduleById, deleteScheduleById, updateScheduleStatusById, getScheduleById } from "../services/scheduleService";
 import { AuthenticatedRequest } from "../models/userModel";
 
 /**
@@ -10,7 +10,7 @@ import { AuthenticatedRequest } from "../models/userModel";
  * @returns {Promise<void>}
  */
 export const createScheduleByAdmin = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
-  const { taskName, executeAt, engineerId, customerId, location, activity } = req.body;
+  const { taskName, executeAt, engineerId, customerId, productId, location, activity } = req.body;
   const adminId = req.user!.id;
 
   // if (req.user!.role !== "ADMIN") {
@@ -25,17 +25,17 @@ export const createScheduleByAdmin = async (req: AuthenticatedRequest, res: Resp
 
   try {
     const schedule = await createSchedule({
-      taskName, executeAt, engineerId, adminId, customerId, location: location || null, activity: activity || null
+      taskName, executeAt, engineerId, adminId, customerId, productId: productId || null, location: location || null, activity: activity || null
     });
     if (!schedule) {
-      res.status(404).json({ message: "Creation failed. Engineer ID or Customer ID not found." });
+      res.status(404).json({ message: "Creation failed. Engineer ID, Customer ID, or Product ID not found." });
       return;
     }
     logger.info(`Schedule ${schedule.id} created successfully by admin ${adminId}`);
     res.status(201).json(schedule);
   } catch (error) {
     if ((error as Error).message.includes("Foreign key constraint violated")) {
-      res.status(400).json({ message: "Invalid engineer ID or customer ID. Please check the IDs and try again." });
+      res.status(400).json({ message: "Invalid engineer ID, customer ID, or product ID. Please check the IDs and try again." });
     } else if ((error as Error).message.includes("Reminder time cannot be in the past")) {
       res.status(400).json({ message: "Reminder time cannot be in the past. Please set a valid reminder time." });
     } else {
@@ -62,6 +62,28 @@ export const getSchedules = async (req: AuthenticatedRequest, res: Response): Pr
   } catch (error) {
     logger.error("Failed to retrieve schedules", { error });
     res.status(500).json({ message: "An unexpected error occurred while retrieving schedules. Please try again later.", error: (error as Error).message });
+  }
+};
+
+/**
+ * Get a schedule by ID with detailed customer and product information.
+ * @param {AuthenticatedRequest} req - The request object
+ * @param {Response} res - The response object
+ * @returns {Promise<void>}
+ */
+export const getSchedule = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  const { id } = req.params;
+
+  try {
+    const schedule = await getScheduleById(id);
+    if (!schedule) {
+      res.status(404).json({ message: "Schedule not found" });
+      return;
+    }
+    res.status(200).json(schedule);
+  } catch (error) {
+    logger.error("Failed to retrieve schedule", { error, id });
+    res.status(500).json({ message: "An unexpected error occurred while retrieving the schedule. Please try again later.", error: (error as Error).message });
   }
 };
 

@@ -13,9 +13,10 @@ export const createSchedule = async (data: CreateScheduleInput): Promise<Schedul
   const admin = await prisma.user.findUnique({ where: { id: data.adminId } });
   const engineer = await prisma.user.findUnique({ where: { id: data.engineerId } });
   const customer = await prisma.customer.findUnique({ where: { id: data.customerId } });
+  const product = data.productId ? await prisma.product.findUnique({ where: { id: data.productId } }) : null;
 
-  if (!admin || !engineer || !customer) {
-    throw new Error("Invalid admin, engineer, or customer ID");
+  if (!admin || !engineer || !customer || (data.productId && !product)) {
+    throw new Error("Invalid admin, engineer, customer, or product ID");
   }
 
   const schedule = await prisma.schedule.create({
@@ -25,6 +26,7 @@ export const createSchedule = async (data: CreateScheduleInput): Promise<Schedul
       engineerId: data.engineerId,
       adminId: data.adminId,
       customerId: data.customerId,
+      productId: data.productId || null,
       location: data.location,
       activity: data.activity,
       adminName: admin.name,
@@ -55,6 +57,39 @@ export const getSchedulesByUser = async (userId: string): Promise<Schedule[]> =>
       },
     },
   });
+};
+
+/**
+ * Get a schedule by ID with detailed customer and product information.
+ * @param {string} id - The ID of the schedule
+ * @returns {Promise<Schedule | null>} - The schedule with detailed information, or null if not found
+ */
+export const getScheduleById = async (id: string): Promise<Schedule | null> => {
+  const schedule = await prisma.schedule.findUnique({
+    where: { id },
+    include: {
+      customer: {
+        select: {
+          id: false,
+          name: true,
+          company: true,
+          position: true,
+          address: true,
+        },
+      },
+      product: {
+        select: {
+          id: false,
+          brand: true,
+          model: true,
+          serialNumber: true,
+          description: true,	
+        }
+      },
+    } 
+  });
+
+  return schedule;
 };
 
 /**

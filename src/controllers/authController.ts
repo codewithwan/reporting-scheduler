@@ -3,8 +3,9 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import logger from "../utils/logger";
 import { validationResult } from "express-validator";
-import { findUserByEmail, createUser, createUserWithRole, findUserById } from "../services/userService";
+import { findUserByEmail, createUser, createUserWithRole, findUserById, generatePasswordResetToken, resetUserPassword } from "../services/userService";
 import { AuthenticatedRequest } from "../models/userModel";
+import { sendEmailWithTemplate } from "../utils/emailService"; 
 
 /**
  * Register a new user.
@@ -35,7 +36,17 @@ export const register = async (req: Request, res: Response): Promise<void> => {
       role: "ENGINEER"
     });
     logger.info(`User ${user.id} registered successfully`);
-    res.status(201).json({ message: "User registered successfully", user });
+    res.status(201).json({ 
+      message: "User registered successfully", 
+      user: { 
+      id: user.id, 
+      name: user.name, 
+      email: user.email, 
+      role: user.role, 
+      createdAt: user.createdAt, 
+      updatedAt: user.updatedAt 
+      } 
+    });
   } catch (error) {
     logger.error("User registration failed", error);
     res.status(500).json({ error: "An unexpected error occurred during registration. Please try again later." });
@@ -57,10 +68,15 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
   const { email, password } = req.body;
   try {
-    const user = await findUserByEmail(email);
+    const user = await findUserByEmail(email); 
     if (!user) {
       logger.warn(`Login failed for email: ${email} - User not found`);
       res.status(401).json({ error: "Invalid email or password. Please try again." });
+      return;
+    }
+    if (!user.password) {
+      logger.warn(`Login failed for email: ${email} - Password is undefined`);
+      res.status(403).json({ error: "Invalid email or password. Please try again." });
       return;
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -111,7 +127,7 @@ export const createUserByAdmin = async (req: AuthenticatedRequest, res: Response
     const user = await createUserWithRole({ name, email, password: hashedPassword, role });
 
     logger.info(`User ${user.id} created successfully by ${adminRole}`);
-    res.status(201).json({ message: "User created successfully", user });
+    res.status(201).json({ message: "User created successfully", user: { id: user.id, name: user.name, email: user.email, role: user.role } });
   } catch (error) {
     logger.error("User creation failed", error);
     res.status(500).json({ error: "An unexpected error occurred during user creation. Please try again later." });
@@ -154,5 +170,49 @@ export const refreshToken = async (req: Request, res: Response): Promise<void> =
   } catch (error) {
     logger.error("Failed to refresh token", error);
     res.status(401).json({ error: "Invalid or expired refresh token" });
+  }
+};
+
+/**
+ * Request a password reset.
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ * @returns {Promise<void>}
+ */
+export const requestPasswordReset = async (req: Request, res: Response): Promise<void> => {
+  const { email } = req.body;
+  try {
+    const { token } = await generatePasswordResetToken(email);
+
+    const clientDomain = process.env.NODE_ENV === "production" ? process.env.CLIENT_DOMAIN : "http://localhost:5137";
+    const resetLink = `${clientDomain}/reset-password?token=${token}`;
+
+    const templateData = {
+      resetLink,
+    };
+
+    await sendEmailWithTemplate(email, "Password Reset Request", "passwordReset", templateData);
+
+    res.status(200).json({ message: "Password reset email sent." });
+  } catch (error) {
+    logger.error("Password reset request failed", error);
+    res.status(500).json({ error: "An unexpected error occurred. Please try again later." });
+  }
+};
+
+/**
+ * Reset password.
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ * @returns {Promise<void>}
+ */
+export const resetPassword = async (req: Request, res: Response): Promise<void> => {
+  const { token, newPassword } = req.body;
+  try {
+    await resetUserPassword(token, newPassword);
+    res.status(200).json({ message: "Password reset successfully." });
+  } catch (error) {
+    logger.error("Password reset failed", error);
+    res.status(500).json({ error: "An unexpected error occurred. Please try again later." });
   }
 };
