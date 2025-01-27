@@ -189,6 +189,7 @@ export const requestPasswordReset = async (req: Request, res: Response): Promise
 
     const templateData = {
       resetLink,
+      companyName: process.env.COMPANY_NAME,
     };
 
     await sendEmailWithTemplate(email, "Password Reset Request", "passwordReset", templateData);
