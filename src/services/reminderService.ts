@@ -51,7 +51,7 @@ export const sendPendingReminders = async (): Promise<void> => {
       if (reminder.email) {
         const schedule = reminder.schedule;
         const emailSubject = `Reminder Schedule for ${schedule.taskName}`;
-        const clientDomain = process.env.NODE_ENV === "production" ? process.env.CLIENT_DOMAIN : "http://localhost:5173";
+        const clientDomain = process.env.NODE_ENV === "production" ? process.env.CLIENT_DOMAIN : `http://localhost:${process.env.CLIENT_LOCAL_PORT}`;
         const detailsLink = `${clientDomain}/schedule/${schedule.id}`;
         const templateData = {
           taskName: schedule.taskName,

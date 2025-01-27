@@ -21,7 +21,7 @@ setupSwagger(app);
 
 // Middleware
 const corsOptions = {
-  origin: 'http://localhost:5173', 
+  origin: process.env.NODE_ENV === 'production' ? process.env.CLIENT_DOMAIN : `http://localhost:${process.env.CLIENT_LOCAL_PORT}`, 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], 
   allowedHeaders: ['Content-Type', 'Authorization'], 
 };
