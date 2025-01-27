@@ -8,6 +8,7 @@ import userRouter from "./routes/userRoutes";
 import customerRouter from "./routes/customerRoutes";
 import logger from "./utils/logger";
 import scheduleRouter from "./routes/scheduleRoutes";
+import rescheduleRouter from "./routes/rescheduleRoutes";
 import { setupSwagger } from "./utils/swagger";
 import cors from 'cors';
 
@@ -39,6 +40,7 @@ app.use("/api/v1/protected", protectedRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/schedule", scheduleRouter);
 app.use("/api/v1/customer", customerRouter);
+app.use("/api/v1/reschedules", rescheduleRouter);
 
 // Handle 404 - Route not found
 app.use((req: Request, res: Response, next: NextFunction) => {
