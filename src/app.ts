@@ -11,6 +11,7 @@ import rescheduleRouter from "./routes/rescheduleRoutes";
 import { setupSwagger } from "./utils/swagger";
 import cors from 'cors';
 import reminderRouter from "./routes/reminderRoutes"; 
+import "./jobs/reminderJob"; 
 
 const app: Application = express();
 
