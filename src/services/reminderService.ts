@@ -1,6 +1,7 @@
 import { PrismaClient, Reminder, ReminderStatus } from "@prisma/client";
 import { CreateReminderInput } from "../models/reminderModel";
-import { sendEmail } from "../utils/mailer"; // Import sendEmail utility
+import { sendEmailWithTemplate } from "../utils/emailService"; 
+import logger from "../utils/logger";
 
 const prisma = new PrismaClient();
 
@@ -38,48 +39,37 @@ export const updateReminderById = async (id: string, phoneNumber: string, remind
 
 /**
  * Send pending reminders and update their status to SENT.
+ * @returns {Promise<void>}
  */
 export const sendPendingReminders = async (): Promise<void> => {
-  const pendingReminders = await prisma.reminder.findMany({
-    where: { status: ReminderStatus.PENDING },
-    include: { schedule: { include: { customer: true } } }, 
-  });
+  try {
+    const pendingReminders = await prisma.reminder.findMany({
+      where: { status: ReminderStatus.PENDING },
+      include: { schedule: { include: { customer: true } } }, 
+    });
+    for (const reminder of pendingReminders) {
+      if (reminder.email) {
+        const schedule = reminder.schedule;
+        const emailSubject = `Reminder Schedule for ${schedule.taskName}`;
+        const templateData = {
+          taskName: schedule.taskName,
+          customerName: schedule.customer.name,
+          location: schedule.location,
+          activity: schedule.activity,
+          scheduledTime: schedule.executeAt.toString(),
+        };
 
-  for (const reminder of pendingReminders) {
-    if (reminder.email) {
-      const schedule = reminder.schedule;
-      const emailSubject = `Reminder Schedule for ${schedule.taskName}`;
-      const emailText = `
-        This is a reminder for your scheduled task.
-        
-        Task Name: ${schedule.taskName}
-        Customer: ${schedule.customer.name}
-        Location: ${schedule.location}
-        Activity: ${schedule.activity}
-        Scheduled Time: ${schedule.executeAt}
-      `;
-      const emailHtml = `
-        <p>This is a reminder for your scheduled task.</p>
-        to: reminder.email,
-        <p><strong>Task Name:</strong> ${schedule.taskName}</p>
-        <p><strong>Customer:</strong> ${schedule.customer.name}</p>
-        <p><strong>Location:</strong> ${schedule.location}</p>
-        <p><strong>Activity:</strong> ${schedule.activity}</p>
-        <p><strong>Scheduled Time:</strong> ${schedule.executeAt}</p>
-      `;
+        await sendEmailWithTemplate(reminder.email, emailSubject, "reminder", templateData);
 
-      await sendEmail({
-        to: reminder.email,
-        subject: emailSubject,
-        text: emailText,
-        html: emailHtml,
-      });
-
-      await prisma.reminder.update({
-        where: { id: reminder.id },
-        data: { status: ReminderStatus.SENT },
-      });
+        await prisma.reminder.update({
+          where: { id: reminder.id },
+          data: { status: ReminderStatus.SENT },
+        });
+      }
     }
+  } catch (error) {
+    logger.error("Failed to send pending reminders", error);
+    throw new Error("Failed to send pending reminders. Please try again later.");
   }
 };
 

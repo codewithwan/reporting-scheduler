@@ -46,6 +46,8 @@ model User {
   schedulesEngineer Schedule[] @relation("EngineerSchedules")
   schedulesAdmin   Schedule[] @relation("AdminSchedules")
   logActivities LogActivity[]
+  resetPasswordToken       String?   @db.VarChar
+  resetPasswordTokenExpiry DateTime?
 
   Report Report[]
 }

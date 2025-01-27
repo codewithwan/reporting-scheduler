@@ -4,7 +4,7 @@ interface EmailOptions {
   to: string;
   subject: string;
   text: string;
-  html?: string; // Add HTML option
+  html?: string; 
 }
 
 const transporter = nodemailer.createTransport({
@@ -21,6 +21,6 @@ export const sendEmail = async (options: EmailOptions): Promise<void> => {
     to: options.to,
     subject: options.subject,
     text: options.text,
-    html: options.html, // Include HTML content
+    html: options.html, 
   });
 };

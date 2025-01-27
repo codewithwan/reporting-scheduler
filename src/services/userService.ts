@@ -2,6 +2,8 @@ import { User } from "../models/userModel";
 import { UserRole, PrismaClient } from "@prisma/client"; 
 import { validate as isUuid } from "uuid";
 import logger from "../utils/logger";
+import crypto from "crypto";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
@@ -26,6 +28,7 @@ export const findUserByEmail = async (email: string): Promise<User | null> => {
       id: true,
       name: true,
       email: true,
+      password: true, 
       role: true,
       createdAt: true,
       updatedAt: true,
@@ -38,7 +41,7 @@ export const findUserByEmail = async (email: string): Promise<User | null> => {
  * @param {CreateUserInput} data - The user data.
  * @returns {Promise<User>} The created user object.
  */
-export const createUser: (data: CreateUserInput) => Promise<User> = async (data: CreateUserInput): Promise<User> => {
+export const createUser = async (data: CreateUserInput): Promise<User> => {
   const user = await prisma.user.create({ data });
   return {
     id: user.id,
@@ -83,7 +86,6 @@ export const getAllUsers = async (): Promise<User[]> => {
       timezone: true,
       createdAt: true,
       updatedAt: true,
-      // Exclude password
     }
   });
   return users.map(user => ({
@@ -121,7 +123,6 @@ export const getUsersByRole = async (role: string): Promise<User[]> => {
       timezone: true,
       createdAt: true,
       updatedAt: true,
-      // Exclude password
     }
   });
   return users.map(user => ({
@@ -154,7 +155,6 @@ export const findUserById = async (id: string): Promise<User | null> => {
       timezone: true,
       createdAt: true,
       updatedAt: true,
-      // Exclude password
     }
   });
   return user ? {
@@ -191,7 +191,6 @@ export const findEngineersByName = async (name: string): Promise<User[]> => {
       timezone: true,
       createdAt: true,
       updatedAt: true,
-      // Exclude password
     }
   });
   logger.debug(`Engineers found:` + engineers);
@@ -224,7 +223,7 @@ export const updateUserById = async (id: string, data: Partial<Omit<User, 'role'
       timezone: true,
       createdAt: true,
       updatedAt: true,
-      // Exclude password
+
     }
   });
   return {
@@ -256,7 +255,6 @@ export const updateUserProfile = async (id: string, data: Partial<Omit<User, 'ro
       timezone: true,
       createdAt: true,
       updatedAt: true,
-      // Exclude password
     }
   });
   return {
@@ -277,4 +275,58 @@ export const updateUserProfile = async (id: string, data: Partial<Omit<User, 'ro
  */
 export const deleteUserById = async (id: string): Promise<void> => {
   await prisma.user.delete({ where: { id } });
+};
+
+/**
+ * Generates a password reset token for a user.
+ * @param {string} email - The email address of the user.
+ * @returns {Promise<{ token: string, expiry: Date }>} The generated token and its expiry date.
+ */
+export const generatePasswordResetToken = async (email: string): Promise<{ token: string, expiry: Date }> => {
+  const user = await findUserByEmail(email);
+  if (!user) {
+    throw new Error("User with this email does not exist.");
+  }
+
+  const token = crypto.randomBytes(32).toString("hex");
+  const expiry = new Date(Date.now() + 3600000); // 1 hour from now
+
+  await updateUserById(user.id, {
+    resetPasswordToken: token,
+    resetPasswordTokenExpiry: expiry,
+  });
+
+  return { token, expiry };
+};
+
+/**
+ * Resets the password for a user using a token.
+ * @param {string} token - The password reset token.
+ * @param {string} newPassword - The new password.
+ * @returns {Promise<void>}
+ */
+export const resetUserPassword = async (token: string, newPassword: string): Promise<void> => {
+  const user = await prisma.user.findFirst({
+    where: {
+      resetPasswordToken: token,
+      resetPasswordTokenExpiry: {
+        gte: new Date(),
+      },
+    },
+  });
+
+  if (!user) {
+    throw new Error("Invalid or expired token.");
+  }
+
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+  await prisma.user.update({
+    where: { id: user.id },
+    data: {
+      password: hashedPassword,
+      resetPasswordToken: null, 
+      resetPasswordTokenExpiry: null,
+    },
+  });
 };
