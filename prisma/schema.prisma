@@ -28,6 +28,12 @@ enum UserRole {
   ENGINEER
 }
 
+enum RescheduleStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
 model User {
   id         String          @id @default(uuid()) @db.Uuid
   name       String          @db.VarChar
@@ -78,6 +84,8 @@ model Schedule {
   reminders    Reminder[]
 
   Report Report[]
+
+  RescheduleRequest RescheduleRequest[]
 }
 
 model Reminder {
@@ -85,7 +93,7 @@ model Reminder {
   scheduleId   String          @map("schedule_id") @db.Uuid
   reminderTime DateTime        @map("reminder_time")
   status       ReminderStatus  @default(PENDING)
-  phoneNumber  String          @db.VarChar
+  phoneNumber  String?          @db.VarChar
   createdAt    DateTime        @default(now()) @map("created_at")
   schedule     Schedule        @relation(fields: [scheduleId], references: [id])
 }
@@ -122,4 +130,16 @@ model LogActivity {
   description String?         @db.Text
   createdAt   DateTime        @default(now()) @map("created_at")
   user        User            @relation(fields: [userId], references: [id])
+}
+
+model RescheduleRequest {
+  id           String          @id @default(uuid()) @db.Uuid
+  scheduleId   String          @db.Uuid
+  requestedBy  String          @db.Uuid 
+  reason       String          @db.Text
+  newDate      DateTime        @map("new_date")
+  status       RescheduleStatus  @default(PENDING)
+  createdAt    DateTime        @default(now()) @map("created_at")
+  updatedAt    DateTime        @default(now()) @updatedAt @map("updated_at")
+  schedule     Schedule        @relation(fields: [scheduleId], references: [id])
 }

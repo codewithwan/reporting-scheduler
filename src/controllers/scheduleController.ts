@@ -1,11 +1,10 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import logger from "../utils/logger";
 import { createSchedule, getSchedulesByUser, updateScheduleById, deleteScheduleById, updateScheduleStatusById } from "../services/scheduleService";
 import { AuthenticatedRequest } from "../models/userModel";
-import { CreateScheduleInput } from "../models/scheduleModel";
 
 /**
- * Create a new schedule.
+ * Create a new schedule.S
  * @param {AuthenticatedRequest} req - The request object
  * @param {Response} res - The response object
  * @returns {Promise<void>}

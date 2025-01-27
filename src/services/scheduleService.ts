@@ -1,6 +1,5 @@
 import { PrismaClient, ScheduleStatus } from "@prisma/client"; // Import ScheduleStatus
 import { Schedule, CreateScheduleInput } from "../models/scheduleModel";
-import { createReminder } from "./reminderService";
 
 const prisma = new PrismaClient();
 
@@ -69,23 +68,6 @@ export const updateScheduleById = async (id: string, data: Partial<Schedule>): P
     data,
   });
 
-  if (data.status) {
-    const now = new Date();
-    // if (data.status === "ACCEPTED") {
-    //   const reminderTime = new Date(schedule.executeAt);
-    //   reminderTime.setDate(reminderTime.getDate() - 1);
-    //   if (reminderTime > now) {
-    //     await createReminder({
-    //       scheduleId: schedule.id,
-    //       reminderTime,
-    //       phoneNumber: schedule.engineer.phoneNumber, // Include phoneNumber
-    //     });
-    //   }
-    // }
-    // Assume sendNotification is a function that sends notifications
-    // await sendNotification(schedule.engineerId, `Schedule ${data.status.toLowerCase()}: ${schedule.taskName}`);
-  }
-
   return schedule;
 };
 
@@ -100,22 +82,6 @@ export const updateScheduleStatusById = async (id: string, status: ScheduleStatu
     where: { id },
     data: { status },
   });
-
-  const now = new Date();
-  // if (status === "ACCEPTED") {
-  //   const reminderTime = new Date(schedule.executeAt);
-  //   reminderTime.setDate(reminderTime.getDate() - 1);
-  //   if (reminderTime > now) {
-  //     await createReminder({
-  //       scheduleId: schedule.id,
-  //       reminderTime,
-  //       phoneNumber: schedule.engineer.phoneNumber, // Include phoneNumber
-  //     });
-  //   }
-  // }
-  // Assume sendNotification is a function that sends notifications
-  // await sendNotification(schedule.engineerId, `Schedule ${status.toLowerCase()}: ${schedule.taskName}`);
-
   return schedule;
 };
 
