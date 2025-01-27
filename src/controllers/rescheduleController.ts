@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createRescheduleRequest, getRescheduleRequestsBySchedule, updateRescheduleRequestStatusById } from "../services/rescheduleService";
+import { createRescheduleRequest, getRescheduleRequestsBySchedule, updateRescheduleRequestStatusById, getAllRescheduleRequests } from "../services/rescheduleService";
 import { AuthenticatedRequest } from "../models/userModel";
 
 /**
@@ -31,6 +31,21 @@ export const getRescheduleRequests = async (req: Request, res: Response): Promis
 
   try {
     const rescheduleRequests = await getRescheduleRequestsBySchedule(scheduleId);
+    res.status(200).json(rescheduleRequests);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to retrieve reschedule requests", error: (error as Error).message });
+  }
+};
+
+/**
+ * Get all reschedule requests.
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ * @returns {Promise<void>}
+ */
+export const getAllReschedules = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const rescheduleRequests = await getAllRescheduleRequests();
     res.status(200).json(rescheduleRequests);
   } catch (error) {
     res.status(500).json({ message: "Failed to retrieve reschedule requests", error: (error as Error).message });

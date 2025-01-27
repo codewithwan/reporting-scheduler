@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { body } from "express-validator";
-import { createReschedule, getRescheduleRequests, updateRescheduleRequestStatus } from "../controllers/rescheduleController";
-import { authenticateToken } from "../middleware/authMiddleware";
+import { createReschedule, getRescheduleRequests, updateRescheduleRequestStatus, getAllReschedules } from "../controllers/rescheduleController";
+import { authenticateToken, authorizeRoles } from "../middleware/authMiddleware";
 import { handleValidation } from "../middleware/validationMiddleware";
 
 const router = Router();
@@ -47,6 +47,22 @@ router.post(
   handleValidation,
   createReschedule
 );
+
+/**
+ * @swagger
+ * /reschedules:
+ *   get:
+ *     summary: Get all reschedule requests
+ *     tags: [Reschedules]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Reschedule requests retrieved successfully
+ *       500:
+ *         description: Failed to retrieve reschedule requests
+ */
+router.get("/",authorizeRoles("ADMIN", "SUPERADMIN"), authenticateToken, getAllReschedules);
 
 /**
  * @swagger
@@ -105,6 +121,7 @@ router.get("/:scheduleId", authenticateToken, getRescheduleRequests);
 router.patch(
   "/:id/status",
   authenticateToken,
+  authorizeRoles("ADMIN", "SUPERADMIN"),
   body("status").isIn(["PENDING", "APPROVED", "REJECTED"]),
   handleValidation,
   updateRescheduleRequestStatus

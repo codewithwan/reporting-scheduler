@@ -26,6 +26,14 @@ export const getRescheduleRequestsBySchedule = async (scheduleId: string): Promi
 };
 
 /**
+ * Get all reschedule requests.
+ * @returns {Promise<RescheduleRequest[]>} - The list of all reschedule requests
+ */
+export const getAllRescheduleRequests = async (): Promise<RescheduleRequest[]> => {
+  return prisma.rescheduleRequest.findMany();
+};
+
+/**
  * Update the status of a reschedule request by ID.
  * @param {string} id - The ID of the reschedule request to update
  * @param {string} status - The new status of the reschedule request
