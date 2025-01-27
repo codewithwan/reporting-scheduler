@@ -32,6 +32,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
       name,
       email,
       password: hashedPassword,
+      role: "ENGINEER"
     });
     logger.info(`User ${user.id} registered successfully`);
     res.status(201).json({ message: "User registered successfully", user });

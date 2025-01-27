@@ -36,12 +36,8 @@ export const getUserById = async (req: AuthenticatedRequest, res: Response) => {
   const { id } = req.params;
   try {
     const user = await findUserById(id);
-    if (!user) {
+    if (!user || (req.user?.role === 'ADMIN' && (user.role === 'ADMIN' || user.role === 'SUPERADMIN'))) {
       res.status(404).json({ message: "User not found" });
-      return;
-    }
-    if (req.user?.role === 'ADMIN' && user.role === 'ADMIN') {
-      res.status(403).json({ message: "Forbidden" });
       return;
     }
     res.status(200).json(user);

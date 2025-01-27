@@ -40,6 +40,7 @@ router.get("/", authenticateToken, getSchedules);
  *               - taskName
  *               - executeAt
  *               - engineerId
+ *               - customerId
  *               - location
  *               - activity
  *               - adminName
@@ -52,6 +53,8 @@ router.get("/", authenticateToken, getSchedules);
  *                 type: string
  *                 format: date-time
  *               engineerId:
+ *                 type: string
+ *               customerId:
  *                 type: string
  *               location:
  *                 type: string
@@ -76,9 +79,9 @@ router.post(
   body("taskName").isString().isLength({ min: 6 }),
   body("executeAt").isISO8601(),
   body("engineerId").isUUID(),
+  body("customerId").isUUID(),
   body("location").isString(),
   body("activity").isString(),
-  body("phoneNumber").isString(),
   handleValidation,
   createScheduleByAdmin
 );

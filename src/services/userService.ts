@@ -1,5 +1,6 @@
 import { prisma } from "../config/prismaClient";
 import { User } from "../models/userModel";
+import { UserRole } from "@prisma/client"; // Import UserRole enum
 import { validate as isUuid } from "uuid";
 import logger from "../utils/logger";
 
@@ -7,11 +8,10 @@ interface CreateUserInput {
   name: string;
   email: string;
   password: string;
+  role: UserRole; // Update the role property type
 }
 
-interface CreateUserWithRoleInput extends CreateUserInput {
-  role: string;
-}
+interface CreateUserWithRoleInput extends CreateUserInput {}
 
 /**
  * Finds a user by their email address.
@@ -102,20 +102,20 @@ export const findEngineersByName = async (name: string): Promise<User[]> => {
 /**
  * Updates a user by their ID.
  * @param {string} id - The ID of the user.
- * @param {Partial<User>} data - The user data to update.
+ * @param {Partial<Omit<User, 'role' | 'Report'>> & { role?: UserRole }} data - The user data to update.
  * @returns {Promise<User>} The updated user object.
  */
-export const updateUserById = async (id: string, data: Partial<User>): Promise<User> => {
+export const updateUserById = async (id: string, data: Partial<Omit<User, 'role' | 'Report'>> & { role?: UserRole }): Promise<User> => {
   return await prisma.user.update({ where: { id }, data });
 };
 
 /**
  * Updates the profile of a user.
  * @param {string} id - The ID of the user.
- * @param {Partial<User>} data - The user data to update.
+ * @param {Partial<Omit<User, 'role' | 'Report'>> & { role?: UserRole }} data - The user data to update.
  * @returns {Promise<User>} The updated user object.
  */
-export const updateUserProfile = async (id: string, data: Partial<User>): Promise<User> => {
+export const updateUserProfile = async (id: string, data: Partial<Omit<User, 'role' | 'Report'>> & { role?: UserRole }): Promise<User> => {
   return await prisma.user.update({ where: { id }, data });
 };
 
