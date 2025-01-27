@@ -35,7 +35,17 @@ export const register = async (req: Request, res: Response): Promise<void> => {
       role: "ENGINEER"
     });
     logger.info(`User ${user.id} registered successfully`);
-    res.status(201).json({ message: "User registered successfully", user });
+    res.status(201).json({ 
+      message: "User registered successfully", 
+      user: { 
+      id: user.id, 
+      name: user.name, 
+      email: user.email, 
+      role: user.role, 
+      createdAt: user.createdAt, 
+      updatedAt: user.updatedAt 
+      } 
+    });
   } catch (error) {
     logger.error("User registration failed", error);
     res.status(500).json({ error: "An unexpected error occurred during registration. Please try again later." });
@@ -57,10 +67,15 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
   const { email, password } = req.body;
   try {
-    const user = await findUserByEmail(email);
+    const user = await findUserByEmail(email); 
     if (!user) {
       logger.warn(`Login failed for email: ${email} - User not found`);
       res.status(401).json({ error: "Invalid email or password. Please try again." });
+      return;
+    }
+    if (!user.password) {
+      logger.warn(`Login failed for email: ${email} - Password is undefined`);
+      res.status(403).json({ error: "Invalid email or password. Please try again." });
       return;
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -111,7 +126,7 @@ export const createUserByAdmin = async (req: AuthenticatedRequest, res: Response
     const user = await createUserWithRole({ name, email, password: hashedPassword, role });
 
     logger.info(`User ${user.id} created successfully by ${adminRole}`);
-    res.status(201).json({ message: "User created successfully", user });
+    res.status(201).json({ message: "User created successfully", user: { id: user.id, name: user.name, email: user.email, role: user.role } });
   } catch (error) {
     logger.error("User creation failed", error);
     res.status(500).json({ error: "An unexpected error occurred during user creation. Please try again later." });

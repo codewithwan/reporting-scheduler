@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { body } from "express-validator";
-import { createScheduleByAdmin, getSchedules, updateSchedule, deleteSchedule, updateScheduleStatus } from "../controllers/scheduleController";
+import { createScheduleByAdmin, getSchedules, updateSchedule, deleteSchedule, updateScheduleStatus, getSchedule } from "../controllers/scheduleController";
 import { authenticateToken, authorizeRoles } from "../middleware/authMiddleware";
 import { handleValidation } from "../middleware/validationMiddleware";
 
@@ -60,6 +60,8 @@ router.get(
  *                 type: string
  *               customerId:
  *                 type: string
+ *               productId:
+ *                 type: string
  *               location:
  *                 type: string
  *               activity:
@@ -84,10 +86,40 @@ router.post(
   body("executeAt").isISO8601(),
   body("engineerId").isUUID(),
   body("customerId").isUUID(),
+  body("productId").optional().isUUID(),
   body("location").isString(),
   body("activity").isString(),
   handleValidation,
   createScheduleByAdmin
+);
+
+/**
+ * @swagger
+ * /schedules/{id}:
+ *   get:
+ *     summary: Get a schedule by ID with detailed customer and product information
+ *     tags: [Schedules]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The schedule ID
+ *     responses:
+ *       200:
+ *         description: Schedule retrieved successfully
+ *       404:
+ *         description: Schedule not found
+ *       500:
+ *         description: Failed to retrieve schedule
+ */
+router.get(
+  "/:id",
+  authenticateToken,
+  getSchedule
 );
 
 /**

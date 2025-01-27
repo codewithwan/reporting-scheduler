@@ -20,7 +20,17 @@ interface CreateUserWithRoleInput extends CreateUserInput {}
  * @returns {Promise<User | null>} The user object if found, otherwise null.
  */
 export const findUserByEmail = async (email: string): Promise<User | null> => {
-  return await prisma.user.findUnique({ where: { email } });
+  return await prisma.user.findUnique({ 
+    where: { email },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      createdAt: true,
+      updatedAt: true,
+    }
+  });
 };
 
 /**
@@ -29,7 +39,16 @@ export const findUserByEmail = async (email: string): Promise<User | null> => {
  * @returns {Promise<User>} The created user object.
  */
 export const createUser: (data: CreateUserInput) => Promise<User> = async (data: CreateUserInput): Promise<User> => {
-  return await prisma.user.create({ data });
+  const user = await prisma.user.create({ data });
+  return {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    timezone: user.timezone,
+    createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
+  };
 };
 
 /**
@@ -38,7 +57,16 @@ export const createUser: (data: CreateUserInput) => Promise<User> = async (data:
  * @returns {Promise<User>} The created user object.
  */
 export const createUserWithRole = async (data: CreateUserWithRoleInput): Promise<User> => {
-  return await prisma.user.create({ data });
+  const user = await prisma.user.create({ data });
+  return {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    timezone: user.timezone,
+    createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
+  };
 };
 
 /**
@@ -46,7 +74,27 @@ export const createUserWithRole = async (data: CreateUserWithRoleInput): Promise
  * @returns {Promise<User[]>} An array of user objects.
  */
 export const getAllUsers = async (): Promise<User[]> => {
-  return await prisma.user.findMany();
+  const users = await prisma.user.findMany({
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      timezone: true,
+      createdAt: true,
+      updatedAt: true,
+      // Exclude password
+    }
+  });
+  return users.map(user => ({
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    timezone: user.timezone,
+    createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
+  }));
 };
 
 /**
@@ -55,7 +103,7 @@ export const getAllUsers = async (): Promise<User[]> => {
  * @returns {Promise<User[]>} An array of user objects.
  */
 export const getUsersByRole = async (role: string): Promise<User[]> => {
-  return await prisma.user.findMany({
+  const users = await prisma.user.findMany({
     where: role === 'SUPERADMIN' ? {} : role === 'ADMIN' ? {
       role: {
         notIn: ["SUPERADMIN", "ADMIN"]
@@ -64,8 +112,27 @@ export const getUsersByRole = async (role: string): Promise<User[]> => {
       role: {
         notIn: ["SUPERADMIN"]
       }
+    },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      timezone: true,
+      createdAt: true,
+      updatedAt: true,
+      // Exclude password
     }
   });
+  return users.map(user => ({
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    timezone: user.timezone,
+    createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
+  }));
 };
 
 /**
@@ -77,7 +144,28 @@ export const findUserById = async (id: string): Promise<User | null> => {
   if (!isUuid(id)) {
     throw new Error("Invalid UUID format");
   }
-  return await prisma.user.findUnique({ where: { id } });
+  const user = await prisma.user.findUnique({ 
+    where: { id },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      timezone: true,
+      createdAt: true,
+      updatedAt: true,
+      // Exclude password
+    }
+  });
+  return user ? {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    timezone: user.timezone,
+    createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
+  } : null;
 };
 
 /**
@@ -95,9 +183,27 @@ export const findEngineersByName = async (name: string): Promise<User[]> => {
         mode: 'insensitive'
       }
     },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      timezone: true,
+      createdAt: true,
+      updatedAt: true,
+      // Exclude password
+    }
   });
   logger.debug(`Engineers found:` + engineers);
-  return engineers;
+  return engineers.map(user => ({
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    timezone: user.timezone,
+    createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
+  }));
 };
 
 /**
@@ -107,7 +213,29 @@ export const findEngineersByName = async (name: string): Promise<User[]> => {
  * @returns {Promise<User>} The updated user object.
  */
 export const updateUserById = async (id: string, data: Partial<Omit<User, 'role' | 'Report'>> & { role?: UserRole }): Promise<User> => {
-  return await prisma.user.update({ where: { id }, data });
+  const user = await prisma.user.update({ 
+    where: { id },
+    data,
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      timezone: true,
+      createdAt: true,
+      updatedAt: true,
+      // Exclude password
+    }
+  });
+  return {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    timezone: user.timezone,
+    createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
+  };
 };
 
 /**
@@ -117,7 +245,29 @@ export const updateUserById = async (id: string, data: Partial<Omit<User, 'role'
  * @returns {Promise<User>} The updated user object.
  */
 export const updateUserProfile = async (id: string, data: Partial<Omit<User, 'role' | 'Report'>> & { role?: UserRole }): Promise<User> => {
-  return await prisma.user.update({ where: { id }, data });
+  const user = await prisma.user.update({ 
+    where: { id },
+    data,
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      timezone: true,
+      createdAt: true,
+      updatedAt: true,
+      // Exclude password
+    }
+  });
+  return {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    timezone: user.timezone,
+    createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
+  };
 };
 
 /**

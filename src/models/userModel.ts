@@ -9,14 +9,18 @@ import { Request } from "express";
  * @property {string} role - The role of the user
  * @property {string} [timezone] - The timezone of the user
  * @property {Report[]} [Report] - The reports associated with the user
+ * @property {Date} createdAt - The date the user was created
+ * @property {Date} updatedAt - The date the user was last updated
  */
 export interface User {
   id: string;
   name: string;
   email: string;
-  password: string;
+  password?: string; // Make password optional
   role: string;
   timezone?: string;
+  createdAt: Date;
+  updatedAt: Date;
   Report?: Report[];
 }
 
