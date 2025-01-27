@@ -8,6 +8,7 @@ import { Request } from "express";
  * @property {string} password - The hashed password of the user
  * @property {string} role - The role of the user
  * @property {string} [timezone] - The timezone of the user
+ * @property {Report[]} [Report] - The reports associated with the user
  */
 export interface User {
   id: string;
@@ -16,6 +17,7 @@ export interface User {
   password: string;
   role: string;
   timezone?: string;
+  Report?: Report[];
 }
 
 /**

@@ -8,11 +8,13 @@ datasource db {
 }
 
 enum ScheduleStatus {
+  PENDING
   ACCEPTED
   REJECTED
   RESCHEDULED
-  PENDING
   CANCELED
+  ONGOING
+  COMPLETED
 }
 
 enum ReminderStatus {
@@ -31,32 +33,86 @@ model User {
   name       String          @db.VarChar
   email      String          @unique @db.VarChar
   password   String          @db.VarChar
-  role       String          @default("ENGINEER") @db.VarChar 
+  role       UserRole        
   timezone   String          @default("Asia/Jakarta") @db.VarChar
   createdAt  DateTime        @default(now()) @map("created_at")
   updatedAt  DateTime        @default(now()) @updatedAt @map("updated_at")
   schedulesEngineer Schedule[] @relation("EngineerSchedules")
   schedulesAdmin   Schedule[] @relation("AdminSchedules")
   logActivities LogActivity[]
+
+  Report Report[]
+}
+
+model Customer {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String   @db.VarChar
+  company     String   @db.VarChar
+  position    String?  @db.VarChar
+  email       String   @unique @db.VarChar
+  phoneNumber String   @db.VarChar
+  address     String?  @db.VarChar
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
+  products    Product[]
+  schedules   Schedule[]
 }
 
 model Schedule {
   id           String          @id @default(uuid()) @db.Uuid
+  customerId   String          @map("customer_id") @db.Uuid
   taskName     String          @map("task_name") @db.VarChar
   executeAt    DateTime        @map("execute_at")
   status       ScheduleStatus  @default(PENDING)
   engineerId   String          @map("engineer_id") @db.Uuid
   adminId      String          @map("admin_id") @db.Uuid
-  location     String          @db.VarChar
-  activity     String          @db.VarChar
+  location     String?         @db.VarChar
+  activity     String?         @db.VarChar
   adminName    String          @db.VarChar
   engineerName String          @db.VarChar
-  phoneNumber  String          @db.VarChar
   createdAt    DateTime        @default(now()) @map("created_at")
   updatedAt    DateTime        @default(now()) @updatedAt @map("updated_at")
   engineer     User            @relation("EngineerSchedules", fields: [engineerId], references: [id])
   admin        User            @relation("AdminSchedules", fields: [adminId], references: [id])
+  customer     Customer        @relation(fields: [customerId], references: [id])
   reminders    Reminder[]
+
+  Report Report[]
+}
+
+model Reminder {
+  id           String          @id @default(uuid()) @db.Uuid
+  scheduleId   String          @map("schedule_id") @db.Uuid
+  reminderTime DateTime        @map("reminder_time")
+  status       ReminderStatus  @default(PENDING)
+  phoneNumber  String          @db.VarChar
+  createdAt    DateTime        @default(now()) @map("created_at")
+  schedule     Schedule        @relation(fields: [scheduleId], references: [id])
+}
+
+model Report {
+  id          String    @id @default(uuid()) @db.Uuid
+  scheduleId  String    @map("schedule_id") @db.Uuid
+  engineerId  String    @map("engineer_id") @db.Uuid
+  reportText  String    @db.Text
+  reportDate  DateTime  @map("report_date")
+  attachmentUrl String? @db.VarChar
+  status      String    @default("submitted") @db.VarChar
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at")
+  schedule    Schedule  @relation(fields: [scheduleId], references: [id])
+  engineer    User      @relation(fields: [engineerId], references: [id])
+}
+
+model Product {
+  id           String   @id @default(uuid()) @db.Uuid
+  customerId   String   @map("customer_id") @db.Uuid
+  name         String   @db.VarChar
+  serialNumber String   @db.VarChar
+  purchaseDate DateTime @map("purchase_date")
+  warrantyExpiry DateTime @map("warranty_expiry")
+  description  String?  @db.Text
+  customer     Customer @relation(fields: [customerId], references: [id])
 }
 
 model LogActivity {
@@ -66,13 +122,4 @@ model LogActivity {
   description String?         @db.Text
   createdAt   DateTime        @default(now()) @map("created_at")
   user        User            @relation(fields: [userId], references: [id])
-}
-
-model Reminder {
-  id           String          @id @default(uuid()) @db.Uuid
-  scheduleId   String          @map("schedule_id") @db.Uuid
-  reminderTime DateTime        @map("reminder_time")
-  status       ReminderStatus  @default(PENDING)
-  createdAt    DateTime        @default(now()) @map("created_at")
-  schedule     Schedule        @relation(fields: [scheduleId], references: [id])
 }

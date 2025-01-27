@@ -12,9 +12,10 @@ const prisma = new PrismaClient();
 export const createSchedule = async (data: CreateScheduleInput): Promise<Schedule> => {
   const admin = await prisma.user.findUnique({ where: { id: data.adminId } });
   const engineer = await prisma.user.findUnique({ where: { id: data.engineerId } });
+  const customer = await prisma.customer.findUnique({ where: { id: data.customerId } });
 
-  if (!admin || !engineer) {
-    throw new Error("Invalid admin or engineer ID");
+  if (!admin || !engineer || !customer) {
+    throw new Error("Invalid admin, engineer, or customer ID");
   }
 
   const schedule = await prisma.schedule.create({
@@ -23,11 +24,11 @@ export const createSchedule = async (data: CreateScheduleInput): Promise<Schedul
       executeAt: data.executeAt,
       engineerId: data.engineerId,
       adminId: data.adminId,
+      customerId: data.customerId,
       location: data.location,
       activity: data.activity,
       adminName: admin.name,
       engineerName: engineer.name,
-      phoneNumber: data.phoneNumber,
     },
   });
 
@@ -53,21 +54,6 @@ export const getSchedulesByUser = async (userId: string): Promise<Schedule[]> =>
         status: "CANCELED",
       },
     },
-    select: {
-      id: true,
-      taskName: true,
-      executeAt: true,
-      engineerId: true,
-      adminId: true,
-      location: true,
-      activity: true,
-      status: true,
-      createdAt: true,
-      updatedAt: true,
-      adminName: true,
-      engineerName: true,
-      phoneNumber: true,
-    },
   });
 };
 
@@ -85,16 +71,17 @@ export const updateScheduleById = async (id: string, data: Partial<Schedule>): P
 
   if (data.status) {
     const now = new Date();
-    if (data.status === "ACCEPTED") {
-      const reminderTime = new Date(schedule.executeAt);
-      reminderTime.setDate(reminderTime.getDate() - 1);
-      if (reminderTime > now) {
-        await createReminder({
-          scheduleId: schedule.id,
-          reminderTime,
-        });
-      }
-    }
+    // if (data.status === "ACCEPTED") {
+    //   const reminderTime = new Date(schedule.executeAt);
+    //   reminderTime.setDate(reminderTime.getDate() - 1);
+    //   if (reminderTime > now) {
+    //     await createReminder({
+    //       scheduleId: schedule.id,
+    //       reminderTime,
+    //       phoneNumber: schedule.engineer.phoneNumber, // Include phoneNumber
+    //     });
+    //   }
+    // }
     // Assume sendNotification is a function that sends notifications
     // await sendNotification(schedule.engineerId, `Schedule ${data.status.toLowerCase()}: ${schedule.taskName}`);
   }
@@ -115,16 +102,17 @@ export const updateScheduleStatusById = async (id: string, status: ScheduleStatu
   });
 
   const now = new Date();
-  if (status === "ACCEPTED") {
-    const reminderTime = new Date(schedule.executeAt);
-    reminderTime.setDate(reminderTime.getDate() - 1);
-    if (reminderTime > now) {
-      await createReminder({
-        scheduleId: schedule.id,
-        reminderTime,
-      });
-    }
-  }
+  // if (status === "ACCEPTED") {
+  //   const reminderTime = new Date(schedule.executeAt);
+  //   reminderTime.setDate(reminderTime.getDate() - 1);
+  //   if (reminderTime > now) {
+  //     await createReminder({
+  //       scheduleId: schedule.id,
+  //       reminderTime,
+  //       phoneNumber: schedule.engineer.phoneNumber, // Include phoneNumber
+  //     });
+  //   }
+  // }
   // Assume sendNotification is a function that sends notifications
   // await sendNotification(schedule.engineerId, `Schedule ${status.toLowerCase()}: ${schedule.taskName}`);
 
