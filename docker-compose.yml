@@ -29,9 +29,14 @@ services:
       - DATABASE_URL=postgresql://myuser:mypassword@db:5432/mydatabase?schema=public
       - NODE_ENV=production
       - JWT_SECRET=your_secret_token_here
-      - JWT_EXPIRES_IN=24h
-      - JWT_REFRESH_SECRET=your_refresh_token_here
-      - JWT_REFRESH_EXPIRES_IN=7d
+      - JWT_EXPIRY=24h
+      - JWT_REFRESH=your_refresh_token_here
+      - JWT_REFRESH_EXPIRY=7d
+      - EMAIL_USER=your_email_here
+      - EMAIL_PASS=your_email_password_here
+      - CLIENT_DOMAIN=https://your-production-domain.com
+      - CLIENT_LOCAL_PORT=5173
+      - COMPANY_NAME=YourCompany
     ports:
       - "3000:3000"
     volumes:
