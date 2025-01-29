@@ -22,7 +22,8 @@ export const createSchedule = async (data: CreateScheduleInput): Promise<Schedul
   const schedule = await prisma.schedule.create({
     data: {
       taskName: data.taskName,
-      executeAt: data.executeAt,
+      startDate: data.startDate,
+      endDate: data.endDate,
       engineerId: data.engineerId,
       adminId: data.adminId,
       customerId: data.customerId,
@@ -121,8 +122,8 @@ export const updateScheduleStatusById = async (id: string, status: ScheduleStatu
 
   if (status === ScheduleStatus.ACCEPTED) {
     const engineer = await prisma.user.findUnique({ where: { id: schedule.engineerId } });
-    const reminderTime = new Date(schedule.executeAt);
-    reminderTime.setDate(reminderTime.getDate() - 1); // 1 day before the scheduled time
+    const reminderTime = new Date(schedule.startDate);
+    reminderTime.setDate(reminderTime.getDate() - 1); // 1 day before the scheduled start date
     await createReminder({
       scheduleId: schedule.id,
       reminderTime,

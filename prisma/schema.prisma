@@ -71,7 +71,8 @@ model Schedule {
   customerId   String          @map("customer_id") @db.Uuid
   productId    String?         @map("product_id") @db.Uuid
   taskName     String          @map("task_name") @db.VarChar
-  executeAt    DateTime        @map("execute_at")
+  startDate    DateTime        @map("start_date")
+  endDate      DateTime        @map("end_date")
   status       ScheduleStatus  @default(PENDING)
   engineerId   String          @map("engineer_id") @db.Uuid
   adminId      String          @map("admin_id") @db.Uuid

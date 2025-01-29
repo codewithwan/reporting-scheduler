@@ -10,7 +10,7 @@ import { AuthenticatedRequest } from "../models/userModel";
  * @returns {Promise<void>}
  */
 export const createScheduleByAdmin = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
-  const { taskName, executeAt, engineerId, customerId, productId, location, activity } = req.body;
+  const { taskName, startDate, endDate, engineerId, customerId, productId, location, activity } = req.body;
   const adminId = req.user!.id;
 
   // if (req.user!.role !== "ADMIN") {
@@ -18,14 +18,14 @@ export const createScheduleByAdmin = async (req: AuthenticatedRequest, res: Resp
   //   return;
   // }
 
-  if (!taskName || !executeAt || !engineerId || !customerId || !location || !activity) {
+  if (!taskName || !startDate || !endDate || !engineerId || !customerId || !location || !activity) {
     res.status(400).json({ message: "Invalid input. Please provide all required fields." });
     return;
   }
 
   try {
     const schedule = await createSchedule({
-      taskName, executeAt, engineerId, adminId, customerId, productId: productId || null, location: location || null, activity: activity || null
+      taskName, startDate, endDate, engineerId, adminId, customerId, productId: productId || null, location: location || null, activity: activity || null
     });
     if (!schedule) {
       res.status(404).json({ message: "Creation failed. Engineer ID, Customer ID, or Product ID not found." });
@@ -95,7 +95,7 @@ export const getSchedule = async (req: AuthenticatedRequest, res: Response): Pro
  */
 export const updateSchedule = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   const { id } = req.params;
-  const { taskName, executeAt, status, location, activity, adminName, engineerName } = req.body;
+  const { taskName, startDate, endDate, status, location, activity, adminName, engineerName } = req.body;
 
   if (req.user!.role !== "SUPERADMIN") {
     res.status(403).json({ message: "Access denied. Only superadmins can update schedules." });
@@ -103,7 +103,7 @@ export const updateSchedule = async (req: AuthenticatedRequest, res: Response): 
   }
 
   try {
-    const updatedSchedule = await updateScheduleById(id, { taskName, executeAt, status, location: location || null, activity: activity || null, adminName, engineerName });
+    const updatedSchedule = await updateScheduleById(id, { taskName, startDate, endDate, status, location: location || null, activity: activity || null, adminName, engineerName });
     if (!updatedSchedule) {
       res.status(404).json({ message: "Update failed. Schedule not found." });
       return;

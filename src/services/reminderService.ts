@@ -58,7 +58,7 @@ export const sendPendingReminders = async (): Promise<void> => {
           customerName: schedule.customer.name,
           location: schedule.location,
           activity: schedule.activity,
-          scheduledTime: schedule.executeAt.toString(),
+          scheduledTime: schedule.startDate.toString(),
           detailsLink,
           companyName: process.env.COMPANY_NAME,
         };
