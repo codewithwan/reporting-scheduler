@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .page {
+            background: white;
+            width: 210mm;
+            height: 297mm;
+            padding: 20mm;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .geometric-pattern {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%),
+                        linear-gradient(-45deg, #f0f0f0 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
+                        linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+            background-size: 20px 20px;
+        }
+
+        .pattern-top-left {
+            top: 0;
+            left: 0;
+        }
+
+        .pattern-bottom-right {
+            bottom: 0;
+            right: 0;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .form-row {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .form-label {
+            width: 150px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .form-field {
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+            padding: 5px 0;
+            min-height: 20px;
+        }
+
+        .signatures {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .signature-box {
+            text-align: center;
+            width: 150px;
+        }
+
+        .signature-line {
+            width: 100%;
+            height: 1px;
+            background: #000;
+            margin: 50px 0 10px 0;
+        }
+
+        .signature-title {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+
+        .contact-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            background: #7047EB;
+            border-radius: 50%;
+        }
+
+        .detail-section {
+            margin-top: 30px;
+            padding: 20px;
+            min-height: 100px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="geometric-pattern pattern-top-left"></div>
+        <div class="geometric-pattern pattern-bottom-right"></div>
+        
+        <div class="logo">
+            <img src="logo.png" alt="Nama Perusahaan">
+        </div>
+
+        <div class="header">
+            <h1 class="title">REPORT SERVICE</h1>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Data Diri Pelanggan</div>
+            
+            <div class="form-row">
+                <div class="form-label">Nama Perusahaan</div>
+                <div class="form-field">{{company_name}}</div>
+            </div>
+            <div class="form-row">
+                <div class="form-label">Alamat</div>
+                <div class="form-field">{{address}}</div>
+            </div>
+            <div class="form-row">
+                <div class="form-label">Nama Pelanggan</div>
+                <div class="form-field">{{customer_name}}</div>
+            </div>
+            <div class="form-row">
+                <div class="form-label">Posisi</div>
+                <div class="form-field">{{position}}</div>
+            </div>
+            <div class="form-row">
+                <div class="form-label">Brand</div>
+                <div class="form-field">{{brand}}</div>
+            </div>
+            <div class="form-row">
+                <div class="form-label">Model</div>
+                <div class="form-field">{{model}}</div>
+            </div>
+            <div class="form-row">
+                <div class="form-label">No. Seri</div>
+                <div class="form-field">{{serial_number}}</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Detail Permasalahan</div>
+            <div class="form-row">
+                <div class="form-label">Permasalahan</div>
+                <div class="form-field">{{problem}}</div>
+            </div>
+            <div class="form-row">
+                <div class="form-label">Kategori Pelayanan</div>
+                <div class="form-field">{{service_category}}</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Jadwal Pelayanan</div>
+            <div class="form-row">
+                <div class="form-label">Nama Engineer</div>
+                <div class="form-field">{{engineer_name}}</div>
+            </div>
+            <div class="form-row">
+                <div class="form-label">Tanggal</div>
+                <div class="form-field">{{date}}</div>
+            </div>
+            <div class="form-row">
+                <div class="form-label">Jam</div>
+                <div class="form-field">{{time}}</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Detail Pengerjaan</div>
+            <div class="detail-section">{{detail_service}}</div>
+        </div>
+
+        <div class="signatures">
+            <div class="signature-box">
+                <div class="signature-line"><img src="{{engineer_signature}}" width="150" height="50"></div>
+                <div class="signature-title">TTD ENGINEER</div>
+            </div>
+            <div class="signature-box">
+                <div class="signature-line"><img src="{{customeer_signature}}" width="150" height="50"></div>
+                <div class="signature-title">TTD PELANGGAN</div>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="contact-icon"></div>
+                Jl. Duta Desa 117, Banjar, Jawa Barat 47433
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon"></div>
+                0123456789
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon"></div>
+                halo@namaperusanggan.co.id
+            </div>
+        </div>
+    </div>
+</body>
+</html>

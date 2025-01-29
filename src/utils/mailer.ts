@@ -7,7 +7,7 @@ interface EmailOptions {
   html?: string; 
 }
 
-const transporter = nodemailer.createTransport({
+export const transporter = nodemailer.createTransport({
   service: "gmail",
   port: 587, 
   secure: false, // true for 465, false for other ports
@@ -26,3 +26,4 @@ export const sendEmail = async (options: EmailOptions): Promise<void> => {
     html: options.html, 
   });
 };
+
