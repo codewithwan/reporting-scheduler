@@ -184,11 +184,12 @@ export const requestPasswordReset = async (req: Request, res: Response): Promise
   try {
     const { token } = await generatePasswordResetToken(email);
 
-    const clientDomain = process.env.NODE_ENV === "production" ? process.env.CLIENT_DOMAIN : "http://localhost:5137";
+    const clientDomain = process.env.NODE_ENV === "production" ? process.env.CLIENT_DOMAIN : `http://localhost:${process.env.CLIENT_LOCAL_PORT}`;
     const resetLink = `${clientDomain}/reset-password?token=${token}`;
 
     const templateData = {
       resetLink,
+      companyName: process.env.COMPANY_NAME,
     };
 
     await sendEmailWithTemplate(email, "Password Reset Request", "passwordReset", templateData);

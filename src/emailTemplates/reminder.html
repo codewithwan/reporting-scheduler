@@ -1,53 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-      margin: 0;
-      padding: 20px;
-    }
-    .container {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    .header {
-      background-color: #007BFF;
-      color: #fff;
-      padding: 10px;
-      border-radius: 8px 8px 0 0;
-      text-align: center;
-    }
-    .content {
-      padding: 20px;
-    }
-    .content p {
-      margin: 0 0 10px;
-    }
-    .content strong {
-      color: #007BFF;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .email-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .email-header h1 {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .email-content {
+            padding: 40px 30px;
+        }
+
+        .reminder-intro {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+            color: #666;
+            font-size: 16px;
+        }
+
+        .schedule-details {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .detail-row {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+
+        .detail-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-label {
+            flex: 0 0 120px;
+            color: #667eea;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .detail-value {
+            flex: 1;
+            color: #666;
+            font-size: 14px;
+            padding-left: 15px;
+        }
+
+        .priority-indicator {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            background-color: #f0f3ff;
+            color: #667eea;
+            margin-top: 5px;
+        }
+
+        .schedule-actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .action-button {
+            display: inline-block;
+            background: #ffffff;
+            color: #667eea;
+            padding: 12px 30px;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 20px 0;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .action-button:hover {
+            background: #667eea;
+            color: #ffffff;
+        }
+
+        .additional-notes {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .additional-notes p {
+            font-size: 14px;
+            color: #777;
+            margin: 0;
+        }
+
+        .email-footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .email-footer p {
+            color: #999;
+            font-size: 14px;
+        }
+
+        @media only screen and (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .email-content {
+                padding: 30px 20px;
+            }
+
+            .email-header h1 {
+                font-size: 20px;
+            }
+
+            .detail-row {
+                flex-direction: column;
+            }
+
+            .detail-label {
+                margin-bottom: 5px;
+            }
+
+            .detail-value {
+                padding-left: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>Reminder</h1>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>Schedule Reminder</h1>
+        </div>
+        
+        <div class="email-content">
+            <div class="reminder-intro">
+                You have an upcoming scheduled task that requires your attention.
+            </div>
+            
+            <div class="schedule-details">
+                <div class="detail-row">
+                    <div class="detail-label">Task Name</div>
+                    <div class="detail-value">{{taskName}}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Customer</div>
+                    <div class="detail-value">{{customerName}}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Location</div>
+                    <div class="detail-value">{{location}}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Activity</div>
+                    <div class="detail-value">{{activity}}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Schedule Time</div>
+                    <div class="detail-value">
+                        {{scheduledTime}}
+                        <div class="priority-indicator">Upcoming</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="schedule-actions">
+                <a href="{{detailsLink}}" class="action-button">View Details</a>
+            </div>
+
+            <div class="additional-notes">
+                <p>📝 Please ensure to review all task details and prepare necessary materials before the scheduled time.</p>
+            </div>
+        </div>
+        
+        <div class="email-footer">
+            <p>This is an automated reminder. Please do not reply to this email.</p>
+            <p>© 2025 {{companyName}}. All rights reserved.</p>
+        </div>
     </div>
-    <div class="content">
-      <p>This is a reminder for your scheduled task.</p>
-      <p><strong>Task Name:</strong> {{taskName}}</p>
-      <p><strong>Customer:</strong> {{customerName}}</p>
-      <p><strong>Location:</strong> {{location}}</p>
-      <p><strong>Activity:</strong> {{activity}}</p>
-      <p><strong>Scheduled Time:</strong> {{scheduledTime}}</p>
-    </div>
-  </div>
 </body>
 </html>

@@ -2,7 +2,8 @@
  * @interface Schedule
  * @property {string} id - The unique identifier for the schedule
  * @property {string} taskName - The name of the task
- * @property {Date} executeAt - The date and time when the task is scheduled to execute
+ * @property {Date} startDate - The start date of the task
+ * @property {Date} endDate - The end date of the task
  * @property {string} engineerId - The ID of the engineer assigned to the task
  * @property {string} adminId - The ID of the admin who created the task
  * @property {string} customerId - The ID of the customer associated with the task
@@ -18,7 +19,8 @@
 export interface Schedule {
   id: string;
   taskName: string;
-  executeAt: Date;
+  startDate: Date;
+  endDate: Date;
   engineerId: string;
   adminId: string;
   customerId: string;
@@ -36,7 +38,8 @@ export interface Schedule {
 /**
  * @interface CreateScheduleInput
  * @property {string} taskName - The name of the task
- * @property {Date} executeAt - The date and time when the task is scheduled to execute
+ * @property {Date} startDate - The start date of the task
+ * @property {Date} endDate - The end date of the task
  * @property {string} engineerId - The ID of the engineer assigned to the task
  * @property {string} adminId - The ID of the admin who created the task
  * @property {string} customerId - The ID of the customer associated with the task
@@ -46,7 +49,8 @@ export interface Schedule {
  */
 export interface CreateScheduleInput {
   taskName: string;
-  executeAt: Date;
+  startDate: Date;
+  endDate: Date;
   engineerId: string;
   adminId: string;
   customerId: string;

@@ -13,7 +13,7 @@ import logger from "./logger";
  */
 export const sendEmailWithTemplate = async (to: string, subject: string, templateName: string, templateData: any): Promise<void> => {
   try {
-    const templatePath = path.join(__dirname, "../emailTemplates", `${templateName}.html`);
+    const templatePath = path.join(__dirname, "../emailTemplates/", `${templateName}.html`);
     let template = fs.readFileSync(templatePath, "utf-8");
 
     for (const key in templateData) {

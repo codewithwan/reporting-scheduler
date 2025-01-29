@@ -42,7 +42,8 @@ router.get(
  *             type: object
  *             required:
  *               - taskName
- *               - executeAt
+ *               - startDate
+ *               - endDate
  *               - engineerId
  *               - customerId
  *               - location
@@ -53,7 +54,10 @@ router.get(
  *             properties:
  *               taskName:
  *                 type: string
- *               executeAt:
+ *               startDate:
+ *                 type: string
+ *                 format: date-time
+ *               endDate:
  *                 type: string
  *                 format: date-time
  *               engineerId:
@@ -83,7 +87,8 @@ router.post(
   authenticateToken,
   authorizeRoles("ADMIN", "ENGINEER"),
   body("taskName").isString().isLength({ min: 6 }),
-  body("executeAt").isISO8601(),
+  body("startDate").isISO8601(),
+  body("endDate").isISO8601(),
   body("engineerId").isUUID(),
   body("customerId").isUUID(),
   body("productId").optional().isUUID(),
@@ -146,7 +151,10 @@ router.get(
  *             properties:
  *               taskName:
  *                 type: string
- *               executeAt:
+ *               startDate:
+ *                 type: string
+ *                 format: date-time
+ *               endDate:
  *                 type: string
  *                 format: date-time
  *               status:
@@ -173,7 +181,8 @@ router.put(
   authenticateToken,
   authorizeRoles("SUPERADMIN"),
   body("taskName").optional().isString().isLength({ min: 1 }),
-  body("executeAt").optional().isISO8601(),
+  body("startDate").optional().isISO8601(),
+  body("endDate").optional().isISO8601(),
   body("status").optional().isIn(["ACCEPTED", "REJECTED", "RESCHEDULED", "PENDING", "CANCELED"]),
   body("location").optional().isString(),
   body("activity").optional().isString(),

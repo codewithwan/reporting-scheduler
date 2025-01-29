@@ -16,12 +16,15 @@ import productRouter from "./routes/productRoutes";
 
 const app: Application = express();
 
+// Trust proxy
+app.set('trust proxy', true);
+
 // Swagger setup
 setupSwagger(app);
 
 // Middleware
 const corsOptions = {
-  origin: 'http://localhost:5173', 
+  origin: process.env.NODE_ENV === 'production' ? process.env.CLIENT_DOMAIN : `http://localhost:${process.env.CLIENT_LOCAL_PORT}`, 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], 
   allowedHeaders: ['Content-Type', 'Authorization'], 
 };
@@ -40,8 +43,8 @@ app.use("/api/v1/health", healthRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/protected", protectedRouter);
 app.use("/api/v1/users", userRouter);
-app.use("/api/v1/schedule", scheduleRouter);
-app.use("/api/v1/customer", customerRouter);
+app.use("/api/v1/schedules", scheduleRouter);
+app.use("/api/v1/customers", customerRouter);
 app.use("/api/v1/reschedules", rescheduleRouter);
 app.use("/api/v1/reminders", reminderRouter); 
 app.use("/api/v1/products", productRouter);
