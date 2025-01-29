@@ -34,6 +34,17 @@ enum RescheduleStatus {
   REJECTED
 }
 
+enum StatusService {
+  FINISHED
+  UNFINISHED
+}
+
+enum ReportStatus {
+  DRAFT
+  REVIEW
+  SIGNED
+}
+
 model User {
   id         String          @id @default(uuid()) @db.Uuid
   name       String          @db.VarChar
@@ -64,6 +75,7 @@ model Customer {
   updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
   products    Product[]
   schedules   Schedule[]
+  reports     Report[]
 }
 
 model Schedule {
@@ -104,18 +116,43 @@ model Reminder {
 }
 
 model Report {
-  id          String    @id @default(uuid()) @db.Uuid
-  scheduleId  String    @map("schedule_id") @db.Uuid
-  engineerId  String    @map("engineer_id") @db.Uuid
-  reportText  String    @db.Text
-  reportDate  DateTime  @map("report_date")
-  attachmentUrl String? @db.VarChar
-  status      String    @default("submitted") @db.VarChar
-  createdAt   DateTime  @default(now()) @map("created_at")
-  updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at")
-  schedule    Schedule  @relation(fields: [scheduleId], references: [id])
-  engineer    User      @relation(fields: [engineerId], references: [id])
+  id                  String    @id @default(uuid()) @db.Uuid
+  scheduleId          String    @map("schedule_id") @db.Uuid
+  engineerId          String    @map("engineer_id") @db.Uuid
+  customerId          String    @map("customer_id") @db.Uuid
+  serviceId           String    @map("service_id") @db.Uuid
+  categoryId          String    @map("category_id") @db.Uuid
+  problem             String    @db.Text
+  processingTimeStart DateTime  @map("processing_time_start")
+  processingTimeEnd   DateTime  @map("processing_time_end")
+  reportDate          DateTime  @map("report_date")
+  serviceStatus       StatusService   @default(UNFINISHED) 
+  attachmentUrl       String   @map("attachment_url") @db.VarChar
+  status              ReportStatus    @default(DRAFT)
+  engineer_sign      String?
+  customeer_sign      String?
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updatedAt           DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  schedule            Schedule  @relation(fields: [scheduleId], references: [id])
+  engineer            User      @relation(fields: [engineerId], references: [id])
+  customer            Customer  @relation(fields: [customerId], references: [id])
+  service             Service   @relation(fields: [serviceId], references: [id])
+  category            Category  @relation(fields: [categoryId], references: [id])
 }
+
+model Category {
+  id          String    @id @default(uuid())  @db.Uuid
+  name        String    @db.VarChar
+  reports     Report[]
+}
+
+model Service {
+  id          String    @id @default(uuid())  @db.Uuid
+  name        String    @db.VarChar
+  reports     Report[]
+}
+
 
 model Product {
   id           String   @id @default(uuid()) @db.Uuid

@@ -7,7 +7,7 @@ interface EmailOptions {
   html?: string; 
 }
 
-const transporter = nodemailer.createTransport({
+export const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: process.env.EMAIL_USER,
@@ -24,3 +24,4 @@ export const sendEmail = async (options: EmailOptions): Promise<void> => {
     html: options.html, 
   });
 };
+
