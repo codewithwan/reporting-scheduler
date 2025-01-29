@@ -21,7 +21,7 @@ export interface Report {
     scheduleId: string;
     engineerId: string;
     customerId: string;
-    serviceId: string;
+    serviceIds: string[];
     problem: string;
     processingTimeStart: Date;
     processingTimeEnd: Date;
@@ -54,7 +54,7 @@ export interface CreateReportInput {
     scheduleId: string;
     engineerId: string;
     customerId: string;
-    serviceId: string;
+    serviceIds: string[];
     problem: string;
     processingTimeStart: Date;
     processingTimeEnd: Date;

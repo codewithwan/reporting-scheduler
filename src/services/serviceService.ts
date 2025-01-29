@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { Service } from "../models/serviceModel";
+import { CreateServiceInput, Service } from "../models/serviceModel";
 
 const prisma = new PrismaClient();
 
@@ -10,3 +10,16 @@ const prisma = new PrismaClient();
 export const getAllServicesService = async (): Promise<Service[]> => {
     return prisma.service.findMany();
   };
+
+  /**
+ * Create a new service.
+ * @param {CreateServiceInput} data - The data for creating a new service
+ * @returns {Promise<Service>} - The created service
+ */
+export const createService = async (data: CreateServiceInput): Promise<Service> => {
+  return prisma.service.create({
+    data: {
+      name: data.name,
+    },
+  });
+};

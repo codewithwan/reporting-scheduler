@@ -126,7 +126,6 @@ const categorys = await Promise.all([
             scheduleId: schedule.id,
             engineerId: schedule.engineerId,
             customerId: schedule.customerId,
-            serviceId: services[1].id,
             problem: faker.lorem.paragraph(),
             processingTimeStart: faker.date.past(),
             processingTimeEnd: faker.date.recent(),
@@ -135,11 +134,17 @@ const categorys = await Promise.all([
             attachmentUrl: faker.internet.url(),
             status: "DRAFT",
             categoryId: categorys[1].id,
+            services: {
+              create: [
+                { service: { connect: { id: services[0].id } } }, // Tambahkan layanan ke report
+                { service: { connect: { id: services[1].id } } },
+              ],
+            },
           },
         });
       })
     );
-
+    
     // Seed Reminders
     const reminders = await Promise.all(
       schedules.map(async (schedule) => {

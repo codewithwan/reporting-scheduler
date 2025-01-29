@@ -120,7 +120,6 @@ model Report {
   scheduleId          String    @map("schedule_id") @db.Uuid
   engineerId          String    @map("engineer_id") @db.Uuid
   customerId          String    @map("customer_id") @db.Uuid
-  serviceId           String    @map("service_id") @db.Uuid
   categoryId          String    @map("category_id") @db.Uuid
   problem             String    @db.Text
   processingTimeStart DateTime  @map("processing_time_start")
@@ -137,8 +136,8 @@ model Report {
   schedule            Schedule  @relation(fields: [scheduleId], references: [id])
   engineer            User      @relation(fields: [engineerId], references: [id])
   customer            Customer  @relation(fields: [customerId], references: [id])
-  service             Service   @relation(fields: [serviceId], references: [id])
   category            Category  @relation(fields: [categoryId], references: [id])
+  services            ReportService[]
 }
 
 model Category {
@@ -148,11 +147,22 @@ model Category {
 }
 
 model Service {
-  id          String    @id @default(uuid())  @db.Uuid
-  name        String    @db.VarChar
-  reports     Report[]
+  id          String  @id @default(uuid()) @db.Uuid
+  name        String  @unique
+  
+  // Relation ke tabel pivot
+  reports ReportService[]
 }
 
+model ReportService {
+  reportId String  @map("report_id") @db.Uuid
+  serviceId String @map("service_id") @db.Uuid
+  
+  report   Report  @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  service  Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  
+  @@id([reportId, serviceId]) // Composite Primary Key
+}
 
 model Product {
   id           String   @id @default(uuid()) @db.Uuid

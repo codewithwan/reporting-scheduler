@@ -8,3 +8,7 @@ export interface Service {
     id: string;
     name: string;
 }
+
+export interface CreateServiceInput {
+    name: string;
+  }

@@ -19,15 +19,15 @@ import { sendEmailWithSignatureRequest, sendEmailWithFinalReport } from "../util
  * @returns {Promise<void>}
  */
 export const createNewReport = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
-  const { scheduleId, engineerId, customerId, serviceId, categoryId, problem, processingTimeStart, processingTimeEnd, reportDate, serviceStatus, attachmentUrl, status, engineer_sign, customeer_sign } = req.body;
+  const { scheduleId, engineerId, customerId, serviceIds, categoryId, problem, processingTimeStart, processingTimeEnd, reportDate, serviceStatus, attachmentUrl, status, engineer_sign, customeer_sign } = req.body;
 
-  if (!scheduleId || !engineerId || !customerId || !serviceId || !problem || !processingTimeStart || !processingTimeEnd || !reportDate || !serviceStatus || !status) {
+  if (!scheduleId || !engineerId || !customerId || !serviceIds || !problem || !processingTimeStart || !processingTimeEnd || !reportDate || !serviceStatus || !status) {
     res.status(400).json({ message: "Invalid input. Please provide all required fields." });
     return;
   }
 
   try {
-    const report = await createReport({ scheduleId, engineerId, customerId, serviceId, categoryId, problem, processingTimeStart, processingTimeEnd, reportDate, serviceStatus, attachmentUrl, status, engineer_sign, customeer_sign });
+    const report = await createReport({ scheduleId, engineerId, customerId, serviceIds, categoryId, problem, processingTimeStart, processingTimeEnd, reportDate, serviceStatus, attachmentUrl, status, engineer_sign, customeer_sign });
     logger.info(`Report ${report.id} created successfully`);
     res.status(201).json(report);
   } catch (error) {

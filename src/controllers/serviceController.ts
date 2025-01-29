@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import logger from "../utils/logger";
-import { getAllServicesService} from "../services/serviceService";
+import { createService, getAllServicesService} from "../services/serviceService";
 import { AuthenticatedRequest } from "../models/userModel";
 
 /**
@@ -18,5 +18,25 @@ export const getAllService = async (req: AuthenticatedRequest, res: Response): P
       res.status(500).json({ message: "An unexpected error occurred while retrieving services. Please try again later.", error: (error as Error).message });
     }
   };
+
+  /**
+ * Create a new service
+ */
+export const createServiceController = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const { name} = req.body;
+
+    if (!name) {
+      res.status(400).json({ message: "Service name is required" });
+      return;
+    }
+
+    const service = await createService({ name });
+
+    res.status(201).json(service);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to create service", error: (error as Error).message });
+  }
+};
   
   
