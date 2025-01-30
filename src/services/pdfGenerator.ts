@@ -3,16 +3,25 @@ import fs from "fs";
 import path from "path";
 import { PDFDocument, rgb } from "pdf-lib";
 
-export const generatePDF = async (data: any, signatureBase64?: string): Promise<string> => {
+export const generatePDF = async (reportId: string, data: any, signatureBase64?: string): Promise<string> => {
   const templatePath = path.join(__dirname, "../templates/reportTemplate.html");
   let template = fs.readFileSync(templatePath, "utf-8");
 
-  // Replace placeholders dengan data
+  // Replace placeholders dengan data laporan
   for (const key in data) {
     template = template.replace(new RegExp(`{{${key}}}`, "g"), data[key]);
   }
 
-  // Launch puppeteer
+  // Pastikan folder "reports" ada
+  const reportsDir = path.join(__dirname, "../reports");
+  if (!fs.existsSync(reportsDir)) {
+    fs.mkdirSync(reportsDir, { recursive: true });
+  }
+
+  // Nama file yang sesuai dengan reportId
+  const pdfPath = path.join(reportsDir, `${reportId}.pdf`);
+
+  // Launch Puppeteer
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
@@ -20,18 +29,19 @@ export const generatePDF = async (data: any, signatureBase64?: string): Promise<
   await page.setContent(template, { waitUntil: "networkidle0" });
 
   // Generate PDF tanpa tanda tangan
-  const tempPdfPath = path.join(__dirname, `../../reports/temp_report_${Date.now()}.pdf`);
-  await page.pdf({ path: tempPdfPath, format: "A4", printBackground: true });
+  await page.pdf({ path: pdfPath, format: "A4", printBackground: true });
 
   await browser.close();
 
+  console.log(`Generated report saved at: ${pdfPath}`);
+
   if (signatureBase64) {
-    // Tambahkan tanda tangan jika ada
-    return await addSignatureToPDF(tempPdfPath, signatureBase64);
+    return await addSignatureToPDF(pdfPath, signatureBase64);
   }
 
-  return tempPdfPath;
+  return pdfPath;
 };
+
 
 const addSignatureToPDF = async (pdfPath: string, signatureBase64: string): Promise<string> => {
   const pdfBytes = fs.readFileSync(pdfPath);

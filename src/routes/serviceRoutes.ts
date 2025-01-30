@@ -43,7 +43,7 @@ const router = Router();
  *         description: Failed to retrieve services
  */
 router.get(
-  "/services",
+  "/",
   authenticateToken,
   authorizeRoles("ENGINEER", "ADMIN"),
   getAllService
@@ -89,7 +89,7 @@ router.get(
  *         description: Failed to create service
  */
 router.post(
-  "/services",
+  "/",
   authenticateToken,
   authorizeRoles("ADMIN", "ENGINEER"), // Only ADMIN can create services
   body("name").notEmpty().withMessage("Service name is required"),

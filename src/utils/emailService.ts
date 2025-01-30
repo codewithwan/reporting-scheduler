@@ -34,15 +34,24 @@ export const sendEmailWithTemplate = async (to: string, subject: string, templat
 
 export const sendEmailWithSignatureRequest = async (
   customerEmail: string,
-  reportData: any,
+  reportId: string,
   pdfBase64: string
-) : Promise<void> => {
-  const signaturePageUrl = `https://your-frontend.com/signature/${reportData.id}`;
+): Promise<void> => {
+  if (!reportId) {
+    throw new Error("Report ID is missing in email function!");
+  }
+
+  const signaturePageUrl = `https://your-frontend.com/signature/${reportId}`;
+
+  console.log("Email Debugging:");
+  console.log("Customer Email:", customerEmail);
+  console.log("Report ID:", reportId);
+  console.log("Signature URL:", signaturePageUrl);
+  console.log("PDF Base64 Length:", pdfBase64.length);
 
   const templatePath = path.join(__dirname, "../emailTemplates/customerSignatureRequest.html");
   let emailTemplate = fs.readFileSync(templatePath, "utf-8");
 
-  emailTemplate = emailTemplate.replace("{{customer_name}}", reportData["customer_name"]);
   emailTemplate = emailTemplate.replace("{{signature_url}}", signaturePageUrl);
 
   const mailOptions = {
