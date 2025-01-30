@@ -176,8 +176,8 @@ export const generateReport = async (reportId: string): Promise<string> => {
     model: report.customer.products.length > 0 ? report.customer.products[0].model : "N/A",
     problem: report.problem,
     engineer_name: report.engineer.name,
-    date: report.schedule.executeAt.toISOString().split("T")[0],
-    time: report.schedule.executeAt,
+    date: report.schedule.startDate.toISOString().split("T")[0],
+    time: report.schedule.startDate,
     detail_service: report.services.map(s => s.service.name).join(", "), // Gabungkan semua service
     service_category: report.category.name,
     engineer_signature: report.engineer_sign,
