@@ -8,6 +8,9 @@ import customerRouter from "./routes/customerRoutes";
 import logger from "./utils/logger";
 import scheduleRouter from "./routes/scheduleRoutes";
 import rescheduleRouter from "./routes/rescheduleRoutes";
+import reportRouter from "./routes/reportRoutes";
+import serviceRouter from "./routes/serviceRoutes";
+
 import { setupSwagger } from "./utils/swagger";
 import cors from 'cors';
 import reminderRouter from "./routes/reminderRoutes"; 
@@ -46,6 +49,8 @@ app.use("/api/v1/users", userRouter);
 app.use("/api/v1/schedules", scheduleRouter);
 app.use("/api/v1/customers", customerRouter);
 app.use("/api/v1/reschedules", rescheduleRouter);
+app.use("/api/v1/reports", reportRouter);
+app.use("/api/v1/services", serviceRouter);
 app.use("/api/v1/reminders", reminderRouter); 
 app.use("/api/v1/products", productRouter);
 

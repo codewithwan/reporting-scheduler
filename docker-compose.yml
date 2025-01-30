@@ -32,8 +32,11 @@ services:
       - JWT_EXPIRY=24h
       - JWT_REFRESH=your_refresh_token_here
       - JWT_REFRESH_EXPIRY=7d
-      - EMAIL_USER=your_email_here
-      - EMAIL_PASS=your_email_password_here
+      - MAIL_HOST=smtp.your_email_provider.com
+      - MAIL_PORT=your_email_port_here
+      - MAIL_USER=your_email_here
+      - MAIL_SECURE=false
+      - MAIL_PASS=your_email_password_here
       - CLIENT_DOMAIN=https://your-production-domain.com
       - CLIENT_LOCAL_PORT=5173
       - COMPANY_NAME=YourCompany
