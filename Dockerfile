@@ -17,6 +17,9 @@ COPY . .
 # Build TypeScript
 RUN npm run build
 
+# Copy email templates to dist
+RUN cp -R src/emailTemplates dist/emailTemplates
+
 # Production stage
 FROM node:18-alpine
 
