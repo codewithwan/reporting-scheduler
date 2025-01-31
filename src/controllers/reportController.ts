@@ -12,6 +12,8 @@ import {
 } from "../services/reportService";
 import { AuthenticatedRequest } from "../models/userModel";
 import { sendEmailWithSignatureRequest, sendEmailWithFinalReport } from "../utils/emailService";
+import fs from "fs";
+
 /**
  * Create a new report
  * @param {AuthenticatedRequest} req - The request object
@@ -133,17 +135,16 @@ export const generateReportPreview = async (req: AuthenticatedRequest, res: Resp
     res.status(500).json({ error: "Failed to generate report" });
   }
 };
-
 export const engineeringSign = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
-    const { reportData, signature } = req.body;
+    const { reportId, signature } = req.body; // Pastikan reportId ada dalam body
 
-    if (!signature) {
-      res.status(400).json({ error: "Signature is required" });
+    if (!reportId || !signature) {
+      res.status(400).json({ error: "reportId and signature are required" });
       return;
     }
 
-    const pdfPath = await signReport(reportData, signature);
+    const pdfPath = await signReport(reportId, signature);
 
     res.download(pdfPath, "Signed_Report.pdf", (err) => {
       if (err) {
@@ -156,36 +157,42 @@ export const engineeringSign = async (req: AuthenticatedRequest, res: Response):
     res.status(500).json({ error: "Failed to sign report" });
   }
 };
-
 export const sendEmailForCustomerSign = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
-    const { reportData, signature, customerEmail } = req.body;
+    const { reportId, signature, customerEmail } = req.body;
 
-    if (!signature) {
-      res.status(400).json({ error: "Signature is required" });
+    // **Tambahkan validasi agar error lebih jelas**
+    if (!reportId) {
+      res.status(400).json({ error: "Report ID is required" });
       return;
     }
-
+    if (!signature) {
+      res.status(400).json({ error: "Signature is required in request body" });
+      return;
+    }
     if (!customerEmail) {
       res.status(400).json({ error: "Customer email is required" });
       return;
     }
 
-    // Tanda tangan engineer terlebih dahulu
-    const pdfPath = await signReport(reportData, signature);
+    console.log(`Processing request for Report ID: ${reportId}`);
+
+    // Panggil fungsi untuk tanda tangan engineer
+    const signedPdfPath = await signReport(reportId, signature);
 
     // Konversi PDF ke base64 untuk dikirim via email
-    const pdfBase64 = Buffer.from(require("fs").readFileSync(pdfPath)).toString("base64");
+    const pdfBase64 = Buffer.from(fs.readFileSync(signedPdfPath)).toString("base64");
 
     // Kirim email ke pelanggan
-    await sendEmailWithSignatureRequest(customerEmail, reportData, pdfBase64);
+    await sendEmailWithSignatureRequest(customerEmail, reportId, pdfBase64);
 
     res.status(200).json({ message: "Email sent to customer for signature" });
   } catch (error) {
-    console.error(error);
+    console.error("Failed to send email for customer signature", error);
     res.status(500).json({ error: "Failed to send email" });
   }
 };
+
 
 export const customerSignReport = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
