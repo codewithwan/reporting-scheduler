@@ -28,6 +28,7 @@ services:
     environment:
       - DATABASE_URL=postgresql://myuser:mypassword@db:5432/mydatabase?schema=public
       - NODE_ENV=production
+      - JWT_SECRET=your_secret_here
       - JWT_EXPIRY=24h
       - JWT_REFRESH=your_refresh_token_here
       - JWT_REFRESH_EXPIRY=7d
