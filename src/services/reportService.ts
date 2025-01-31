@@ -149,7 +149,12 @@ export const updateReport = async (id: string, data: Partial<CreateReportInput>)
  */
 
 export const generateReport = async (reportId: string): Promise<string> => {
-  console.log("Report ID:", reportId);
+  console.log("Generating Report PDF for:", reportId);
+
+  const reportsDir = path.join(__dirname, "../reports");
+  if (!fs.existsSync(reportsDir)) {
+    fs.mkdirSync(reportsDir, { recursive: true });
+  }
 
   const report = await prisma.report.findFirst({
     where: { id: reportId },
@@ -184,17 +189,64 @@ export const generateReport = async (reportId: string): Promise<string> => {
     customer_signature: report.customeer_sign,
   };
 
-  return await generatePDF(reportData);
-};
+  const pdfPath = await generatePDF(reportId, reportData);
 
+  console.log(`Generated report saved at: ${pdfPath}`);
+  return pdfPath;
+};
 
 /**
  * generate engineer sign
- */
+*/
 
-export const signReport = async (reportData: any, signatureBase64: string): Promise<string> => {
-  return await generatePDF(reportData, signatureBase64);
+export const signReport = async (reportId: string, signatureBase64: string): Promise<string> => {
+  console.log("Signing Report ID:", reportId);
+
+  if (!reportId) {
+    throw new Error("Report ID is missing!");
+  }
+
+  const reportsDir = path.join(__dirname, "../reports");
+  if (!fs.existsSync(reportsDir)) {
+    fs.mkdirSync(reportsDir, { recursive: true });
+  }
+
+  const reportPath = path.join(reportsDir, `${reportId}.pdf`);
+  const signedReportPath = path.join(reportsDir, `${reportId}_signed.pdf`);
+
+  // **Cek apakah laporan awal sudah dibuat**
+  if (!fs.existsSync(reportPath)) {
+    console.log(`Report PDF not found at: ${reportPath}, generating new one...`);
+    await generateReport(reportId);
+  }
+
+  // Buka kembali PDF yang telah dibuat
+  const existingPdfBytes = fs.readFileSync(reportPath);
+  const pdfDoc = await PDFDocument.load(existingPdfBytes);
+
+  // Ambil halaman terakhir
+  const pages = pdfDoc.getPages();
+  const lastPage = pages[pages.length - 1];
+
+  // Decode base64 signature dan tambahkan ke halaman terakhir
+  const signatureBuffer = Buffer.from(signatureBase64, "base64");
+  const signatureImage = await pdfDoc.embedPng(signatureBuffer);
+  lastPage.drawImage(signatureImage, {
+    x: 150,
+    y: 200,
+    width: 200,
+    height: 100,
+  });
+
+  // Simpan laporan yang sudah ditandatangani
+  const pdfBytes = await pdfDoc.save();
+  fs.writeFileSync(signedReportPath, pdfBytes);
+
+  console.log(`Signed report saved at: ${signedReportPath}`);
+  return signedReportPath;
 };
+
+
 
 export const addCustomerSignatureToReport = async (reportId: string, customerSignature: string): Promise<string> => {
   const reportPath = path.join(__dirname, `../reports/${reportId}.pdf`);
