@@ -16,14 +16,19 @@ import cors from 'cors';
 import reminderRouter from "./routes/reminderRoutes"; 
 import "./jobs/reminderJob"; 
 import productRouter from "./routes/productRoutes";
+import swaggerUi from "swagger-ui-express";
 
 const app: Application = express();
 
 // Trust proxy
 app.set('trust proxy', true);
 
+// Base API route
+const apiBasePath = "/api/v1";
+
 // Swagger setup
-setupSwagger(app);
+const swaggerDocs = setupSwagger();
+app.use(`${apiBasePath}/api-docs`, swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Middleware
 const corsOptions = {
@@ -41,18 +46,18 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.use("/api/v1", router);
-app.use("/api/v1/health", healthRouter);
-app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/protected", protectedRouter);
-app.use("/api/v1/users", userRouter);
-app.use("/api/v1/schedules", scheduleRouter);
-app.use("/api/v1/customers", customerRouter);
-app.use("/api/v1/reschedules", rescheduleRouter);
-app.use("/api/v1/reports", reportRouter);
-app.use("/api/v1/services", serviceRouter);
-app.use("/api/v1/reminders", reminderRouter); 
-app.use("/api/v1/products", productRouter);
+app.use(`${apiBasePath}`, router);
+app.use(`${apiBasePath}/health`, healthRouter);
+app.use(`${apiBasePath}/auth`, authRouter);
+app.use(`${apiBasePath}/protected`, protectedRouter);
+app.use(`${apiBasePath}/users`, userRouter);
+app.use(`${apiBasePath}/schedules`, scheduleRouter);
+app.use(`${apiBasePath}/customers`, customerRouter);
+app.use(`${apiBasePath}/reschedules`, rescheduleRouter);
+app.use(`${apiBasePath}/reports`, reportRouter);
+app.use(`${apiBasePath}/services`, serviceRouter);
+app.use(`${apiBasePath}/reminders`, reminderRouter);
+app.use(`${apiBasePath}/products`, productRouter);
 
 // Handle 404 - Route not found
 app.use((req: Request, res: Response, next: NextFunction) => {
