@@ -38,6 +38,7 @@ services:
       - MAIL_SECURE=false
       - MAIL_PASS=your_email_password_here
       - CLIENT_DOMAIN=https://your-production-domain.com
+      - SERVER_DOMAIN=httpS://your-production-server-domain.com
       - CLIENT_LOCAL_PORT=5173
       - COMPANY_NAME=YourCompany
     ports:
