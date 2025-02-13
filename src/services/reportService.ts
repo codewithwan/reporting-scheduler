@@ -181,8 +181,8 @@ export const generateReport = async (reportId: string): Promise<string> => {
     model: report.customer.products.length > 0 ? report.customer.products[0].model : "N/A",
     problem: report.problem,
     engineer_name: report.engineer.name,
-    date: report.schedule.startDate.toISOString().split("T")[0],
-    time: report.schedule.startDate,
+    date: report.processingTimeStart.toISOString().split("T")[0],
+    time: report.processingTimeStart,
     detail_service: report.services.map(s => s.service.name).join(", "), // Gabungkan semua service
     service_category: report.category.name,
     engineer_signature: report.engineer_sign,
@@ -279,4 +279,88 @@ export const addCustomerSignatureToReport = async (reportId: string, customerSig
   fs.writeFileSync(signedReportPath, pdfBytes);
 
   return signedReportPath;
+};
+
+export const getEngineerSignature = async (engineerId: string): Promise<string | null> => {
+  const engineer = await prisma.user.findUnique({
+    where: { id: engineerId }
+  }) as any; // Using type assertion to bypass TypeScript check
+  return engineer?.signature || null;
+};
+
+// Modified signReport function to handle both signatures at once
+export const signReportWithBothSignatures = async (
+  reportId: string, 
+  customerSignature: string
+): Promise<string> => {
+  const report = await prisma.report.findUnique({
+    where: { id: reportId },
+    include: { engineer: true }
+  });
+
+  if (!report) {
+    throw new Error("Report not found");
+  }
+
+  // Using type assertion for engineer data
+  const engineer = (await prisma.user.findUnique({
+    where: { id: report.engineerId }
+  })) as any;
+
+  if (!engineer?.signature) {
+    throw new Error("Engineer signature not found in profile");
+  }
+
+  const reportsDir = path.join(__dirname, "../reports");
+  if (!fs.existsSync(reportsDir)) {
+    fs.mkdirSync(reportsDir, { recursive: true });
+  }
+
+  // Generate initial PDF if it doesn't exist
+  const reportPath = path.join(reportsDir, `${reportId}.pdf`);
+  if (!fs.existsSync(reportPath)) {
+    await generateReport(reportId);
+  }
+
+  const signedReportPath = path.join(reportsDir, `${reportId}_signed.pdf`);
+  const existingPdfBytes = fs.readFileSync(reportPath);
+  const pdfDoc = await PDFDocument.load(existingPdfBytes);
+  const lastPage = pdfDoc.getPages()[pdfDoc.getPageCount() - 1];
+
+  try {
+    // Add engineer signature
+    const engineerSignatureImage = await pdfDoc.embedPng(Buffer.from(engineer.signature, "base64"));
+    lastPage.drawImage(engineerSignatureImage, {
+      x: 50,  // Adjust position for engineer signature
+      y: 200,
+      width: 200,
+      height: 100,
+    });
+
+    // Add customer signature
+    const customerSignatureImage = await pdfDoc.embedPng(Buffer.from(customerSignature, "base64"));
+    lastPage.drawImage(customerSignatureImage, {
+      x: 300,  // Adjust position for customer signature
+      y: 200,
+      width: 200,
+      height: 100,
+    });
+
+    // Update report status and signatures in database
+    await prisma.report.update({
+      where: { id: reportId },
+      data: {
+        status: "SIGNED",
+        engineer_sign: engineer.signature,
+        customeer_sign: customerSignature
+      }
+    });
+
+    const pdfBytes = await pdfDoc.save();
+    fs.writeFileSync(signedReportPath, pdfBytes);
+
+    return signedReportPath;
+  } catch (error) {
+    throw new Error(`Failed to generate signed PDF: ${error}`);
+  }
 };

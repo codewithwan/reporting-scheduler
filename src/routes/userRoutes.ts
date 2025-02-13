@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { authenticateToken, authorizeRoles } from "../middleware/authMiddleware";
-import { getUserProfile, getUserById, findUsersByName } from "../controllers/userController";
+import { getUserProfile, getUserById, findUsersByName, updateEngineerSignature } from "../controllers/userController";
 
 const router = Router();
 
@@ -8,7 +8,7 @@ const router = Router();
  * @swagger
  * /users/me:
  *   get:
- *     summary: Get user profile
+ *     summary: Get authenticated user's profile
  *     tags: [Users]
  *     security:
  *       - bearerAuth: []
@@ -20,7 +20,7 @@ const router = Router();
  *       404:
  *         description: User not found
  *       500:
- *         description: Failed to fetch user data
+ *         description: Internal server error
  */
 router.get(
     "/me", 
@@ -33,7 +33,7 @@ router.get(
  * @swagger
  * /users/{id}:
  *   get:
- *     summary: Get user by ID
+ *     summary: Get a user by ID
  *     tags: [Users]
  *     security:
  *       - bearerAuth: []
@@ -43,14 +43,14 @@ router.get(
  *         required: true
  *         schema:
  *           type: string
- *         description: User ID
+ *         description: ID of the user to retrieve
  *     responses:
  *       200:
  *         description: User retrieved successfully
  *       404:
  *         description: User not found
  *       500:
- *         description: Failed to fetch user data
+ *         description: Internal server error
  */
 router.get(
     "/:id", 
@@ -73,20 +73,55 @@ router.get(
  *         required: true
  *         schema:
  *           type: string
- *         description: Engineer name
+ *         description: Engineer name to search for
  *     responses:
  *       200:
- *         description: Engineers retrieved successfully
+ *         description: Engineers found successfully
  *       400:
  *         description: Name query parameter is missing
+ *       404:
+ *         description: No engineers found
  *       500:
- *         description: Failed to fetch engineers
+ *         description: Internal server error
  */
 router.get(
     "/engineers", 
     authenticateToken, 
     authorizeRoles("ADMIN", "SUPERADMIN"), 
     findUsersByName
+);
+
+/**
+ * @swagger
+ * /users/signature:
+ *   put:
+ *     summary: Update engineer's digital signature
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               signature:
+ *                 type: string
+ *                 description: Base64 encoded signature
+ *     responses:
+ *       200:
+ *         description: Signature updated successfully
+ *       400:
+ *         description: Signature is required
+ *       500:
+ *         description: Internal server error
+ */
+router.put(
+    "/signature",
+    authenticateToken,
+    authorizeRoles("ENGINEER"),
+    updateEngineerSignature
 );
 
 export default router;

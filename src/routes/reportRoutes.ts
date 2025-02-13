@@ -10,6 +10,7 @@ import {
     sendEmailForCustomerSign,
     customerSignReport,
     getReportsByEngineer,
+    signReportDirectly,
 } from "../controllers/reportController";
 import { authenticateToken, authorizeRoles } from "../middleware/authMiddleware";
 import { handleValidation } from "../middleware/validationMiddleware";
@@ -270,5 +271,28 @@ router.post("/customer-sign", authenticateToken, customerSignReport);
  
 
 router.get("/engineer/:engineerId", getReportsByEngineer);
+
+
+/**
+ * @swagger
+ * /sign-direct:
+ *   post:
+ *     summary: Engineer signs report directly
+ *     description: Allows an engineer to directly sign a report without customer intervention.
+ *     tags:
+ *       - Reports
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Report successfully signed by engineer.
+ */
+
+router.post(
+  "/sign-direct",
+  authenticateToken,
+  authorizeRoles("ENGINEER"),
+  signReportDirectly
+);
 
 export default router;

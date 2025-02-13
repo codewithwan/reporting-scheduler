@@ -3,6 +3,10 @@ import { findUserById, findEngineersByName as findEngineersByNameService } from 
 import logger from "../utils/logger";
 import { AuthenticatedRequest } from "../middleware/authMiddleware";
 
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
+
 /**
  * Get the profile of the authenticated user.
  * @param {AuthenticatedRequest} req - The request object, containing the authenticated user.
@@ -70,5 +74,34 @@ export const findUsersByName = async (req: Request, res: Response) => {
   } catch (error) {
     logger.error("Failed to fetch engineers", { error, name });
     res.status(500).json({ message: "Failed to fetch engineers", error: (error as Error).message });
+  }
+};
+
+export const updateEngineerSignature = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  const { signature } = req.body;
+  const userId = req.user?.id; // From auth middleware
+
+  if (!signature) {
+    res.status(400).json({ message: "Signature is required" });
+    return;
+  }
+
+  try {
+    const updatedUser = await prisma.user.update({
+      where: { id: userId },
+      data: { signature }
+    }) as any;
+
+    logger.info(`Updated signature for engineer ${userId}`);
+    res.status(200).json({ 
+      message: "Signature updated successfully",
+      signature: updatedUser.signature 
+    });
+  } catch (error) {
+    logger.error("Failed to update engineer signature", { error });
+    res.status(500).json({ 
+      message: "Failed to update signature", 
+      error: (error as Error).message 
+    });
   }
 };

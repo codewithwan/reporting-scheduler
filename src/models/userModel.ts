@@ -7,6 +7,7 @@ import { Request } from "express";
  * @property {string} email - The email address of the user
  * @property {string} password - The hashed password of the user
  * @property {string} role - The role of the user
+ * @property {string} signature - The role of the user
  * @property {string} [timezone] - The timezone of the user
  * @property {Report[]} [Report] - The reports associated with the user
  * @property {Date} createdAt - The date the user was created
@@ -20,6 +21,7 @@ export interface User {
   email: string;
   password?: string; 
   role: string;
+  signature?: string;
   timezone?: string;
   createdAt: Date;
   updatedAt: Date;
