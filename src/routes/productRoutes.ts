@@ -1,7 +1,16 @@
 import { Router } from "express";
 import { body, param } from "express-validator";
-import { createProduct, getProduct, getAllProducts, updateProduct, deleteProduct } from "../controllers/productController";
-import { authenticateToken, authorizeRoles } from "../middleware/authMiddleware";
+import {
+  createProduct,
+  getProduct,
+  getAllProducts,
+  updateProduct,
+  deleteProduct,
+} from "../controllers/productController";
+import {
+  authenticateToken,
+  authorizeRoles,
+} from "../middleware/authMiddleware";
 import { handleValidation } from "../middleware/validationMiddleware";
 
 const router = Router();
@@ -72,7 +81,7 @@ router.post(
 router.get(
   "/",
   authenticateToken,
-  authorizeRoles("ADMIN", "SUPERADMIN"),
+  authorizeRoles("ENGINEER", "ADMIN", "SUPERADMIN"),
   getAllProducts
 );
 
@@ -100,7 +109,7 @@ router.get(
 router.get(
   "/:id",
   authenticateToken,
-  authorizeRoles("ADMIN", "SUPERADMIN"),
+  authorizeRoles("ENGINEER", "ADMIN", "SUPERADMIN"),
   param("id").isUUID(),
   handleValidation,
   getProduct

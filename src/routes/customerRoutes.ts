@@ -75,7 +75,7 @@ router.post(
 router.get(
   "/",
   authenticateToken,
-  authorizeRoles("ADMIN", "SUPERADMIN"),
+  authorizeRoles("ENGINEER", "ADMIN", "SUPERADMIN"),
   getAllCustomers
 );
 
@@ -103,7 +103,7 @@ router.get(
 router.get(
   "/:id",
   authenticateToken,
-  authorizeRoles("ADMIN", "SUPERADMIN"),
+  authorizeRoles("ENGINEER", "ADMIN", "SUPERADMIN"),
   param("id").isUUID(),
   handleValidation,
   getCustomer
