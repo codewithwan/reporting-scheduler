@@ -208,7 +208,7 @@ router.put(
 router.get(
   "/users", 
   authenticateToken, 
-  authorizeRoles("ADMIN", "SUPERADMIN"), 
+  authorizeRoles("ENGINEER", "ADMIN", "SUPERADMIN"), 
   getUsers
 );
 

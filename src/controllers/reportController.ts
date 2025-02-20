@@ -9,10 +9,15 @@ import {
   signReport, 
   addCustomerSignatureToReport,
   getReportByEngineerId,
+  signReportWithBothSignatures,
+  getEngineerSignature,
 } from "../services/reportService";
 import { AuthenticatedRequest } from "../models/userModel";
 import { sendEmailWithSignatureRequest, sendEmailWithFinalReport } from "../utils/emailService";
 import fs from "fs";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 /**
  * Create a new report
@@ -213,5 +218,65 @@ export const customerSignReport = async (req: AuthenticatedRequest, res: Respons
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to sign report" });
+  }
+};
+
+export const signReportDirectly = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  const { reportId, customerSignature } = req.body;
+  const engineerId = req.user?.id;
+
+  if (!reportId || !customerSignature) {
+    res.status(400).json({ message: "Report ID and customer signature are required" });
+    return;
+  }
+
+  try {
+    // Verify the report belongs to the engineer
+    const report = await prisma.report.findFirst({
+      where: { 
+        id: reportId,
+        engineerId 
+      }
+    });
+
+    if (!report) {
+      res.status(404).json({ message: "Report not found or unauthorized" });
+      return;
+    }
+
+    // Get engineer's stored signature
+    const engineer = await prisma.user.findUnique({
+      where: { id: engineerId }
+    }) as any;
+
+    if (!engineer?.signature) {
+      res.status(400).json({ 
+        message: "Engineer signature not found. Please upload your signature first" 
+      });
+      return;
+    }
+
+    // Generate the signed PDF with both signatures
+    const signedPdfPath = await signReportWithBothSignatures(
+      reportId,
+      customerSignature
+    );
+
+    // Send the signed PDF
+    res.download(signedPdfPath, "Signed_Report.pdf", (err) => {
+      if (err) {
+        logger.error("Error downloading signed report", { error: err });
+        res.status(500).json({ message: "Error downloading signed report" });
+      }
+      // Optionally clean up the file after sending
+      // fs.unlinkSync(signedPdfPath);
+    });
+
+  } catch (error) {
+    logger.error("Failed to sign report", { error });
+    res.status(500).json({ 
+      message: "Failed to sign report", 
+      error: (error as Error).message 
+    });
   }
 };

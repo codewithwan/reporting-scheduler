@@ -21,7 +21,7 @@ import swaggerUi from "swagger-ui-express";
 const app: Application = express();
 
 // Trust proxy
-app.set('trust proxy', true);
+app.set('trust proxy', false);
 
 // Base API route
 const apiBasePath = "/api/v1";
