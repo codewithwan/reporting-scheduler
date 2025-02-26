@@ -10,9 +10,15 @@ const prisma = new PrismaClient();
 /**
  * Create a new report
  */
-export const createReport = async (data: CreateReportInput): Promise<Report> => {
-  const engineer = await prisma.user.findUnique({ where: { id: data.engineerId } });
-  const customer = await prisma.customer.findUnique({ where: { id: data.customerId } });
+export const createReport = async (
+  data: CreateReportInput
+): Promise<Report> => {
+  const engineer = await prisma.user.findUnique({
+    where: { id: data.engineerId },
+  });
+  const customer = await prisma.customer.findUnique({
+    where: { id: data.customerId },
+  });
 
   if (!engineer || !customer) {
     throw new Error("Invalid engineer or customer ID");
@@ -42,7 +48,7 @@ export const createReport = async (data: CreateReportInput): Promise<Report> => 
       engineer_sign: data.engineer_sign,
       customeer_sign: data.customeer_sign,
       services: {
-        create: data.serviceIds.map(serviceId => ({
+        create: data.serviceIds.map((serviceId) => ({
           serviceId: serviceId, // Gunakan field serviceId, bukan service: { connect: { id } }
         })),
       },
@@ -52,7 +58,7 @@ export const createReport = async (data: CreateReportInput): Promise<Report> => 
 
   return {
     ...report,
-    serviceIds: report.services.map(rs => rs.service.id),
+    serviceIds: report.services.map((rs) => rs.service.id),
   };
 };
 
@@ -69,29 +75,31 @@ export const getAllReports = async (): Promise<Report[]> => {
     },
   });
 
-  return reports.map(report => ({
+  return reports.map((report) => ({
     ...report,
-    serviceIds: report.services.map(rs => rs.service.id), // Tambahkan serviceIds secara manual
+    serviceIds: report.services.map((rs) => rs.service.id), // Tambahkan serviceIds secara manual
   }));
 };
 
 /**
  * Get reports by Engineer ID
  */
-export const getReportByEngineerId = async (engineerId: string): Promise<Report[]> => {
+export const getReportByEngineerId = async (
+  engineerId: string
+): Promise<Report[]> => {
   const reports = await prisma.report.findMany({
     where: { engineerId },
     include: {
       engineer: true,
-      services: {include: {service : true}},
+      services: { include: { service: true } },
       customer: true,
       schedule: true,
       category: true,
     },
   });
-  return reports.map(report => ({
+  return reports.map((report) => ({
     ...report,
-    serviceIds: report.services.map(rs => rs.service.id), // Tambahkan serviceIds secara manual
+    serviceIds: report.services.map((rs) => rs.service.id), // Tambahkan serviceIds secara manual
   }));
 };
 
@@ -113,14 +121,17 @@ export const getReportById = async (id: string): Promise<Report | null> => {
 
   return {
     ...report,
-    serviceIds: report.services.map(rs => rs.service.id),
+    serviceIds: report.services.map((rs) => rs.service.id),
   };
 };
 
 /**
  * Update a report
  */
-export const updateReport = async (id: string, data: Partial<CreateReportInput>): Promise<Report> => {
+export const updateReport = async (
+  id: string,
+  data: Partial<CreateReportInput>
+): Promise<Report> => {
   const updatedReport = await prisma.report.update({
     where: { id },
     data: {
@@ -128,7 +139,7 @@ export const updateReport = async (id: string, data: Partial<CreateReportInput>)
       services: data.serviceIds
         ? {
             deleteMany: {}, // Hapus semua relasi lama
-            create: data.serviceIds.map(serviceId => ({
+            create: data.serviceIds.map((serviceId) => ({
               serviceId: serviceId,
             })),
           }
@@ -139,10 +150,9 @@ export const updateReport = async (id: string, data: Partial<CreateReportInput>)
 
   return {
     ...updatedReport,
-    serviceIds: updatedReport.services.map(rs => rs.service.id),
+    serviceIds: updatedReport.services.map((rs) => rs.service.id),
   };
 };
-
 
 /**
  * generate pdf
@@ -176,14 +186,23 @@ export const generateReport = async (reportId: string): Promise<string> => {
     customer_name: report.customer.name,
     address: report.customer.address || "N/A",
     position: report.customer.position || "N/A",
-    brand: report.customer.products.length > 0 ? report.customer.products[0].brand : "N/A",
-    serial_number: report.customer.products.length > 0 ? report.customer.products[0].serialNumber : "N/A",
-    model: report.customer.products.length > 0 ? report.customer.products[0].model : "N/A",
+    brand:
+      report.customer.products.length > 0
+        ? report.customer.products[0].brand
+        : "N/A",
+    serial_number:
+      report.customer.products.length > 0
+        ? report.customer.products[0].serialNumber
+        : "N/A",
+    model:
+      report.customer.products.length > 0
+        ? report.customer.products[0].model
+        : "N/A",
     problem: report.problem,
     engineer_name: report.engineer.name,
     date: report.processingTimeStart.toISOString().split("T")[0],
     time: report.processingTimeStart,
-    detail_service: report.services.map(s => s.service.name).join(", "), // Gabungkan semua service
+    detail_service: report.services.map((s) => s.service.name).join(", "), // Gabungkan semua service
     service_category: report.category.name,
     engineer_signature: report.engineer_sign,
     customer_signature: report.customeer_sign,
@@ -197,9 +216,12 @@ export const generateReport = async (reportId: string): Promise<string> => {
 
 /**
  * generate engineer sign
-*/
+ */
 
-export const signReport = async (reportId: string, signatureBase64: string): Promise<string> => {
+export const signReport = async (
+  reportId: string,
+  signatureBase64: string
+): Promise<string> => {
   console.log("Signing Report ID:", reportId);
 
   if (!reportId) {
@@ -216,7 +238,9 @@ export const signReport = async (reportId: string, signatureBase64: string): Pro
 
   // **Cek apakah laporan awal sudah dibuat**
   if (!fs.existsSync(reportPath)) {
-    console.log(`Report PDF not found at: ${reportPath}, generating new one...`);
+    console.log(
+      `Report PDF not found at: ${reportPath}, generating new one...`
+    );
     await generateReport(reportId);
   }
 
@@ -246,11 +270,15 @@ export const signReport = async (reportId: string, signatureBase64: string): Pro
   return signedReportPath;
 };
 
-
-
-export const addCustomerSignatureToReport = async (reportId: string, customerSignature: string): Promise<string> => {
+export const addCustomerSignatureToReport = async (
+  reportId: string,
+  customerSignature: string
+): Promise<string> => {
   const reportPath = path.join(__dirname, `../reports/${reportId}.pdf`);
-  const signedReportPath = path.join(__dirname, `../reports/${reportId}_signed.pdf`);
+  const signedReportPath = path.join(
+    __dirname,
+    `../reports/${reportId}_signed.pdf`
+  );
 
   if (!fs.existsSync(reportPath)) {
     throw new Error("Report not found!");
@@ -281,21 +309,23 @@ export const addCustomerSignatureToReport = async (reportId: string, customerSig
   return signedReportPath;
 };
 
-export const getEngineerSignature = async (engineerId: string): Promise<string | null> => {
-  const engineer = await prisma.user.findUnique({
-    where: { id: engineerId }
-  }) as any; // Using type assertion to bypass TypeScript check
+export const getEngineerSignature = async (
+  engineerId: string
+): Promise<string | null> => {
+  const engineer = (await prisma.user.findUnique({
+    where: { id: engineerId },
+  })) as any; // Using type assertion to bypass TypeScript check
   return engineer?.signature || null;
 };
 
 // Modified signReport function to handle both signatures at once
 export const signReportWithBothSignatures = async (
-  reportId: string, 
+  reportId: string,
   customerSignature: string
 ): Promise<string> => {
   const report = await prisma.report.findUnique({
     where: { id: reportId },
-    include: { engineer: true }
+    include: { engineer: true },
   });
 
   if (!report) {
@@ -304,7 +334,7 @@ export const signReportWithBothSignatures = async (
 
   // Using type assertion for engineer data
   const engineer = (await prisma.user.findUnique({
-    where: { id: report.engineerId }
+    where: { id: report.engineerId },
   })) as any;
 
   if (!engineer?.signature) {
@@ -329,18 +359,22 @@ export const signReportWithBothSignatures = async (
 
   try {
     // Add engineer signature
-    const engineerSignatureImage = await pdfDoc.embedPng(Buffer.from(engineer.signature, "base64"));
+    const engineerSignatureImage = await pdfDoc.embedPng(
+      Buffer.from(engineer.signature, "base64")
+    );
     lastPage.drawImage(engineerSignatureImage, {
-      x: 50,  // Adjust position for engineer signature
+      x: 50, // Adjust position for engineer signature
       y: 200,
       width: 200,
       height: 100,
     });
 
     // Add customer signature
-    const customerSignatureImage = await pdfDoc.embedPng(Buffer.from(customerSignature, "base64"));
+    const customerSignatureImage = await pdfDoc.embedPng(
+      Buffer.from(customerSignature, "base64")
+    );
     lastPage.drawImage(customerSignatureImage, {
-      x: 300,  // Adjust position for customer signature
+      x: 300, // Adjust position for customer signature
       y: 200,
       width: 200,
       height: 100,
@@ -352,8 +386,8 @@ export const signReportWithBothSignatures = async (
       data: {
         status: "SIGNED",
         engineer_sign: engineer.signature,
-        customeer_sign: customerSignature
-      }
+        customeer_sign: customerSignature,
+      },
     });
 
     const pdfBytes = await pdfDoc.save();
@@ -362,5 +396,25 @@ export const signReportWithBothSignatures = async (
     return signedReportPath;
   } catch (error) {
     throw new Error(`Failed to generate signed PDF: ${error}`);
+  }
+};
+
+export const saveReportFile = async (file: Express.Multer.File) => {
+  try {
+    if (!file) {
+      throw new Error("No file uploaded");
+    }
+
+    // Simpan metadata ke database (opsional)
+    const filePath = `/uploads/${file.filename}`;
+
+    console.log("File saved at:", file.path);
+
+    return {
+      message: "File uploaded successfully",
+      fileUrl: filePath,
+    };
+  } catch (error: any) {
+    throw new Error(error.message);
   }
 };

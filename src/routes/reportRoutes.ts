@@ -1,19 +1,25 @@
-import { Router } from "express";
+import express, { Router } from "express";
 import { body, param } from "express-validator";
 import {
-    createNewReport, 
-    getReports, 
-    getReport, 
-    updateReportById, 
-    generateReportPreview,
-    engineeringSign,
-    sendEmailForCustomerSign,
-    customerSignReport,
-    getReportsByEngineer,
-    signReportDirectly,
+  createNewReport,
+  getReports,
+  getReport,
+  updateReportById,
+  generateReportPreview,
+  engineeringSign,
+  sendEmailForCustomerSign,
+  customerSignReport,
+  getReportsByEngineer,
+  signReportDirectly,
+  uploadReport,
 } from "../controllers/reportController";
-import { authenticateToken, authorizeRoles } from "../middleware/authMiddleware";
+import {
+  authenticateToken,
+  authorizeRoles,
+} from "../middleware/authMiddleware";
 import { handleValidation } from "../middleware/validationMiddleware";
+import upload from "../middleware/uploadMiddleware";
+import multer from "multer";
 
 const router = Router();
 
@@ -54,7 +60,13 @@ router.get("/", authenticateToken, getReports);
  *       404:
  *         description: Report not found
  */
-router.get("/:id", authenticateToken, param("id").isUUID(), handleValidation, getReport);
+router.get(
+  "/:id",
+  authenticateToken,
+  param("id").isUUID(),
+  handleValidation,
+  getReport
+);
 
 /**
  * @swagger
@@ -93,7 +105,6 @@ router.post(
   authorizeRoles("ENGINEER"),
   body("engineerId").isUUID(),
   body("customerId").isUUID(),
-  body("content").isString(),
   handleValidation,
   createNewReport
 );
@@ -128,7 +139,14 @@ router.post(
  *       404:
  *         description: Report not found
  */
-router.put("/:id", authenticateToken, param("id").isUUID(), body("content").isString(), handleValidation, updateReportById);
+router.put(
+  "/:id",
+  authenticateToken,
+  param("id").isUUID(),
+  body("content").isString(),
+  handleValidation,
+  updateReportById
+);
 
 /**
  * @swagger
@@ -215,7 +233,11 @@ router.post("/generate-preview", authenticateToken, generateReportPreview);
  *       400:
  *         description: Bad request
  */
-router.post("/send-email-customer-sign", authenticateToken, sendEmailForCustomerSign);
+router.post(
+  "/send-email-customer-sign",
+  authenticateToken,
+  sendEmailForCustomerSign
+);
 
 /**
  * @swagger
@@ -268,10 +290,8 @@ router.post("/customer-sign", authenticateToken, customerSignReport);
  *       404:
  *         description: Report not found
  */
- 
 
 router.get("/engineer/:engineerId", getReportsByEngineer);
-
 
 /**
  * @swagger
@@ -293,6 +313,15 @@ router.post(
   authenticateToken,
   authorizeRoles("ENGINEER"),
   signReportDirectly
+);
+
+// Endpoint upload file PDF
+router.post(
+  "/upload",
+  authenticateToken,
+  authorizeRoles("ENGINEER"),
+  upload.single("file"),
+  uploadReport
 );
 
 export default router;
