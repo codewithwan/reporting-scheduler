@@ -227,7 +227,7 @@ router.put(
 router.patch(
   "/:id/status",
   authenticateToken,
-  body("status").isIn(["ACCEPTED", "REJECTED", "RESCHEDULED", "PENDING", "CANCELED"]),
+  body("status").isIn(["ACCEPTED", "REJECTED", "RESCHEDULED", "PENDING", "CANCELED", "COMPLETED"]),
   handleValidation,
   updateScheduleStatus
 );

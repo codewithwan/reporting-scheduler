@@ -1,23 +1,43 @@
-import { Response } from "express";
+import { NextFunction, Request, RequestHandler, Response } from "express";
+import multer from "multer";
+import path from "path";
 import logger from "../utils/logger";
-import { 
-  createReport, 
-  getAllReports, 
-  getReportById, 
-  updateReport, 
+import {
+  createReport,
+  getAllReports,
+  getReportById,
+  updateReport,
   generateReport,
-  signReport, 
+  signReport,
   addCustomerSignatureToReport,
   getReportByEngineerId,
   signReportWithBothSignatures,
-  getEngineerSignature,
+  saveReportFile,
 } from "../services/reportService";
 import { AuthenticatedRequest } from "../models/userModel";
-import { sendEmailWithSignatureRequest, sendEmailWithFinalReport } from "../utils/emailService";
+import {
+  sendEmailWithSignatureRequest,
+  sendEmailWithFinalReport,
+} from "../utils/emailService";
 import fs from "fs";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
+
+export const uploadReport: RequestHandler = async (req, res, next) => {
+  try {
+    if (!req.file) {
+      res.status(400).json({ message: "No file uploaded" });
+      return;
+    }
+
+    const fileUrl = `/uploads/${req.file.filename}`;
+    res.status(200).json({ fileUrl }); // ✅ Tidak pakai return
+  } catch (error) {
+    console.error("❌ Gagal mengupload file:", error);
+    next(error);
+  }
+};
 
 /**
  * Create a new report
@@ -25,21 +45,70 @@ const prisma = new PrismaClient();
  * @param {Response} res - The response object
  * @returns {Promise<void>}
  */
-export const createNewReport = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
-  const { scheduleId, engineerId, customerId, serviceIds, categoryId, problem, processingTimeStart, processingTimeEnd, reportDate, serviceStatus, attachmentUrl, status, engineer_sign, customeer_sign } = req.body;
+export const createNewReport = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<void> => {
+  const {
+    scheduleId,
+    engineerId,
+    customerId,
+    serviceIds,
+    categoryId,
+    problem,
+    processingTimeStart,
+    processingTimeEnd,
+    reportDate,
+    serviceStatus,
+    attachmentUrl,
+    status,
+    engineer_sign,
+    customeer_sign,
+  } = req.body;
 
-  if (!scheduleId || !engineerId || !customerId || !serviceIds || !problem || !processingTimeStart || !processingTimeEnd || !reportDate || !serviceStatus || !status) {
-    res.status(400).json({ message: "Invalid input. Please provide all required fields." });
+  if (
+    !scheduleId ||
+    !engineerId ||
+    !customerId ||
+    !serviceIds ||
+    !problem ||
+    !processingTimeStart ||
+    !processingTimeEnd ||
+    !reportDate ||
+    !serviceStatus ||
+    !status
+  ) {
+    res
+      .status(400)
+      .json({ message: "Invalid input. Please provide all required fields." });
     return;
   }
 
   try {
-    const report = await createReport({ scheduleId, engineerId, customerId, serviceIds, categoryId, problem, processingTimeStart, processingTimeEnd, reportDate, serviceStatus, attachmentUrl, status, engineer_sign, customeer_sign });
+    const report = await createReport({
+      scheduleId,
+      engineerId,
+      customerId,
+      serviceIds,
+      categoryId,
+      problem,
+      processingTimeStart,
+      processingTimeEnd,
+      reportDate,
+      serviceStatus,
+      attachmentUrl,
+      status,
+      engineer_sign,
+      customeer_sign,
+    });
     logger.info(`Report ${report.id} created successfully`);
     res.status(201).json(report);
   } catch (error) {
     logger.error("Failed to create report", { error });
-    res.status(500).json({ message: "An unexpected error occurred while creating the report.", error: (error as Error).message });
+    res.status(500).json({
+      message: "An unexpected error occurred while creating the report.",
+      error: (error as Error).message,
+    });
   }
 };
 
@@ -49,7 +118,10 @@ export const createNewReport = async (req: AuthenticatedRequest, res: Response):
  * @param {Response} res - The response object
  * @returns {Promise<void>}
  */
-export const getReports = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+export const getReports = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<void> => {
   try {
     const reports = await getAllReports();
     if (!reports.length) {
@@ -59,11 +131,17 @@ export const getReports = async (req: AuthenticatedRequest, res: Response): Prom
     res.status(200).json(reports);
   } catch (error) {
     logger.error("Failed to retrieve reports", { error });
-    res.status(500).json({ message: "An unexpected error occurred while retrieving reports.", error: (error as Error).message });
+    res.status(500).json({
+      message: "An unexpected error occurred while retrieving reports.",
+      error: (error as Error).message,
+    });
   }
 };
 
-export const getReportsByEngineer = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+export const getReportsByEngineer = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<void> => {
   const { engineerId } = req.params;
 
   try {
@@ -74,8 +152,14 @@ export const getReportsByEngineer = async (req: AuthenticatedRequest, res: Respo
     }
     res.status(200).json(reports);
   } catch (error) {
-    logger.error("Failed to retrieve reports by engineer", { error, engineerId });
-    res.status(500).json({ message: "An unexpected error occurred while retrieving the reports.", error: (error as Error).message });
+    logger.error("Failed to retrieve reports by engineer", {
+      error,
+      engineerId,
+    });
+    res.status(500).json({
+      message: "An unexpected error occurred while retrieving the reports.",
+      error: (error as Error).message,
+    });
   }
 };
 
@@ -85,7 +169,10 @@ export const getReportsByEngineer = async (req: AuthenticatedRequest, res: Respo
  * @param {Response} res - The response object
  * @returns {Promise<void>}
  */
-export const getReport = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+export const getReport = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<void> => {
   const { id } = req.params;
 
   try {
@@ -97,7 +184,10 @@ export const getReport = async (req: AuthenticatedRequest, res: Response): Promi
     res.status(200).json(report);
   } catch (error) {
     logger.error("Failed to retrieve report", { error, id });
-    res.status(500).json({ message: "An unexpected error occurred while retrieving the report.", error: (error as Error).message });
+    res.status(500).json({
+      message: "An unexpected error occurred while retrieving the report.",
+      error: (error as Error).message,
+    });
   }
 };
 
@@ -107,7 +197,10 @@ export const getReport = async (req: AuthenticatedRequest, res: Response): Promi
  * @param {Response} res - The response object
  * @returns {Promise<void>}
  */
-export const updateReportById = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+export const updateReportById = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<void> => {
   const { id } = req.params;
   const updateData = req.body;
 
@@ -120,15 +213,21 @@ export const updateReportById = async (req: AuthenticatedRequest, res: Response)
     res.status(200).json(updatedReport);
   } catch (error) {
     logger.error("Failed to update report", { error, id });
-    res.status(500).json({ message: "An unexpected error occurred while updating the report.", error: (error as Error).message });
+    res.status(500).json({
+      message: "An unexpected error occurred while updating the report.",
+      error: (error as Error).message,
+    });
   }
 };
 
-export const generateReportPreview = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+export const generateReportPreview = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<void> => {
   try {
     const { reportId } = req.params;
     const pdfPath = await generateReport(reportId);
-    
+
     res.download(pdfPath, "ReportService.pdf", (err) => {
       if (err) {
         console.error("Error downloading file:", err);
@@ -140,7 +239,10 @@ export const generateReportPreview = async (req: AuthenticatedRequest, res: Resp
     res.status(500).json({ error: "Failed to generate report" });
   }
 };
-export const engineeringSign = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+export const engineeringSign = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<void> => {
   try {
     const { reportId, signature } = req.body; // Pastikan reportId ada dalam body
 
@@ -162,7 +264,10 @@ export const engineeringSign = async (req: AuthenticatedRequest, res: Response):
     res.status(500).json({ error: "Failed to sign report" });
   }
 };
-export const sendEmailForCustomerSign = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+export const sendEmailForCustomerSign = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<void> => {
   try {
     const { reportId, signature, customerEmail } = req.body;
 
@@ -186,7 +291,9 @@ export const sendEmailForCustomerSign = async (req: AuthenticatedRequest, res: R
     const signedPdfPath = await signReport(reportId, signature);
 
     // Konversi PDF ke base64 untuk dikirim via email
-    const pdfBase64 = Buffer.from(fs.readFileSync(signedPdfPath)).toString("base64");
+    const pdfBase64 = Buffer.from(fs.readFileSync(signedPdfPath)).toString(
+      "base64"
+    );
 
     // Kirim email ke pelanggan
     await sendEmailWithSignatureRequest(customerEmail, reportId, pdfBase64);
@@ -198,8 +305,10 @@ export const sendEmailForCustomerSign = async (req: AuthenticatedRequest, res: R
   }
 };
 
-
-export const customerSignReport = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+export const customerSignReport = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<void> => {
   try {
     const { reportId, customerSignature, customerEmail } = req.body;
 
@@ -209,34 +318,44 @@ export const customerSignReport = async (req: AuthenticatedRequest, res: Respons
     }
 
     // Menambahkan tanda tangan pelanggan ke dalam PDF laporan
-    const signedPdfPath = await addCustomerSignatureToReport(reportId, customerSignature);
+    const signedPdfPath = await addCustomerSignatureToReport(
+      reportId,
+      customerSignature
+    );
 
     // Kirim email ke pelanggan dan admin dengan laporan akhir
     await sendEmailWithFinalReport(customerEmail, signedPdfPath);
 
-    res.status(200).json({ message: "Report signed successfully and email sent!" });
+    res
+      .status(200)
+      .json({ message: "Report signed successfully and email sent!" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to sign report" });
   }
 };
 
-export const signReportDirectly = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+export const signReportDirectly = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<void> => {
   const { reportId, customerSignature } = req.body;
   const engineerId = req.user?.id;
 
   if (!reportId || !customerSignature) {
-    res.status(400).json({ message: "Report ID and customer signature are required" });
+    res
+      .status(400)
+      .json({ message: "Report ID and customer signature are required" });
     return;
   }
 
   try {
     // Verify the report belongs to the engineer
     const report = await prisma.report.findFirst({
-      where: { 
+      where: {
         id: reportId,
-        engineerId 
-      }
+        engineerId,
+      },
     });
 
     if (!report) {
@@ -245,13 +364,14 @@ export const signReportDirectly = async (req: AuthenticatedRequest, res: Respons
     }
 
     // Get engineer's stored signature
-    const engineer = await prisma.user.findUnique({
-      where: { id: engineerId }
-    }) as any;
+    const engineer = (await prisma.user.findUnique({
+      where: { id: engineerId },
+    })) as any;
 
     if (!engineer?.signature) {
-      res.status(400).json({ 
-        message: "Engineer signature not found. Please upload your signature first" 
+      res.status(400).json({
+        message:
+          "Engineer signature not found. Please upload your signature first",
       });
       return;
     }
@@ -271,12 +391,11 @@ export const signReportDirectly = async (req: AuthenticatedRequest, res: Respons
       // Optionally clean up the file after sending
       // fs.unlinkSync(signedPdfPath);
     });
-
   } catch (error) {
     logger.error("Failed to sign report", { error });
-    res.status(500).json({ 
-      message: "Failed to sign report", 
-      error: (error as Error).message 
+    res.status(500).json({
+      message: "Failed to sign report",
+      error: (error as Error).message,
     });
   }
 };
