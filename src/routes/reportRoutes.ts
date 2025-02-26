@@ -103,8 +103,16 @@ router.post(
   "/",
   authenticateToken,
   authorizeRoles("ENGINEER"),
+  body("scheduleId").isUUID(),
   body("engineerId").isUUID(),
   body("customerId").isUUID(),
+  body("serviceIds").isArray(),
+  body("problem").isString(),
+  body("processingTimeStart").isISO8601(),
+  body("processingTimeEnd").isISO8601(),
+  body("reportDate").isISO8601(),
+  body("serviceStatus").isString(),
+  body("status").isString(),
   handleValidation,
   createNewReport
 );
@@ -176,7 +184,13 @@ router.put(
  *       400:
  *         description: Bad request
  */
-router.post("/engineering-sign", authenticateToken, engineeringSign);
+router.post("/engineering-sign", 
+  authenticateToken, 
+  body("reportId").isUUID(),
+  body("signature").isString(),
+  handleValidation,
+  engineeringSign
+);
 
 /**
  * @swagger
@@ -203,7 +217,12 @@ router.post("/engineering-sign", authenticateToken, engineeringSign);
  *       400:
  *         description: Bad request
  */
-router.post("/generate-preview", authenticateToken, generateReportPreview);
+router.post("/generate-preview", 
+  authenticateToken, 
+  body("reportId").isUUID(),
+  handleValidation,
+  generateReportPreview
+);
 
 /**
  * @swagger
@@ -233,9 +252,13 @@ router.post("/generate-preview", authenticateToken, generateReportPreview);
  *       400:
  *         description: Bad request
  */
-router.post(
-  "/send-email-customer-sign",
-  authenticateToken,
+
+router.post("/send-email-customer-sign", 
+  authenticateToken, 
+  body("reportId").isUUID(),
+  body("signature").isString(),
+  body("customerEmail").isEmail(),
+  handleValidation,
   sendEmailForCustomerSign
 );
 
@@ -267,7 +290,14 @@ router.post(
  *       400:
  *         description: Bad request
  */
-router.post("/customer-sign", authenticateToken, customerSignReport);
+router.post("/customer-sign", 
+  authenticateToken, 
+  body("reportId").isUUID(),
+  body("customerSignature").isString(),
+  body("customerEmail").isEmail(),
+  handleValidation,
+  customerSignReport
+);
 
 /**
  * @swagger
@@ -312,6 +342,9 @@ router.post(
   "/sign-direct",
   authenticateToken,
   authorizeRoles("ENGINEER"),
+  body("reportId").isUUID(),
+  body("customerSignature").isString(),
+  handleValidation,
   signReportDirectly
 );
 
